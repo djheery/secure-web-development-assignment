@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 /* Root */
 :root {
@@ -25,8 +26,36 @@ main {
   background-color: var(--off-black);
 }
 
+.bg-light-grey {
+  background-color: var(--light-grey);
+}
+
 /* Text */
 .text-upper {
   text-transform: uppercase;
 }
 
+/* Text Colours */
+.pastel-accent-clr {
+  color: var(--pastel-orange)
+}
+
+.strong-orange {
+  color: var(--strong-orange)
+}
+
+/* Formatting */
+.flex {
+  display: flex;
+}
+
+/* Logo */
+
+.logo {
+  font-weight: 600;
+  letter-spacing: .2rem;
+}
+
+.sub-heading {
+  font-size: .8rem;
+}

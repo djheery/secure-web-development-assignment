@@ -6,11 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/website-source-files/assets/css/core.css">
   <link rel="stylesheet" href="/website-source-files/assets/css/header-nav.css">
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>City Cinema | Watch Great Films</title>
 </head>
 <body>
   <!-- Header -->
-  <header class="bg-off-black">
+  <header id="site-header" class="bg-off-black">
     <div class="inner-container flex">
       <div class="logo">
         <p class="text-upper pastel-accent-clr">Cinema City</p>
@@ -31,10 +34,10 @@
 
   </main>
   <!-- Footer -->
-  <footer>
+  <footer id="site-footer" class="bg-off-black">
     <div class="inner-container flex">      
       <div class="logo">
-        <p class="text-upper">Cinema City</p>
+        <p class="pastel-accent-clr text-upper">Cinema City</p>
       </div>
       <div class="footer-links flex"> <!-- Ask if a semtantic tag would be semantically correct here? -->
         <section class="footer-links__section">
@@ -47,16 +50,15 @@
           </ul>
         </section>
         <section class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
-          <h3 class="sub-heading text-upper pastel-accent-clr">Site Navigation</h3>
+          <h3 class="sub-heading text-upper pastel-accent-clr">Assignmenet References</h3>
           <ul class="footer-navigation-list">
-            <li data-pageReference="home"><a href="#">Home</a></li>
-            <li data-pageReference="about-us"><a href="#">About Us</a></li>
-            <li data-pageReference="film-listings"><a href="#">Film Listings</a></li>
-            <li data-pageReference="login-page"><a href="#">Login/ Join</a></li>
+            <li data-pageReference="home"><a href="#">Design Process</a></li>
+            <li data-pageReference="about-us"><a href="#">Security Report</a></li>
+            <li data-pageReference="film-listings"><a href="#">Weekly Analysis</a></li>
           </ul>
         </section>
-        <section class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
-          <h3 class="sub-heading text-upper pastel-accent-clr">Site Navigation</h3>
+        <section id="social-media" class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
+          <h3 class="sub-heading text-upper pastel-accent-clr">Social Media</h3>
           <ul class="footer-navigation-list">
             <li><a href="#" target="_blank">Facebook</a></li>
             <li><a href="#" target="_blank">Instagram</a></li>
@@ -67,7 +69,7 @@
       </div>
     </div>
   </footer>
-  <aside id="mobile-hamburger-menu" data-menuStatus="inactive">
+  <aside id="mobile-hamburger-menu" class="bg-light-grey" data-menuStatus="inactive">
     <div class="menu-icon flex">
       <div class="menu-line"></div>
       <div class="menu-line"></div>
