@@ -6,11 +6,15 @@ nav {
   padding: 20px;
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section {
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list {
   justify-content: center;
   align-items: center;
 }
 
-#site-footer .inner-container, .footer-links{
+#site-footer .inner-container, .footer-links, .footer-navigation-list{
   flex-direction: column;
+}
+
+.footer-section-header {
+  text-align: center;
 }
