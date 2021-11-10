@@ -4,7 +4,11 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
-/* Root */
+/*
+====================== 
+  Root 
+======================
+*/
 :root {
   --light-grey: #2B2B2B;
   --off-black: #191A18;
@@ -13,23 +17,42 @@
   --white: #fff;
 }
 
-/* !!DO NOT USE!! */
+/*
+==============================
+  !!DO NOT USE!! 
+============================
+*/
 main {
   height: 90vh;
   background-color: var(--light-grey)
 }
 
-/* Reusable Styles */
+/*
+===============================
+  Reusable Styles 
+================================
+*/
 ul {
   list-style: none;
 }
 
 a {
   text-decoration: none;
-  color:  #fff;
 }
 
-/* Background */
+p {
+  letter-spacing: 0.1rem;
+}
+
+p, a {
+  color:var(--white)
+}
+
+/*
+====================================
+  Background 
+====================================
+*/
 .bg-off-black {
   background-color: var(--off-black);
 }
@@ -50,12 +73,15 @@ a {
   margin-bottom: 5px
 }
 
-/* Text */
+/* 
+=========================
+  Text
+=========================
+*/
 .text-upper {
   text-transform: uppercase;
 }
 
-/* Text Colours */
 .pastel-accent-clr {
   color: var(--pastel-orange)
 }
@@ -64,12 +90,21 @@ a {
   color: var(--strong-orange)
 }
 
-/* Formatting */
+/*
+======================= 
+  Formatting 
+======================
+*/
 .flex {
   display: flex;
 }
 
-/* Logo */
+
+/*
+=======================
+  Logo 
+======================
+*/
 
 .logo {
   font-weight: 600;
@@ -77,5 +112,86 @@ a {
 }
 
 .sub-heading {
+  letter-spacing: 0.1rem;
+}
+
+.sub-heading, .copyright-statement {
   font-size: .8rem;
+}
+
+.inner-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+@media only screen and (min-width: 778px) {
+  /* 
+  =========================
+    Text
+  =========================
+  */
+
+  .sub-heading {
+    font-size: 1rem;
+  }
+
+  .footer-navigation-list li {
+    font-size: 1.2rem;
+  }
+
+  /* 
+   =======================
+    Header 
+   =======================
+  */
+
+  #site-header {
+    padding: 30px 40px;
+  }
+
+  nav {
+    display: block;
+  }
+
+  .nav-link {
+    margin-left: 20px;
+  }
+
+  #mobile-hamburger-menu {
+    display: none;
+  }
+
+  #site-header .inner-container{
+    justify-content: space-between;
+  }
+
+  /* 
+   ======================
+   Footer 
+   ======================
+  */
+
+  #site-footer {
+    padding: 50px 40px;
+  }
+
+  #site-footer .inner-container {
+    max-width: 800px;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: unset;
+    width: 100%;
+  }
+
+  .footer-links__section {
+    justify-content: unset;
+    align-items: baseline;
+  }
+
+  .footer-section-header {
+    text-align: left;
+  }
 }

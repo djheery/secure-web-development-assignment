@@ -6,6 +6,9 @@ nav {
   padding: 25px;
 }
 
+.nav-link {
+  letter-spacing: 0.15rem;
+}
 #site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list {
   justify-content: center;
   align-items: center;
