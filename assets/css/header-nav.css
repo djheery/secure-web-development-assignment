@@ -2,8 +2,8 @@ nav {
   display: none;
 }
 
-#site-header {
-  padding: 20px;
+#site-header, #site-footer {
+  padding: 25px;
 }
 
 #site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list {
@@ -14,6 +14,7 @@ nav {
 #site-footer .inner-container, .footer-links, .footer-navigation-list{
   flex-direction: column;
 }
+
 
 .footer-section-header {
   text-align: center;

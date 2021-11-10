@@ -20,6 +20,14 @@ main {
 }
 
 /* Reusable Styles */
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color:  #fff;
+}
 
 /* Background */
 .bg-off-black {
@@ -28,6 +36,18 @@ main {
 
 .bg-light-grey {
   background-color: var(--light-grey);
+}
+
+.mgb-20 {
+  margin-bottom: 20px;
+}
+
+.mgb-10 {
+  margin-bottom: 10px;
+}
+
+.mgb-5 {
+  margin-bottom: 5px
 }
 
 /* Text */
