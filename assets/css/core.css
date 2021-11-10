@@ -17,15 +17,6 @@
   --white: #fff;
 }
 
-/*
-==============================
-  !!DO NOT USE!! 
-============================
-*/
-main {
-  height: 90vh;
-  background-color: var(--light-grey)
-}
 
 /*
 ===============================
@@ -44,8 +35,36 @@ p {
   letter-spacing: 0.1rem;
 }
 
-p, a {
+p, a, h1, h2, h3 {
   color:var(--white)
+}
+
+main {
+  position: relative;
+  height: 100%
+}
+
+section {
+  padding: 50px 25px;
+}
+
+/*
+===============================
+  Containers 
+================================
+*/
+
+.inner-container {
+
+}
+
+.page-section {
+  position: relative;
+}
+
+.showcase {
+  height: 100vh;
+  background-color: var(--off-black); /* Just incase photo does not load*/
 }
 
 /*
@@ -90,6 +109,10 @@ p, a {
   color: var(--strong-orange)
 }
 
+.text-center {
+  text-align: center;
+}
+
 /*
 ======================= 
   Formatting 
@@ -99,10 +122,16 @@ p, a {
   display: flex;
 }
 
+.central-content {
+  justify-content: center;
+  align-items: center;
+  height: 100%
+}
+
 
 /*
 =======================
-  Logo 
+  Headings
 ======================
 */
 
@@ -123,6 +152,40 @@ p, a {
   max-width: 1200px;
   margin: auto;
 }
+
+/* 
+===========================================
+===========================================
+  Page Specific Content
+===========================================
+===========================================
+*/
+
+#index-showcase {
+  background-image: url('/assets/images/james-bond.jpg');
+  background-position: center;
+  object-fit: contain;
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 778px
+===========================================
+===========================================
+*/
+
+.heading-primary {
+  font-size: 2rem;
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 778px
+===========================================
+===========================================
+*/
 
 @media only screen and (min-width: 778px) {
   /* 
@@ -193,5 +256,26 @@ p, a {
 
   .footer-section-header {
     text-align: left;
+  }
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 778px
+===========================================
+===========================================
+*/
+
+@media only screen and (min-width:1000px) {
+  /* 
+    =======================
+    Element Styling 
+    =======================
+  */
+
+  a:hover {
+    color: var(--pastel-orange);
+    cursor: pointer;
   }
 }
