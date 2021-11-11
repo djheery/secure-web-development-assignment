@@ -35,8 +35,12 @@ p {
   letter-spacing: 0.1rem;
 }
 
-p, a, h1, h2, h3 {
+p, a, h1, h2, h3, span {
   color:var(--white)
+}
+
+h1, h2, h3 {
+  font-weight: 600;
 }
 
 section {
@@ -129,7 +133,7 @@ section {
   color: var(--strong-orange)
 }
 
-.text-center {
+.text-center, .footer-section-header, .section-text-block {
   text-align: center;
 }
 
@@ -146,6 +150,14 @@ section {
   height: 100%
 }
 
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container {
+  justify-content: center;
+  align-items: center;
+}
+
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container {
+  flex-direction: column;
+}
 
 /*
 =======================
@@ -217,19 +229,8 @@ nav {
 .nav-link {
   letter-spacing: 0.15rem;
 }
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content {
-  justify-content: center;
-  align-items: center;
-}
-
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container {
-  flex-direction: column;
-}
 
 
-.footer-section-header {
-  text-align: center;
-}
 
 
 /* 
@@ -251,7 +252,7 @@ nav {
 */
 
 .camera-operator-illustration {
-  width: 100px;
+  width: 80%;
   height: auto;
 }
 
@@ -267,7 +268,7 @@ nav {
 }
 .film-tile__container {
   position: absolute;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
 }
 .film-tile__container img {
   width: 200px;
@@ -284,14 +285,53 @@ nav {
 */
 
 @media only screen and (min-width: 768px) {
+
+  /* 
+  =============================
+  Formatting 
+  =============================
+  */
+
+  .buttons-container {
+    justify-content: unset;
+    align-items: unset;
+  }
+
+  /* 
+  ========================
+    Containers 
+  ========================
+  */
+
+  .page-section {
+    padding: 50px 
+  }
+
   /* 
   =========================
     Text
   =========================
   */
 
+  p {
+    font-size: 1.7rem
+  }
+  
+  .btn {
+    font-size: 1.4rem;
+  }
+  
+
   .heading-primary {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+
+  .heading-secondary {
+    font-size: 3rem
+  }
+
+  .section-heading, .section-text-block, .btn {
+    text-align: unset;
   }
 
   .sub-heading {
@@ -317,7 +357,7 @@ nav {
   }
 
   .nav-link {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 
   #mobile-hamburger-menu {
@@ -351,34 +391,103 @@ nav {
 
   .footer-links__section {
     justify-content: unset;
-    align-items: baseline;
   }
 
   .footer-section-header {
     text-align: left;
   }
+
+
+  /* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  height: unset;
+  gap: 70px;
 }
+.film-tile__container {
+  position: unset;
+  transform: unset;
+}
+.film-tile__container img {
+  width: 270px;
+}
+
+  .film-tile__container:nth-child(even) {
+    display: none;
+  }
+
+  /* 
+    ========================
+    Marketing Section
+    ========================
+  */
+
+  
+.camera-operator-illustration {
+  display: none;
+}
+
+
+
+} 
 
 
 
 /* 
 ===========================================
 ===========================================
-  MEDIA QUERY 1000px
+  MEDIA QUERY 1024px
 ===========================================
 ===========================================
 */
 
-@media only screen and (min-width:1000px) {
+@media only screen and (min-width:1024px) {
   /* 
     =======================
     Element Styling 
     =======================
   */
 
+  p {
+    font-size: 1.7rem
+  }
+  
+  .btn {
+    font-size: 1.4rem;
+  }
+  
+
+  .heading-primary {
+    font-size: 4rem;
+  }
+
+  .heading-secondary {
+    font-size: 3rem
+  }
+
+  .section-heading, .section-text-block, .btn {
+    text-align: unset;
+  }
+
+  .sub-heading {
+    font-size: 1.5rem;
+  }
+
+  .footer-navigation-list li {
+    font-size: 1.2rem;
+  }
+
   a:hover {
     color: var(--pastel-orange);
     cursor: pointer;
+    }
+
+    section {
+      overflow: hidden;
     }
 
   /* 
@@ -390,4 +499,153 @@ nav {
   .showcase {
     height: 60vh;
   }
+
+  .inner-container, #site-footer .inner-container {
+    max-width: 1700px;
+  }
+
+  /* 
+  ============================
+  Formatting
+  ============================
+  */
+
+  #film-tiles .inner-container {
+    justify-content: unset;
+    align-items: unset;
+  }
+
+  #marketing-section .inner-container {
+    flex-direction: row;
+  }
+
+   /* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  height: unset;
+  gap: 70px;
+}
+.film-tile__container {
+  
+  width: 20%
+}
+.film-tile__container img {
+  width: 100%;
+  height: auto
+}
+
+  .film-tile__container:nth-child(even) {
+    display: block;
+  }
+
+  /* 
+    ========================
+    Marketing Section
+    ========================
+  */
+
+  .page-left {
+    max-width: 700px
+  }
+
+  .page-right {
+    position: relative;
+    width: 30%;
+  }
+
+  #marketing-section .inner-container .page-right
+  .camera-operator-illustration {
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+  }
+
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 1024px
+===========================================
+===========================================
+*/
+
+@media only screen and (min-width:1024px) {
+  /* 
+    =======================
+    Element Styling 
+    =======================
+  */
+
+  p {
+    font-size: 2.7rem
+  }
+
+  .footer-link-heading {
+    font-size: 1.8rem;
+    letter-spacing: .3rem;
+  }
+
+  .logo, .nav-link {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    margin-left: 30px;
+  }
+  
+  .btn {
+    font-size: 1.6rem;
+    padding: 10px 20px
+  }
+
+  .btn:hover {
+    cursor:pointer;
+    background-color: var(--pastel-orange);
+  }
+
+  .btn a:hover {
+    color: var(--white)
+  }
+  
+
+  .heading-primary {
+    font-size: 6rem;
+  }
+
+  .heading-secondary {
+    font-size: 5rem
+  }
+
+  .sub-heading {
+    font-size: 2.5rem;
+  }
+
+  .footer-navigation-list li {
+    font-size: 1.8rem;
+  }
+
+  .mgb-large {
+    margin-bottom: 80px
+  }
+
+    /* 
+    =========================
+      Containers
+    =========================    */
+
+    .page-section {
+      padding: 180px 100px
+    }
+
+    .page-left {
+      max-width: 1000px;
+    }
+
 }
