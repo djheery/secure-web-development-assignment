@@ -53,6 +53,10 @@ section {
 
 }
 
+.section-heading {
+  text-align: center;
+}
+
 .page-section {
   position: relative;
   padding: 50px 25px;
@@ -86,8 +90,18 @@ section {
   background-color: var(--light-grey);
 }
 
-.mgb-20 {
-  margin-bottom: 20px;
+.bg-strong-orange {
+  background-color: var(--strong-orange);
+}
+
+
+/* 
+================================
+  Margin
+================================
+*/
+.mgb-large {
+  margin-bottom: 40px;
 }
 
 .mgb-10 {
@@ -129,8 +143,6 @@ section {
 }
 
 .central-content {
-  justify-content: center;
-  align-items: center;
   height: 100%
 }
 
@@ -159,6 +171,26 @@ section {
   margin: auto;
 }
 
+.heading-primary {
+  font-size: 2.25rem;
+}
+
+.heading-secondary {
+  font-size: 2rem;
+}
+
+/* 
+==========================
+  Button
+=========================
+*/
+
+.btn {
+  padding: 10px;
+  border: var(--white) 1px solid;
+  border-radius: 5px
+}
+
 /* 
 ===========================================
 ===========================================
@@ -167,16 +199,81 @@ section {
 ===========================================
 */
 
+/* 
+===============================
+  Header
+===============================
+
+*/
+
+nav {
+  display: none;
+}
+
+#site-header, #site-footer {
+  padding: 25px;
+}
+
+.nav-link {
+  letter-spacing: 0.15rem;
+}
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content {
+  justify-content: center;
+  align-items: center;
+}
+
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container {
+  flex-direction: column;
+}
+
+
+.footer-section-header {
+  text-align: center;
+}
+
+
+/* 
+====================================
+  Index Page
+====================================
+*/
+
 #index-showcase {
   background-image: url('/assets/images/james-bond.jpg');
   background-position: center;
   object-fit: contain;
 }
 
+/* 
+====================================
+  Marketing Block
+====================================
+*/
 
-.heading-primary {
-  font-size: 2rem;
+.camera-operator-illustration {
+  width: 100px;
+  height: auto;
 }
+
+/* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  position: relative;
+  height: 300px;
+}
+.film-tile__container {
+  position: absolute;
+  transform: translateX(-50%)
+}
+.film-tile__container img {
+  width: 200px;
+  height: auto;
+}
+
 
 /* 
 ===========================================
@@ -262,10 +359,12 @@ section {
   }
 }
 
+
+
 /* 
 ===========================================
 ===========================================
-  MEDIA QUERY 778px
+  MEDIA QUERY 1000px
 ===========================================
 ===========================================
 */
@@ -280,5 +379,15 @@ section {
   a:hover {
     color: var(--pastel-orange);
     cursor: pointer;
+    }
+
+  /* 
+    =======================
+    Container 
+    =======================
+  */
+
+  .showcase {
+    height: 60vh;
   }
 }
