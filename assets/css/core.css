@@ -35,11 +35,11 @@ p {
   letter-spacing: 0.1rem;
 }
 
-p, a, h1, h2, h3, span {
+p, a, h1, h2, h3, span, label, li {
   color:var(--white)
 }
 
-h1, h2, h3 {
+h1, h2, h3, label {
   font-weight: 600;
 }
 
@@ -59,6 +59,11 @@ section {
 
 .section-heading {
   text-align: center;
+  z-index: 2;
+}
+
+.showcase-title, .showcase .inner-container .section-text-block {
+  z-index: 1;
 }
 
 .page-section {
@@ -79,7 +84,10 @@ section {
   left: 0;
   right: 0;
   background-color: #000;
+  opacity: .7
 }
+
+
 
 /*
 ====================================
@@ -109,7 +117,7 @@ section {
 }
 
 .mgb-10 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .mgb-5 {
@@ -133,7 +141,7 @@ section {
   color: var(--strong-orange)
 }
 
-.text-center, .footer-section-header, .section-text-block {
+.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text {
   text-align: center;
 }
 
@@ -146,16 +154,27 @@ section {
   display: flex;
 }
 
-.central-content {
+.central-content, #film-listings-showcase .inner-container {
   height: 100%
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container {
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img {
   justify-content: center;
   align-items: center;
 }
 
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container {
+.buttons-container, .film-listings__item-times {
+  width: 100%;
+}
+
+.film-times, .film-times__container, .film-listings__item-times, .buttons-container {
+  /* justify-content: space-around; */
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container {
   flex-direction: column;
 }
 
@@ -170,12 +189,13 @@ section {
   letter-spacing: .2rem;
 }
 
-.sub-heading {
-  letter-spacing: 0.1rem;
+.copyright-statement {
+  font-size: 0.8rem;
 }
 
-.sub-heading, .copyright-statement {
-  font-size: .8rem;
+.sub-heading {
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
 }
 
 .inner-container {
@@ -202,6 +222,33 @@ section {
   border: var(--white) 1px solid;
   border-radius: 5px
 }
+
+/* 
+============================
+ Inputs/ Select Boxes
+============================
+*/
+
+.search-criteria-block {
+  width: 100%;
+}
+select, input[type="text"] {
+  border: none;
+  padding: 15px;
+  width: 100%
+}
+
+input:focus-within {
+  border: none
+}
+.select-container, .search-container {
+  background-color: var(--white);
+  /* padding: 10px; */
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
 
 /* 
 ===========================================
@@ -235,15 +282,27 @@ nav {
 
 /* 
 ====================================
-  Index Page
+  Show Case Sections
 ====================================
 */
 
 #index-showcase {
   background-image: url('/assets/images/james-bond.jpg');
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   object-fit: contain;
 }
+
+#film-listings-showcase {
+  background-image: url('/assets/images/newcastle-upon-tyne.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+
 
 /* 
 ====================================
@@ -275,6 +334,22 @@ nav {
   height: auto;
 }
 
+/* 
+=======================
+Flim listings Page
+=======================
+*/
+
+.individual-film-time {
+  padding: 5px;
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
+
+.film-listings__item-img img {
+  width: 70%;
+  height: auto;
+}
 
 /* 
 ===========================================
@@ -294,6 +369,9 @@ nav {
 
   .buttons-container {
     justify-content: unset;
+  }
+
+  #film-listings-showcase .inner-container, .buttons-container {
     align-items: unset;
   }
 
@@ -584,7 +662,7 @@ nav {
   */
 
   p {
-    font-size: 2.7rem
+    font-size: 1.8rem
   }
 
   .footer-link-heading {
@@ -593,7 +671,7 @@ nav {
   }
 
   .logo, .nav-link {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .nav-link {
