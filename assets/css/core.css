@@ -341,7 +341,7 @@ Flim listings Page
 */
 
 .individual-film-time {
-  padding: 5px;
+  padding: 5px 9px;
   border: 2px solid var(--white);
   border-radius: 5px;
 }
@@ -349,6 +349,7 @@ Flim listings Page
 .film-listings__item-img img {
   width: 70%;
   height: auto;
+  max-width: 350px;
 }
 
 /* 
@@ -367,6 +368,10 @@ Flim listings Page
   =============================
   */
 
+  .film-listings__item-content .buttons-container {
+    justify-content: center !important;
+  }
+
   .buttons-container {
     justify-content: unset;
   }
@@ -382,9 +387,8 @@ Flim listings Page
   */
 
   .page-section {
-    padding: 50px 
+    padding: 180px 100px
   }
-
   /* 
   =========================
     Text
@@ -507,7 +511,20 @@ Flim listings Page
   
 .camera-operator-illustration {
   display: none;
-}
+} 
+
+  /* 
+  =============================
+  Film Listings Page
+  =============================
+  */
+
+  .individual-film-time {
+    padding: 8px 15px;
+    font-size: 1.4rem;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+  }
 
 
 
@@ -582,6 +599,7 @@ Flim listings Page
     max-width: 1700px;
   }
 
+
   /* 
   ============================
   Formatting
@@ -643,6 +661,12 @@ Flim listings Page
     height: 100%;
     width: auto;
   }
+
+  /* 
+    ============================
+
+    ============================
+  */
 
 }
 
@@ -717,6 +741,11 @@ Flim listings Page
     =========================
       Containers
     =========================    */
+
+    .film-listings__item-container {
+      flex-direction: row;
+      gap: 100px;
+    }
 
     .page-section {
       padding: 180px 100px
