@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <title>City Cinema | Watch Great Films</title>
+  <title>City Cinema | What's On?</title>
 </head>
 <body>
   <!-- Header -->
@@ -24,9 +24,9 @@
       <!-- Navigation -->
       <nav>
         <ul class="flex nav-bar" data-login='false'>
-          <li class="text-upper" data-pageReference="whats-on"><a href="/content/film-listings.html" class="nav-link semi-bold">What's On</a></li>
-          <li class="text-upper" data-pageReference="cinema-club"><a href="#" class="nav-link semi-bold">Cinema Club</a></li>
-          <li class="text-upper" data-pageReference="about-us"><a href="#" class="nav-link semi-bold">About Us</a></li>
+          <li class="text-upper" data-pageReference="whats-on"><a href="./film-listings.html" class="nav-link semi-bold">What's On</a></li>
+          <li class="text-upper" data-pageReference="cinema-club"><a href="#" class="nav-link semi-bold">Security Report</a></li>
+          <!-- <li class="text-upper" data-pageReference="about-us"><a href="#" class="nav-link semi-bold">About Us</a></li> -->
           <li class="text-upper" data-pageReference="login-page"><a href="#" class="nav-link semi-bold" >Login/ Join</a></li>
         </ul>
       </nav>
@@ -34,13 +34,43 @@
   </header>
   <!-- Main Content -->
   <main>
-    <!-- Main Page Showcase -->
-    <section id="index-showcase" class="showcase">
-      <div class="background-image-filter"></div>
-      <div class="inner-container flex central-content">
-        <div class="showcase-title text-center">
-          <h1 class="heading-primary text-upper">James Bond</h1>
-          <h3 class="sub-heading text-upper">No Time To Die</h3>
+    <section id="individual-film-listing" class="bg-light-grey page-section">
+      <div class="inner-container flex">
+        <div class="film-listings__item-container flex mgb-large">
+          <div class="film-listings__item-img flex mgb-mid">
+            <img src="/assets/images/avengers.jpg" alt="">
+          </div>
+          <div class="film-listings__item-content flex">
+            <div class="film-listings__item-heading mgb-mid">
+              <h3 class="sub-heading pastel-accent-clr text-upper">Avengers: Infinity War</h3>
+            </div>
+            <div class="film-listings__item-text-block mgb-mid">
+              <p class="film-listings__item-text mgb-small"><span class="bold">Director</span>: Quentin Tarintino</p>
+              <p class="film-listings__item-text mgb-small"><span class="bold">Duration</span>: 1hr 40mins</p>
+              <p class="film-listings__item-text"><span class="bold">Film Synopsis:</span></p>
+              <p class="film-listings__item-text mgb-mid">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos sit, voluptates non voluptate delectus eveniet dolores porro ipsum cumque dicta, nemo harum accusamus consequuntur laborum recusandae dolorum nulla vel! Eveniet illum distinctio nulla porro soluta dicta minima doloribus fugit dolor.</p>
+            </div>
+            <div class="film-listings__item-times mgb-mid">
+              <p class="film-listings__item-text mgb-mid">Times Available</p>
+              <div class="film-times__container">
+                <ul class="film-times flex">
+                  <li class="individual-film-time">14:00</li>
+                  <li class="individual-film-time">16:00</li>
+                  <li class="individual-film-time">18:00</li>
+                  <li class="individual-film-time">20:00</li>
+                  <li class="individual-film-time">22:00</li>
+                </ul>
+              </div>
+            </div>
+            <div class="buttons-container flex">
+              <div class="btn bg-strong-orange">
+                <a href="">Book Now</a>
+              </div>
+              <div class="btn">
+                <a href="./film-listings.html">Back to all Films</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -48,7 +78,7 @@
     <section id="film-tiles" class="page-section bg-off-black">
       <div class="inner-container flex">
         <div class="section-heading mgb-large">
-          <h2 class="heading-secondary text-upper">What's <span class="pastel-accent-clr">On?</span></h2>
+          <h2 class="heading-secondary text-upper">Films <span class="pastel-accent-clr">Like</span> This</h2>
         </div>
         <div class="film-tiles-block flex mgb-large">
           <div class="film-tile__container">
@@ -88,7 +118,9 @@
           </div>
         </div>
         <div class="page-right">
-          <img src="/assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+          <div class="film-listings__item-img flex mgb-mid">
+            <img src="/assets/images/avengers.jpg" alt="">
+          </div>
         </div>
       </div>
     </section>

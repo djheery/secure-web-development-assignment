@@ -39,11 +39,11 @@ p, a, h1, h2, h3, span, label, li {
   color:var(--white)
 }
 
-h1, h2, h3, label {
+h1, h2, h3, label, .logo, .bold {
   font-weight: 600;
 }
 
-section {
+section, .page-section, .showcase {
   position: relative
 }
 
@@ -53,9 +53,6 @@ section {
 ================================
 */
 
-.inner-container {
-
-}
 
 .section-heading {
   text-align: center;
@@ -67,14 +64,12 @@ section {
 }
 
 .page-section {
-  position: relative;
   padding: 50px 25px;
 }
 
 .showcase {
   height: 100vh;
   background-color: var(--off-black); /* Just incase photo does not load*/
-  position: relative;
 }
 
 .background-image-filter {
@@ -116,12 +111,12 @@ section {
   margin-bottom: 40px;
 }
 
-.mgb-10 {
+.mgb-mid {
   margin-bottom: 20px;
 }
 
-.mgb-5 {
-  margin-bottom: 5px
+.mgb-small {
+  margin-bottom: 10px
 }
 
 /* 
@@ -154,11 +149,15 @@ section {
   display: flex;
 }
 
+#film-search-criteria .inner-container, #sign-up .inner-container, #booking-page .inner-container {
+  gap: 20px;
+}
+
 .central-content, #film-listings-showcase .inner-container {
   height: 100%
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img {
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right{
   justify-content: center;
   align-items: center;
 }
@@ -167,14 +166,16 @@ section {
   width: 100%;
 }
 
-.film-times, .film-times__container, .film-listings__item-times, .buttons-container {
-  /* justify-content: space-around; */
+.booking-form .form-field-container, .film-times, .film-times__container, .film-listings__item-times, .buttons-container  {
   gap: 10px;
+}
+
+.film-times, .film-times__container, .film-listings__item-times, .buttons-container {
   flex-wrap: wrap;
   justify-content: center;
 }
 
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container {
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container  {
   flex-direction: column;
 }
 
@@ -185,7 +186,6 @@ section {
 */
 
 .logo {
-  font-weight: 600;
   letter-spacing: .2rem;
 }
 
@@ -223,6 +223,11 @@ section {
   border-radius: 5px
 }
 
+.text-btn {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 /* 
 ============================
  Inputs/ Select Boxes
@@ -232,21 +237,27 @@ section {
 .search-criteria-block {
   width: 100%;
 }
-select, input[type="text"] {
+select, input {
   border: none;
   padding: 15px;
-  width: 100%
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 input:focus-within {
   border: none
 }
-.select-container, .search-container {
+.select-container, .search-container, .input-container {
   background-color: var(--white);
   /* padding: 10px; */
   width: 100%;
   padding: 0 10px;
   border-radius: 10px;
+}
+
+.two-input-row .form-field-container:first-child {
+  margin-bottom: 10px;
 }
 
 
@@ -346,10 +357,24 @@ Flim listings Page
   border-radius: 5px;
 }
 
-.film-listings__item-img img {
+.film-listings__item-img img, #booking-page .inner-container .page-right img {
   width: 70%;
   height: auto;
   max-width: 350px;
+}
+
+/* 
+ ========================
+  Booking Page
+ ========================
+*/
+
+#booking-page .inner-container {
+  flex-direction: column-reverse;
+}
+
+#booking-page .inner-container .page-right img {
+  max-width: 600px;
 }
 
 /* 
@@ -369,7 +394,7 @@ Flim listings Page
   */
 
   .film-listings__item-content .buttons-container {
-    justify-content: center !important;
+    justify-content: center;
   }
 
   .buttons-container {
@@ -379,6 +404,11 @@ Flim listings Page
   #film-listings-showcase .inner-container, .buttons-container {
     align-items: unset;
   }
+
+  #booking-page .inner-container {
+    gap: 70px;
+  }
+  
 
   /* 
   ========================
@@ -417,10 +447,10 @@ Flim listings Page
   }
 
   .sub-heading {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
-  .footer-navigation-list li {
+  .footer-navigation-list li, .input-label {
     font-size: 1.2rem;
   }
 
@@ -475,9 +505,6 @@ Flim listings Page
     justify-content: unset;
   }
 
-  .footer-section-header {
-    text-align: left;
-  }
 
 
   /* 
@@ -519,13 +546,34 @@ Flim listings Page
   =============================
   */
 
+  #film-search-criteria {
+    padding: 50px
+  }
+
+  #film-search-criteria .inner-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .search-criteria-block  {
+    max-width: 32%;
+  }
+
   .individual-film-time {
-    padding: 8px 15px;
+    padding: 8px 14px;
     font-size: 1.4rem;
     border: 2px solid var(--white);
     border-radius: 5px;
   }
 
+  /* 
+  ==============================
+  Booking Page
+  ==============================
+  */
+  #booking-page .inner-container .page-right img {
+    width: unset
+  }
 
 
 } 
@@ -561,7 +609,12 @@ Flim listings Page
   }
 
   .heading-secondary {
-    font-size: 3rem
+    font-size: 3.5rem
+  }
+
+  .footer-link-heading {
+    font-size: 1.5rem;
+    letter-spacing: .3rem;
   }
 
   .section-heading, .section-text-block, .btn {
@@ -573,7 +626,7 @@ Flim listings Page
   }
 
   .footer-navigation-list li {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 
   a:hover {
@@ -584,6 +637,29 @@ Flim listings Page
     section {
       overflow: hidden;
     }
+  
+    .nav-link {
+      margin-left: 30px;
+    }
+
+    .logo, .nav-link {
+      font-size: 1.3rem;
+    }
+  
+    
+  .btn a:hover {
+    color: var(--white)
+  }
+
+  .btn:hover {
+    cursor:pointer;
+    background-color: var(--pastel-orange);
+  }
+
+  select:hover, input:hover {
+    cursor: pointer;
+  }
+  
 
   /* 
     =======================
@@ -595,9 +671,26 @@ Flim listings Page
     height: 60vh;
   }
 
-  .inner-container, #site-footer .inner-container {
-    max-width: 1700px;
+ #site-footer .inner-container {
+    max-width: 1500px;
   }
+  .film-listings__item-container {
+    flex-direction: row;
+    gap: 100px;
+  }
+
+  .film-listings__item-heading, .film-listings__item-text{
+    text-align: left;
+  }
+
+  .page-section {
+    padding: 180px 100px
+  }
+
+  .page-left {
+    max-width: 1000px;
+  }
+
 
 
   /* 
@@ -611,7 +704,7 @@ Flim listings Page
     align-items: unset;
   }
 
-  #marketing-section .inner-container {
+  #marketing-section .inner-container, #sign-up .inner-container {
     flex-direction: row;
   }
 
@@ -654,7 +747,7 @@ Flim listings Page
   }
 
   #marketing-section .inner-container .page-right
-  .camera-operator-illustration {
+  .camera-operator-illustration{
     display: block;
     position: absolute;
     top: 0;
@@ -662,10 +755,59 @@ Flim listings Page
     width: auto;
   }
 
+  #sign-up .inner-container .page-right .camera-operator-illustration {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    height: 70%;
+    width: auto;
+  }
+
   /* 
     ============================
-
+    Film Listings 
     ============================
+  */
+
+  .film-listings__item-content {
+    justify-content: unset;
+    align-items: unset;
+  }
+
+  .film-listings__item-content .buttons-container {
+    justify-content: unset;
+  }
+
+  .film-times {
+    flex-wrap: nowrap;
+    justify-content: unset;
+  }
+
+  .film-listings__item-img img {
+    width: 90%
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-container {
+    justify-content: unset;
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-container .film-listings__item-img img {
+    max-width: 500px;
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-content {
+    width: 50%
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-content p {
+    font-size: 1.5rem;
+  } 
+
+  /* 
+  ================================
+  ================================
   */
 
 }
@@ -673,19 +815,19 @@ Flim listings Page
 /* 
 ===========================================
 ===========================================
-  MEDIA QUERY 1024px
+  MEDIA QUERY 1200px
 ===========================================
 ===========================================
 */
 
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width:1200px) {
   /* 
     =======================
     Element Styling 
     =======================
   */
 
-  p {
+  p, .booking-form .form-field-container label {
     font-size: 1.8rem
   }
 
@@ -693,66 +835,53 @@ Flim listings Page
     font-size: 1.8rem;
     letter-spacing: .3rem;
   }
-
-  .logo, .nav-link {
-    font-size: 1.3rem;
-  }
-
-  .nav-link {
-    margin-left: 30px;
-  }
   
   .btn {
     font-size: 1.6rem;
     padding: 10px 20px
   }
 
-  .btn:hover {
-    cursor:pointer;
-    background-color: var(--pastel-orange);
-  }
-
-  .btn a:hover {
-    color: var(--white)
-  }
-  
-
   .heading-primary {
     font-size: 6rem;
   }
-
-  .heading-secondary {
-    font-size: 5rem
-  }
-
+  
   .sub-heading {
-    font-size: 2.5rem;
-  }
-
-  .footer-navigation-list li {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .mgb-large {
     margin-bottom: 80px
   }
 
-    /* 
-    =========================
-      Containers
-    =========================    */
+  /* 
+  =============================
+  Formatting
+  =============================
+  */
 
-    .film-listings__item-container {
-      flex-direction: row;
-      gap: 100px;
-    }
+  #booking-page .inner-container, .booking-form .form-field-container {
+    flex-direction: row;
+  }
+  
+  #booking-page .inner-container {
+    justify-content: space-between;
+  }
 
-    .page-section {
-      padding: 180px 100px
-    }
+  /* 
+  ===================================
+  Booking Page
+  ===================================
+  */
 
-    .page-left {
-      max-width: 1000px;
-    }
+  #booking-page .inner-container .page-right img {
+    max-width: 400px
+  }
+
+  .booking-form .form-field-container {
+    align-items: center;
+  }
+
+
+
 
 }
