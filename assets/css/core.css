@@ -43,7 +43,7 @@ h1, h2, h3, label, .logo, .bold {
   font-weight: 600;
 }
 
-section, .page-section, .showcase {
+section, .page-section, .showcase, .settings-link-container, .dynamic-box-container {
   position: relative
 }
 
@@ -136,7 +136,7 @@ section, .page-section, .showcase {
   color: var(--strong-orange)
 }
 
-.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text {
+.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text, #adv-settings .inner-container .page-left {
   text-align: center;
 }
 
@@ -153,31 +153,37 @@ section, .page-section, .showcase {
   gap: 20px;
 }
 
+.bookings-list, .booking-form .form-field-container, .film-times, .film-times__container, .film-listings__item-times, .buttons-container, .settings-links, #adv-settings .inner-container, .pagination-buttons {
+  gap: 10px;
+}
+
 .central-content, #film-listings-showcase .inner-container {
   height: 100%
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right{
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container {
   justify-content: center;
   align-items: center;
 }
 
-.buttons-container, .film-listings__item-times {
+.buttons-container, .film-listings__item-times, .pagination-buttons {
   width: 100%;
 }
 
-.booking-form .form-field-container, .film-times, .film-times__container, .film-listings__item-times, .buttons-container  {
-  gap: 10px;
-}
 
 .film-times, .film-times__container, .film-listings__item-times, .buttons-container {
   flex-wrap: wrap;
   justify-content: center;
 }
 
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container  {
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list  {
   flex-direction: column;
 }
+
+.pagination-buttons {
+  margin-left: 10px ;
+}
+
 
 /*
 =======================
@@ -226,6 +232,12 @@ section, .page-section, .showcase {
 .text-btn {
   text-decoration: underline;
   font-weight: 600;
+}
+
+.pagination-buttons li {
+  padding: 4px 10px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
 }
 
 /* 
@@ -287,8 +299,6 @@ nav {
 .nav-link {
   letter-spacing: 0.15rem;
 }
-
-
 
 
 /* 
@@ -378,6 +388,39 @@ Flim listings Page
 }
 
 /* 
+==========================
+  Advanced Settings
+==========================
+*/
+
+.adv-link {
+  position: relative;
+  z-index: 2
+}
+
+.settings-links {
+  font-size: 1.1rem;
+  transition: all ease-in-out
+}
+
+.background-highlight {
+  position: absolute;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  padding: 3px;
+  z-index: 1;
+  transition: all .5s ease-in-out
+}
+
+.dynamic-box {
+  margin-top: 50px;
+  padding: 20px;
+  border: 2px solid var(--white);
+  border-radius: 15px;
+}
+
+/* 
 ===========================================
 ===========================================
   MEDIA QUERY 778px
@@ -425,11 +468,11 @@ Flim listings Page
   =========================
   */
 
-  p {
+  p, .adv-link {
     font-size: 1.7rem
   }
   
-  .btn {
+  .btn, .bookings-list li {
     font-size: 1.4rem;
   }
   
@@ -453,6 +496,8 @@ Flim listings Page
   .footer-navigation-list li, .input-label {
     font-size: 1.2rem;
   }
+
+
 
   /* 
    =======================
@@ -575,6 +620,28 @@ Flim listings Page
     width: unset
   }
 
+  /* 
+  ================================
+  Advanced Settings
+  ================================
+  */
+
+  .dynamic-box {
+    position: relative;
+    padding: 50px;
+    z-index: 2
+  }
+
+  .box-background {
+    position: absolute;
+    padding: 50px;
+    height: calc(100% - 50px);
+    width: 100%;
+    left: -80px;
+    bottom: -80px;
+    border-radius: 15px;
+  }
+
 
 } 
 
@@ -659,6 +726,16 @@ Flim listings Page
   select:hover, input:hover {
     cursor: pointer;
   }
+
+  .settings-link-container:hover > a {
+    color: var(--white)
+  }
+
+  .settings-link-container:hover > .background-highlight {
+    padding: 15px
+  }
+
+  
   
 
   /* 
