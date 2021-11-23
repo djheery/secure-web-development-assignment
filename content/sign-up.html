@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/swd-final-assignment/assets/css/header-nav.css">
+  <link rel="stylesheet" href="/swd-final-assignment/assets/css/hamburger-menu.css">
+  <link rel="stylesheet" href="/swd-final-assignment/assets/css/core.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>City Cinema | What's On?</title>
+</head>
+<body>
+  <!-- Header -->
+  <header id="site-header" class="bg-off-black">
+    <div class="inner-container flex">
+      <div class="logo">
+        <a href="/content/index.html">
+          <span class="text-upper pastel-accent-clr">Cinema City</span>
+        </a>
+      </div>
+      <!-- Navigation -->
+      <nav>
+        <ul class="flex nav-bar" data-login='false'>
+          <li class="text-upper" data-pageReference="whats-on"><a href="./film-listings.html" class="nav-link semi-bold">What's On</a></li>
+          <li class="text-upper" data-pageReference="cinema-club"><a href="#" class="nav-link semi-bold">Security Report</a></li>
+          <!-- <li class="text-upper" data-pageReference="about-us"><a href="#" class="nav-link semi-bold">About Us</a></li> -->
+          <li class="text-upper" data-pageReference="login-page"><a href="#" class="nav-link semi-bold" >Login/ Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Main Content -->
+  <main>
+    <!-- form block -->
+    <section id="sign-up" class="page-section bg-light-grey">
+      <div class="inner-container flex">
+        <div class="page-left">
+          <h1 class="heading-secondary text-upper mgb-large">Sign <span class="pastel-accent-clr">Up</span> For<span class="pastel-accent-clr"> Cinema Club</span></h1>
+          <!-- Form -->
+          <form action="" method="post">
+            <div class="two-input-row mgb-mid flex">
+              <div class="form-field-container">
+                <div class="mgb-small">
+                  <label for="first-name" class="input-label">First Name</label>
+                </div>
+                <div class="input-container">
+                  <input type="text" id="first-name" name="first-name">
+                </div>
+              </div>
+              <div class="form-field-container">
+                <div class="mgb-small">
+                  <label for="last-name" class="input-label">Last Name</label>
+                </div>
+                <div class="input-container">
+                  <input type="text" id="last-name" name="last-name">
+                </div>
+              </div>
+            </div>
+            <div class="form-field-container mgb-mid">
+              <div class="mgb-small">
+                <label for="email" class="input-label">Email Address</label>
+              </div>
+              <div class="input-container">
+                <input type="email" id="last-name" name="last-name">
+              </div>
+            </div>
+            <div class="form-field-container mgb-mid">
+              <div class="mgb-small">
+                <label for="email" class="input-label">Confirm Email</label>
+              </div>
+              <div class="input-container">
+                <input type="email" id="last-name" name="last-name">
+              </div>
+            </div>
+            <div class="form-field-container mgb-mid">
+              <div class="mgb-small">
+                <label for="email" class="input-label">Password</label>
+              </div>
+              <div class="input-container">
+                <input type="password" id="last-name" name="last-name">
+              </div>
+            </div>
+            <div class="form-field-container mgb-large">
+              <div class="mgb-small">
+                <label for="email" class="input-label">Confirm Password</label>
+              </div>
+              <div class="input-container">
+                <input type="password" id="last-name" name="last-name">
+              </div>
+            </div>
+            <div class="buttons-container flex">
+              <div class="btn bg-strong-orange">
+                <a href="" id="submit" type="submit">Sign Up Now</a>
+              </div>
+              <div class="text-btn">
+                <a href="">Already have an account? Click here to login</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="page-right">
+          <img src="/assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer id="site-footer" class="bg-off-black">
+    <div class="inner-container flex">      
+      <div class="logo mgb-large">
+        <p class="pastel-accent-clr text-upper">Cinema City</p>
+      </div>
+      <div class="footer-links flex"> <!-- Ask if a semtantic tag would be semantically correct here? -->
+        <section class="footer-links__section">
+          <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Site Navigation</h3>
+          <ul class="footer-navigation-list flex mgb-mid">
+            <li class="mgb-small" data-pageReference="home"><a href="#">Home</a></li>
+            <li class="mgb-small" data-pageReference="about-us"><a href="#">About Us</a></li>
+            <li class="mgb-small" data-pageReference="film-listings"><a href="#">Film Listings</a></li>
+            <li class="mgb-small" data-pageReference="login-page"><a href="#">Login/ Join</a></li>
+          </ul>
+        </section>
+        <section class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
+          <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Assignment References</h3>
+          <ul class="footer-navigation-list mgb-mid flex">
+            <li class="mgb-small" data-pageReference="home"><a href="#">Design Process</a></li>
+            <li class="mgb-small" data-pageReference="about-us"><a href="#">Security Report</a></li>
+            <li class="mgb-small" data-pageReference="film-listings"><a href="#">Weekly Analysis</a></li>
+          </ul>
+        </section>
+        <section id="social-media" class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
+          <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Social Media</h3>
+          <ul class="footer-navigation-list mgb-mid flex">
+            <li class="mgb-small"><a href="#" target="_blank">Facebook</a></li>
+            <li class="mgb-small"><a href="#" target="_blank">Instagram</a></li>
+            <li class="mgb-small"><a href="#" target="_blank">Twitter</a></li>
+            <li class="mgb-small"><a href="#" target="_blank">YouTube</a></li>
+          </ul>
+        </section>
+      </div>
+      <section class="copyright-statement text-center">
+        <span>Copyright &copy; Cinema City, December 2021</span>
+      </section>
+    </div>
+  </footer>
+  <aside id="mobile-hamburger-menu" class="bg-off-black" data-menuStatus="inactive">
+    <div class="menu-icon flex">
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+    </div>
+  </aside>
+</body>
+</html>

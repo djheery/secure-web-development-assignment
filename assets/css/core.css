@@ -1,0 +1,989 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+/*
+====================== 
+  Root 
+======================
+*/
+:root {
+  --light-grey: #2B2B2B;
+  --off-black: #191A18;
+  --pastel-orange: #EB9947;
+  --strong-orange: #E17000;
+  --white: #fff;
+}
+
+
+/*
+===============================
+  Reusable Styles 
+================================
+*/
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  letter-spacing: 0.1rem;
+}
+
+p, a, h1, h2, h3, span, label, li {
+  color:var(--white)
+}
+
+h1, h2, h3, label, .logo, .bold {
+  font-weight: 600;
+}
+
+section, .page-section, .showcase, .settings-link-container, .dynamic-box-container {
+  position: relative
+}
+
+/*
+===============================
+  Containers 
+================================
+*/
+
+
+.section-heading {
+  text-align: center;
+  z-index: 2;
+}
+
+.showcase-title, .showcase .inner-container .section-text-block {
+  z-index: 1;
+}
+
+.page-section {
+  padding: 50px 25px;
+}
+
+.showcase {
+  height: 100vh;
+  background-color: var(--off-black); /* Just incase photo does not load*/
+}
+
+.background-image-filter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  opacity: .7
+}
+
+
+
+/*
+====================================
+  Background 
+====================================
+*/
+.bg-off-black {
+  background-color: var(--off-black);
+}
+
+.bg-light-grey {
+  background-color: var(--light-grey);
+}
+
+.bg-strong-orange {
+  background-color: var(--strong-orange);
+}
+
+
+/* 
+================================
+  Margin
+================================
+*/
+.mgb-large {
+  margin-bottom: 40px;
+}
+
+.mgb-mid {
+  margin-bottom: 20px;
+}
+
+.mgb-small {
+  margin-bottom: 10px
+}
+
+/* 
+=========================
+  Text
+=========================
+*/
+.text-upper {
+  text-transform: uppercase;
+}
+
+.pastel-accent-clr {
+  color: var(--pastel-orange)
+}
+
+.strong-orange {
+  color: var(--strong-orange)
+}
+
+.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text, #adv-settings .inner-container .page-left {
+  text-align: center;
+}
+
+/*
+======================= 
+  Formatting 
+======================
+*/
+.flex {
+  display: flex;
+}
+
+#film-search-criteria .inner-container, #sign-up .inner-container, #booking-page .inner-container {
+  gap: 20px;
+}
+
+.bookings-list, .booking-form .form-field-container, .film-times, .film-times__container, .film-listings__item-times, .buttons-container, .settings-links, #adv-settings .inner-container, .pagination-buttons {
+  gap: 10px;
+}
+
+.central-content, #film-listings-showcase .inner-container {
+  height: 100%
+}
+
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-container, .film-listings__item-times, .pagination-buttons {
+  width: 100%;
+}
+
+
+.film-times, .film-times__container, .film-listings__item-times, .buttons-container {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list  {
+  flex-direction: column;
+}
+
+.pagination-buttons {
+  margin-left: 10px ;
+}
+
+
+/*
+=======================
+  Headings
+======================
+*/
+
+.logo {
+  letter-spacing: .2rem;
+}
+
+.copyright-statement {
+  font-size: 0.8rem;
+}
+
+.sub-heading {
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+}
+
+.inner-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.heading-primary {
+  font-size: 2.25rem;
+}
+
+.heading-secondary {
+  font-size: 2rem;
+}
+
+/* 
+==========================
+  Button
+=========================
+*/
+
+.btn {
+  padding: 10px;
+  border: var(--white) 1px solid;
+  border-radius: 5px
+}
+
+.text-btn {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.pagination-buttons li {
+  padding: 4px 10px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+}
+
+/* 
+============================
+ Inputs/ Select Boxes
+============================
+*/
+
+.search-criteria-block {
+  width: 100%;
+}
+select, input {
+  border: none;
+  padding: 15px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input:focus-within {
+  border: none
+}
+.select-container, .search-container, .input-container {
+  background-color: var(--white);
+  /* padding: 10px; */
+  width: 100%;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.two-input-row .form-field-container:first-child {
+  margin-bottom: 10px;
+}
+
+
+/* 
+===========================================
+===========================================
+  Page Specific Content
+===========================================
+===========================================
+*/
+
+/* 
+===============================
+  Header
+===============================
+
+*/
+
+nav {
+  display: none;
+}
+
+#site-header, #site-footer {
+  padding: 25px;
+}
+
+.nav-link {
+  letter-spacing: 0.15rem;
+}
+
+
+/* 
+====================================
+  Show Case Sections
+====================================
+*/
+
+#index-showcase {
+  background-image: url('/assets/images/james-bond.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+#film-listings-showcase {
+  background-image: url('/assets/images/newcastle-upon-tyne.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+
+
+/* 
+====================================
+  Marketing Block
+====================================
+*/
+
+.camera-operator-illustration {
+  width: 80%;
+  height: auto;
+}
+
+/* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  position: relative;
+  height: 300px;
+}
+.film-tile__container {
+  position: absolute;
+  transform: translateX(-50%);
+}
+.film-tile__container img {
+  width: 200px;
+  height: auto;
+}
+
+/* 
+=======================
+Flim listings Page
+=======================
+*/
+
+.individual-film-time {
+  padding: 5px 9px;
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
+
+.film-listings__item-img img, #booking-page .inner-container .page-right img {
+  width: 70%;
+  height: auto;
+  max-width: 350px;
+}
+
+/* 
+ ========================
+  Booking Page
+ ========================
+*/
+
+#booking-page .inner-container {
+  flex-direction: column-reverse;
+}
+
+#booking-page .inner-container .page-right img {
+  max-width: 600px;
+}
+
+/* 
+==========================
+  Advanced Settings
+==========================
+*/
+
+.adv-link {
+  position: relative;
+  z-index: 2
+}
+
+.settings-links {
+  font-size: 1.1rem;
+  transition: all ease-in-out
+}
+
+.background-highlight {
+  position: absolute;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  padding: 3px;
+  z-index: 1;
+  transition: all .5s ease-in-out
+}
+
+.dynamic-box {
+  margin-top: 50px;
+  padding: 20px;
+  border: 2px solid var(--white);
+  border-radius: 15px;
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 778px
+===========================================
+===========================================
+*/
+
+@media only screen and (min-width: 768px) {
+
+  /* 
+  =============================
+  Formatting 
+  =============================
+  */
+
+  .film-listings__item-content .buttons-container {
+    justify-content: center;
+  }
+
+  .buttons-container {
+    justify-content: unset;
+  }
+
+  #film-listings-showcase .inner-container, .buttons-container {
+    align-items: unset;
+  }
+
+  #booking-page .inner-container {
+    gap: 70px;
+  }
+  
+
+  /* 
+  ========================
+    Containers 
+  ========================
+  */
+
+  .page-section {
+    padding: 180px 100px
+  }
+  /* 
+  =========================
+    Text
+  =========================
+  */
+
+  p, .adv-link {
+    font-size: 1.7rem
+  }
+  
+  .btn, .bookings-list li {
+    font-size: 1.4rem;
+  }
+  
+
+  .heading-primary {
+    font-size: 3.5rem;
+  }
+
+  .heading-secondary {
+    font-size: 3rem
+  }
+
+  .section-heading, .section-text-block, .btn {
+    text-align: unset;
+  }
+
+  .sub-heading {
+    font-size: 1rem;
+  }
+
+  .footer-navigation-list li, .input-label {
+    font-size: 1.2rem;
+  }
+
+
+
+  /* 
+   =======================
+    Header 
+   =======================
+  */
+
+  #site-header {
+    padding: 30px 35px;
+  }
+
+  nav {
+    display: block;
+  }
+
+  .nav-link {
+    margin-left: 15px;
+  }
+
+  #mobile-hamburger-menu {
+    display: none;
+  }
+
+  #site-header .inner-container{
+    justify-content: space-between;
+  }
+
+  /* 
+   ======================
+   Footer 
+   ======================
+  */
+
+  #site-footer {
+    padding: 50px 40px;
+  }
+
+  #site-footer .inner-container {
+    max-width: 800px;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: unset;
+    width: 100%;
+  }
+
+  .footer-links__section {
+    justify-content: unset;
+  }
+
+
+
+  /* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  height: unset;
+  gap: 70px;
+}
+.film-tile__container {
+  position: unset;
+  transform: unset;
+}
+.film-tile__container img {
+  width: 270px;
+}
+
+  .film-tile__container:nth-child(even) {
+    display: none;
+  }
+
+  /* 
+    ========================
+    Marketing Section
+    ========================
+  */
+
+  
+.camera-operator-illustration {
+  display: none;
+} 
+
+  /* 
+  =============================
+  Film Listings Page
+  =============================
+  */
+
+  #film-search-criteria {
+    padding: 50px
+  }
+
+  #film-search-criteria .inner-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .search-criteria-block  {
+    max-width: 32%;
+  }
+
+  .individual-film-time {
+    padding: 8px 14px;
+    font-size: 1.4rem;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+  }
+
+  /* 
+  ==============================
+  Booking Page
+  ==============================
+  */
+  #booking-page .inner-container .page-right img {
+    width: unset
+  }
+
+  /* 
+  ================================
+  Advanced Settings
+  ================================
+  */
+
+  .dynamic-box {
+    position: relative;
+    padding: 50px;
+    z-index: 2
+  }
+
+  .box-background {
+    position: absolute;
+    padding: 50px;
+    height: calc(100% - 50px);
+    width: 100%;
+    left: -80px;
+    bottom: -80px;
+    border-radius: 15px;
+  }
+
+
+} 
+
+
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 1024px
+===========================================
+===========================================
+*/
+
+@media only screen and (min-width:1024px) {
+  /* 
+    =======================
+    Element Styling 
+    =======================
+  */
+
+  p {
+    font-size: 1.7rem
+  }
+  
+  .btn {
+    font-size: 1.4rem;
+  }
+  
+
+  .heading-primary {
+    font-size: 4rem;
+  }
+
+  .heading-secondary {
+    font-size: 3.5rem
+  }
+
+  .footer-link-heading {
+    font-size: 1.5rem;
+    letter-spacing: .3rem;
+  }
+
+  .section-heading, .section-text-block, .btn {
+    text-align: unset;
+  }
+
+  .sub-heading {
+    font-size: 1.5rem;
+  }
+
+  .footer-navigation-list li {
+    font-size: 1.8rem;
+  }
+
+  a:hover {
+    color: var(--pastel-orange);
+    cursor: pointer;
+    }
+
+    section {
+      overflow: hidden;
+    }
+  
+    .nav-link {
+      margin-left: 30px;
+    }
+
+    .logo, .nav-link {
+      font-size: 1.3rem;
+    }
+  
+    
+  .btn a:hover {
+    color: var(--white)
+  }
+
+  .btn:hover {
+    cursor:pointer;
+    background-color: var(--pastel-orange);
+  }
+
+  select:hover, input:hover {
+    cursor: pointer;
+  }
+
+  .settings-link-container:hover > a {
+    color: var(--white)
+  }
+
+  .settings-link-container:hover > .background-highlight {
+    padding: 15px
+  }
+
+  #adv-settings .inner-container .page-left {
+    text-align: left;
+  }
+
+  
+  
+
+  /* 
+    =======================
+    Container 
+    =======================
+  */
+
+  .showcase {
+    height: 60vh;
+  }
+
+ #site-footer .inner-container {
+    max-width: 1500px;
+  }
+  .film-listings__item-container {
+    flex-direction: row;
+    gap: 100px;
+  }
+
+  .film-listings__item-heading, .film-listings__item-text{
+    text-align: left;
+  }
+
+  .page-section {
+    padding: 180px 100px
+  }
+
+  #adv-settings {
+    padding: 180px 50px;
+  }
+
+  .page-left {
+    max-width: 1000px;
+  }
+
+  .dynamic-box {
+    margin: unset;
+  }
+
+  #adv-settings .inner-container .page-right {
+    width: unset;
+  }
+
+
+
+  /* 
+  ============================
+  Formatting
+  ============================
+  */
+
+  #film-tiles .inner-container {
+    justify-content: unset;
+  }
+
+  #adv-settings .inner-container {
+    justify-content: space-between;
+  }
+
+  #marketing-section .inner-container, #sign-up .inner-container, #adv-settings .inner-container {
+    flex-direction: row;
+  }
+
+   /* 
+  ======================
+  Film Tile Block 
+  ======================
+*/
+
+.film-tiles-block {
+  height: unset;
+  gap: 70px;
+}
+.film-tile__container {
+  
+  width: 20%
+}
+.film-tile__container img {
+  width: 100%;
+  height: auto
+}
+
+  .film-tile__container:nth-child(even) {
+    display: block;
+  }
+
+  /* 
+    ========================
+    Marketing Section
+    ========================
+  */
+
+  .page-left {
+    max-width: 700px
+  }
+
+  .page-right {
+    position: relative;
+    width: 30%;
+  }
+
+  #marketing-section .inner-container .page-right
+  .camera-operator-illustration{
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+  }
+
+  #sign-up .inner-container .page-right .camera-operator-illustration {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    height: 70%;
+    width: auto;
+  }
+
+  /* 
+    ============================
+    Film Listings 
+    ============================
+  */
+
+  .film-listings__item-content {
+    justify-content: unset;
+    align-items: unset;
+  }
+
+  .film-listings__item-content .buttons-container {
+    justify-content: unset;
+  }
+
+  .film-times {
+    flex-wrap: nowrap;
+    justify-content: unset;
+  }
+
+  .film-listings__item-img img {
+    width: 90%
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-container {
+    justify-content: unset;
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-container .film-listings__item-img img {
+    max-width: 500px;
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-content {
+    width: 50%
+  }
+
+  #individual-film-listing .inner-container .film-listings__item-content p {
+    font-size: 1.5rem;
+  } 
+
+  /* 
+  ================================
+  Advance Settings 
+  ================================
+  */
+
+  .box-background {
+    top: -30px;
+    left: -30px;
+  }
+
+}
+
+/* 
+===========================================
+===========================================
+  MEDIA QUERY 1200px
+===========================================
+===========================================
+*/
+
+@media only screen and (min-width:1200px) {
+  /* 
+    =======================
+    Element Styling 
+    =======================
+  */
+
+  p, .booking-form .form-field-container label {
+    font-size: 1.8rem
+  }
+
+  .footer-link-heading {
+    font-size: 1.8rem;
+    letter-spacing: .3rem;
+  }
+  
+  .btn {
+    font-size: 1.6rem;
+    padding: 10px 20px
+  }
+
+  .heading-primary {
+    font-size: 6rem;
+  }
+  
+  .sub-heading {
+    font-size: 2rem;
+  }
+
+  .mgb-large {
+    margin-bottom: 80px
+  }
+
+  /* 
+  =============================
+  Formatting
+  =============================
+  */
+
+  #booking-page .inner-container, .booking-form .form-field-container {
+    flex-direction: row;
+  }
+  
+  #booking-page .inner-container {
+    justify-content: space-between;
+  }
+
+  /* 
+  ===================================
+  Booking Page
+  ===================================
+  */
+
+  #booking-page .inner-container .page-right img {
+    max-width: 400px
+  }
+
+  .booking-form .form-field-container {
+    align-items: center;
+  }
+
+
+
+
+}
