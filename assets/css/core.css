@@ -276,7 +276,7 @@ input:focus-within {
 /* 
 ===========================================
 ===========================================
-  Page Specific Content    p
+  Page Specific Content 
 ===========================================
 ===========================================
 */
@@ -335,7 +335,7 @@ nav {
 */
 
 #index-showcase {
-  background-image: url('/assets/images/james-bond.jpg');
+  background-image: url('/swd-final-assignment/assets/images/james-bond.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -343,7 +343,7 @@ nav {
 }
 
 #film-listings-showcase {
-  background-image: url('/assets/images/newcastle-upon-tyne.jpg');
+  background-image: url('/swd-final-assignment/assets/images/newcastle-upon-tyne.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
