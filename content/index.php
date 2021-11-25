@@ -1,8 +1,8 @@
 <?php 
   require_once 'buildPage.php';
-  require_once 'filmTiles.php';
   require_once 'marketingBlock.php';
-  require_once 'getNavigationLinks.php';
+  require_once '../assets/src/filmTiles.php';
+  require_once '../assets/src/getNavigationLinks.php';
 
   $tagline = "Welcome";
   $links = checkPageType('Logged Out', 'index.php');

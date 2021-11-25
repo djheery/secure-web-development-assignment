@@ -300,6 +300,10 @@ nav {
   letter-spacing: 0.15rem;
 }
 
+.nav-active-page {
+  color: var(--pastel-orange)
+}
+
 
 /* 
 ====================================
