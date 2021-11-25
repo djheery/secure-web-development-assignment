@@ -282,33 +282,6 @@ input:focus-within {
 */
 
 /* 
-====================================
-  Hamburger
-====================================
-*/
-
-#mobile-hamburger-menu {
-  position: sticky;
-  bottom: 0;
-  height: 60px;
-  border: 1px solid #fff;
-  z-index: 99;
-}
-
-.menu-line {
-  border-bottom: 3px solid #fff;
-  width: 50px;
-  margin: 3px 0;
-}
-
-.menu-icon {
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 
 ===============================
   Header
 ===============================
@@ -325,10 +298,6 @@ nav {
 
 .nav-link {
   letter-spacing: 0.15rem;
-}
-
-.nav-active-page {
-  color: var(--pastel-orange) !important
 }
 
 
