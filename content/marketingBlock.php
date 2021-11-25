@@ -13,7 +13,7 @@
             </div>
             <div class="buttons-container flex mgb-large">
               <div class="btn bg-strong-orange">
-                <a href="#">Sign up now!</a>
+                <a href="signUpForm.php">Sign up now!</a>
               </div>
             </div>
           </div>

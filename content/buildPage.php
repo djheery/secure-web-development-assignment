@@ -52,6 +52,7 @@
   function startMainSection() {
     return "<main>";
   }
+
   function endMainSection() {
     return "</main>";
   }
@@ -115,7 +116,5 @@
 
   function buildPageEnd() {
     return "</body></html>";
-  }
-
-  
+  }  
 ?>

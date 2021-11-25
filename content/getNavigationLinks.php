@@ -58,8 +58,7 @@
         $l["active"] = 'true';
       }
       array_push($replacementArray, $l);
-    }
-  
+    }  
     return $replacementArray;
   }
 
