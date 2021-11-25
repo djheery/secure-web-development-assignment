@@ -11,7 +11,7 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-      <title>City Cinema | $tagline</title>
+      <title>Galactic Cinema | $tagline</title>
     </head>
     <body>
     PAGESTART;
@@ -23,7 +23,7 @@
         <div class="inner-container flex">
           <div class="logo">
             <a href="index.php">
-              <span class="text-upper pastel-accent-clr">Cinema City</span>
+              <span class="text-upper pastel-accent-clr">Galactic Cinema</span>
             </a>
           </div>
           <!-- Navigation -->
