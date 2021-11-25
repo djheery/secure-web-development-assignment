@@ -17,28 +17,36 @@
     PAGESTART;
     return $pageStartContent;  
   }
-  function buildHeader() {
+  function buildHeader($navigationLinks) {
     $headerContent = <<<HEADER
       <header id="site-header" class="bg-off-black">
         <div class="inner-container flex">
           <div class="logo">
-            <a href="/content/index.html">
+            <a href="index.php">
               <span class="text-upper pastel-accent-clr">Cinema City</span>
             </a>
           </div>
           <!-- Navigation -->
           <nav>
-            <ul class="flex nav-bar" data-login='false'>
-              <li class="text-upper" data-pageReference="whats-on"><a href="/content/film-listings.html" class="nav-link semi-bold">What's On</a></li>
-              <li class="text-upper" data-pageReference="cinema-club"><a href="#" class="nav-link semi-bold">Cinema Club</a></li>
-              <li class="text-upper" data-pageReference="about-us"><a href="#" class="nav-link semi-bold">About Us</a></li>
-              <li class="text-upper" data-pageReference="login-page"><a href="#" class="nav-link semi-bold" >Login/ Join</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+            <ul class="flex nav-bar">
     HEADER;
+    // 
+    $headerContent = addNavigationLinks($headerContent, $navigationLinks);
+    $headerContent .= "</ul></nav></div></header>";
     return $headerContent;
+  }
+
+  function addNavigationLinks($header, $links) {
+    foreach($links as $l) {
+      if($l['active'] == 'true') {
+        $header .= "
+        <li class=\"text-upper\"><a href=\"{$l['href']}\" class=\"nav-link semi-bold nav-active-page\">{$l['text']}</a></li>";
+      } else {
+        $header .= "
+        <li class=\"text-upper\"><a href=\"{$l['href']}\" class=\"nav-link semi-bold\">{$l['text']}</a></li>";
+      }
+    }
+    return $header;
   }
 
   function startMainSection() {

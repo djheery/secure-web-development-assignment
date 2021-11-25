@@ -43,7 +43,7 @@ h1, h2, h3, label, .logo, .bold {
   font-weight: 600;
 }
 
-section, .page-section, .showcase, .settings-link-container, .dynamic-box-container {
+section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li {
   position: relative
 }
 
@@ -325,6 +325,10 @@ nav {
 
 .nav-link {
   letter-spacing: 0.15rem;
+}
+
+.nav-active-page {
+  color: var(--pastel-orange) !important
 }
 
 
@@ -758,7 +762,7 @@ Flim listings Page
     color: var(--white)
   }
 
-  .settings-link-container:hover > .background-highlight {
+  .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight {
     padding: 15px
   }
 
