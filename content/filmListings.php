@@ -1,8 +1,10 @@
 <?php 
   require_once 'buildPage.php';
   require_once 'marketingBlock.php';
+  require_once 'filmListinsTiles.php'
   require_once '../assets/src/filmTiles.php';
   require_once '../assets/src/getNavigationLinks.php';
+  require_once '../assets/src/databaseActions.php';
 
   $tagline = "Whats On?";
   $links = checkPageType('Logged Out', 'filmListings.php');
