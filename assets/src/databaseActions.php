@@ -2,9 +2,9 @@
   require_once 'dbconn.php';
 
   $conn = connectToDatabase();
-  
+  getTableData('movies');
 
-  function getTableData($table, $conn) {
+  function getTableData($table) {
     $sql = "SELECT  * FROM $table";
     $queryResult = mysqli_query($conn, $sql);
     if($queryResult !== '') {
@@ -15,9 +15,6 @@
       }
     };
 
-    function getMovieListingsData() {
-      $sql = "SELECT * FROM movies";
-    }
 
     function insertIntoMovieListings($conn, $movieName, $desc, $price, $rating) {
       $sql = "INSERT INTO movies (movie_name, description, ticket_price, rating) 
