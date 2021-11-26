@@ -10,8 +10,22 @@ INSERT INTO `customers` (`customerID`, `username`, `password_hash`, `customer_fo
 --
 
 INSERT INTO `movies` (`movieID`, `movie_name`, `description`, `ticket_price`, `rating`) VALUES
-(1, 'The Shawshank Redemption', 'Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man\'s unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.', '8.50', '15'),
-(2, 'Boss Baby: Family Business', 'If your kids are fans of the first Boss Baby movie, they\'ll be happy to know there\'s another bundle on the way. This time, Tim and Ted are grown-ups who — at the behest of Tim\'s infant daughter — have to turn back into babies to help stop an evil villain. ', '6.50', 'PG');
+(1, 
+'Avengers: Infinity War',
+'Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man''s unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.', 
+'8.50', 
+'15',
+'avengers.jpg',
+'Frank Darabont',
+'1hr 50mins'),
+(2, 
+'The Prestige', 
+'If your kids are fans of the first Boss Baby movie, they''ll be happy to know there''s another bundle on the way. This time, Tim and Ted are grown-ups who — at the behest of Tim''s infant daughter — have to turn back into babies to help stop an evil villain.', 
+'6.50',
+'the-prestige.jpg' 
+'PG',
+'Tom McGrath',
+'2hrs 10mins');
 
 --
 -- Dumping data for table `movie_bookings`
