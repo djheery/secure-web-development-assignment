@@ -1,17 +1,18 @@
 <?php
   require_once 'dbconn.php';
 
-  $conn = connectToDatabase();
   getTableData('movies');
-
+  
   function getTableData($table) {
+    $conn = connectToDatabase();
     $sql = "SELECT  * FROM $table";
     $queryResult = mysqli_query($conn, $sql);
     if($queryResult !== '') {
-      while($row = mysqli_fetch_assoc($queryResult)) {
-          print_r($row);
-          echo "<br><br>";
-        }
+      $movieObj = [];
+      while ($row = mysqli_fetch_assoc($queryResult)) {
+        array_push($movieObj, $row);
+      } 
+      return $movieObj;
       }
     };
 

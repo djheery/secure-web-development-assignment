@@ -1,7 +1,7 @@
 <?php 
   require_once 'buildPage.php';
   require_once 'marketingBlock.php';
-  require_once 'filmListinsTiles.php'
+  require_once 'filmListingsTiles.php';
   require_once '../assets/src/filmTiles.php';
   require_once '../assets/src/getNavigationLinks.php';
   require_once '../assets/src/databaseActions.php';
@@ -65,6 +65,7 @@
       </div>
     </section>
 <?php 
+  echo createFilmListingsSection();
   echo buildMarketingBlock();
   echo endMainSection();
   echo buildFooter();
