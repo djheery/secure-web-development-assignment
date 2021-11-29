@@ -21,7 +21,7 @@
   </div>
 </section>
 <?php 
-  echo buildFilmTiles("Films <span class=\"pastel-accent-clr\">Like</span> This");
+  echo buildFilmTiles("What's <span class=\"pastel-accent-clr\">On?</span>");
   echo buildMarketingBlock();
   echo endMainSection();
   echo buildFooter();

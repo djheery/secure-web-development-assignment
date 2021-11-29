@@ -30,15 +30,10 @@
       <div class="inner-container flex">
         <div class="search-criteria-block">
           <div class="mgb-mid">
-            <label for="choose-a-date" class="input-label  text-upper">Choose a Date</label>
+            <label for="choose-a-date" class="input-label  text-upper">Date</label>
           </div>
           <div class="select-container">
-            <select name="choose-a-date" id="choose-a-date">
-              <option value="21-11-21">21st November 2021</option>
-              <option value="22-11-21">22st November 2021</option>
-              <option value="23-11-21">23st November 2021</option>
-              <option value="24-11-21">24st November 2021</option>
-            </select>
+            <input type="date" name="date" id="date">
           </div>
         </div>
         <div class="search-criteria-block">

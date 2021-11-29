@@ -37,5 +37,19 @@
 
     }
 
+    function getIndividualFilm($id) {
+      $conn = connectToDatabase();
+      $sql = "SELECT * FROM movies
+              WHERE movieID = $id";
+      $queryResult = mysqli_query($conn, $sql);
+      if($queryResult !== '') {
+        $movieObj = [];
+        while($row = mysqli_fetch_assoc($queryResult)) {
+          array_push($movieObj, $row);
+        }
+        return $movieObj;
+      }
+    }
+
 
 ?>
