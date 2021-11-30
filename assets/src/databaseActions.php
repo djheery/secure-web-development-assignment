@@ -1,7 +1,23 @@
 <?php
   require_once 'dbconn.php';
 
-  getTableData('movies');
+  function findTargetDatabase($form, $data) {
+    switch ($form) {
+      case 'signUpForm.php' :
+        return insertNewCustomer($data);
+        break;
+      case 'loginForm.php' :
+        break;
+      case 'deletUser' :
+        break;
+      case 'changePassword' :
+        break;
+      case 'bookingsPage.php' :
+        break;
+      default :
+        break;
+    }
+  }
   
   function getTableData($table) {
     $conn = connectToDatabase();
@@ -26,6 +42,18 @@
         return 'Movie Added <br>';
       } else {
         return 'Error submiting movie';
+      }
+    }
+
+    function insertNewCustomer($data) {
+      $conn = connectToDatabase();
+      $sql = "INSERT INTO customers (password_hash, username, customer_forename, customer_surname) VALUES (?, ?, ?, ?)";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
+        mysqli_execute($stmt);
+        return "SUCCESS";
+      } else {
+        return 'FAIL';
       }
     }
 

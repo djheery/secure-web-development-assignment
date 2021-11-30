@@ -12,8 +12,8 @@
         "active"=>'false'
       )    ,
       array(
-        "text"=>"Login",
-        "href"=>"login.php",
+        "text"=>"Sign Up",
+        "href"=>"signUpForm.php",
         "active"=>'false'
       ),
     );

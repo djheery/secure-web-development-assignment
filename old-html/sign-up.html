@@ -40,7 +40,7 @@
         <div class="page-left">
           <h1 class="heading-secondary text-upper mgb-large">Sign <span class="pastel-accent-clr">Up</span> For<span class="pastel-accent-clr"> Cinema Club</span></h1>
           <!-- Form -->
-          <form action="" method="post">
+          <form action="index.php" method="post">
             <div class="two-input-row mgb-mid flex">
               <div class="form-field-container">
                 <div class="mgb-small">
@@ -64,39 +64,39 @@
                 <label for="email" class="input-label">Email Address</label>
               </div>
               <div class="input-container">
-                <input type="email" id="last-name" name="last-name">
+                <input type="email" id="email" name="email">
               </div>
             </div>
             <div class="form-field-container mgb-mid">
               <div class="mgb-small">
-                <label for="email" class="input-label">Confirm Email</label>
+                <label for="confirm-email" class="input-label">Confirm Email</label>
               </div>
               <div class="input-container">
-                <input type="email" id="last-name" name="last-name">
+                <input type="email" id="confirm-email" name="confirm-email">
               </div>
             </div>
             <div class="form-field-container mgb-mid">
               <div class="mgb-small">
-                <label for="email" class="input-label">Password</label>
+                <label for="password" class="input-label">Password</label>
               </div>
               <div class="input-container">
-                <input type="password" id="last-name" name="last-name">
+                <input type="password" id="password" name="password">
               </div>
             </div>
             <div class="form-field-container mgb-large">
               <div class="mgb-small">
-                <label for="email" class="input-label">Confirm Password</label>
+                <label for="confirm-password" class="input-label">Confirm Password</label>
               </div>
               <div class="input-container">
-                <input type="password" id="last-name" name="last-name">
+                <input type="password" id="confirm-password" name="confirm-password">
               </div>
             </div>
             <div class="buttons-container flex">
               <div class="btn bg-strong-orange">
-                <a href="" id="submit" type="submit">Sign Up Now</a>
+                <button id="submit" type="submit">Sign Up Now</button>
               </div>
               <div class="text-btn">
-                <a href="">Already have an account? Click here to login</a>
+                <a href="login.php">Already have an account? Click here to login</a>
               </div>
             </div>
           </form>
@@ -141,9 +141,9 @@
           </ul>
         </section>
       </div>
-      <section class="copyright-statement text-center">
+      <div class="copyright-statement text-center">
         <span>Copyright &copy; Cinema City, December 2021</span>
-      </section>
+      </div>
     </div>
   </footer>
   <aside id="mobile-hamburger-menu" class="bg-off-black" data-menuStatus="inactive">

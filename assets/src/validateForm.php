@@ -1,22 +1,116 @@
 <?php
   require_once 'databaseActions.php';
+  
+  if($_REQUEST) {
+    list($inputs, $errors) = validationSetup($_REQUEST);
+    if(count($errors) > 0) {
+      foreach($errors as $key=>$value) {
+        echo "$key===>$value<br>";
+      }
+    } else {
 
-  if($_REQUEST) validatForm($_REQUEST);
-  function validatForm($request) {
-    $inputsArray = [];
+      foreach($inputs as $key=>$value) {
+        echo "$key===>$value<br>";
+      }
+
+      print_r(findTargetDatabase($inputs['hidden'], $inputs));
+    }
+  } 
+
+  function validationSetup($request) {
+    $fieldsValidated = [];
+    $errors = [];
     foreach($request as $key=>$value) {
-      $inputsArray[$key] = $value;
+      $inputCheck = sanitizeValidateUserInput($key, $value);
+      substr($inputCheck, 0, 6) == 'Error:' ?
+        $errors[$key] = $inputCheck :
+        $fieldsValidated[$key] = $inputCheck; 
     }
 
-    $response = insertIntoMovieListings(
-                  connectToDatabase(),
-                  $inputsArray['movie-name'],
-                  $inputsArray['description'],
-                  $inputsArray['price'],
-                  $inputsArray['rating']
-                );
+    
+    if(count($errors) > 0) return array($fieldsValidated, $errors);
+    
+    if($fieldsValidated['confirm-email']) {
+      $equalityCheck = checkInputsAreEqual($fieldsValidated['email'], $fieldsValidated['confirm-email']);
+      unset($fieldsValidated['confirm-email']);
+      if($equalityCheck != 'EQUAL') {
+        $errors['email'] = 'Error: Emails do not match';
+      }  
+    }
+    
+    if($fieldsValidated['confirm-password']) {
+      $confirmPasswordCheck = confirmPasswordCheck($fieldsValidated['confirm-password'], $fieldsValidated['password']);
+      unset($fieldsValidated['confirm-password']);
+      if($confirmPasswordCheck != 'EQUAL') {
+        $errors['password'] = 'Error: Passwords do not match';
+      } 
+    }
+    
+    return array($fieldsValidated, $errors);
+    
 
-    echo $response;
-    echo getTableData('movies', connectToDatabase());
+  }
+
+  function runTests($errors, $inputs) {
+    foreach($inputs as $key=>$value) {
+      echo "$key==>>$value<br>";
+    }
+    foreach($errors as $key=>$value) {
+      echo "$key==>>$value<br>";
+    }
+  }
+
+  function sanitizeValidateUserInput($key, $value) {
+    if($value == null) return "Error: You must fill out input: $key";
+    switch($key) {
+      case 'first-name' :
+      case 'last-name' :
+        return sanitizeValidateString($value);
+        break;
+      case 'email' :
+      case 'confirm-email' :
+        return sanitizeValidateEmail($value);
+        break;
+      case 'password' :
+        $pswd = sanitizeValidateString($value);
+        return password_hash($pswd, PASSWORD_DEFAULT);
+        break;
+      case 'confirm-password' :
+        return sanitizeValidateString($value);
+        break;
+      case 'hidden' : 
+        return $value;
+      default :
+        'Error: User Input is not Defined';
+    }
+  }
+
+  function sanitizeValidateString($str) {
+    $str = filter_var($str, FILTER_SANITIZE_STRING);
+    return $str;
+  }
+
+  function sanitizeValidateEmail($email) {
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    if($email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      return $email;
+    } else {
+      return 'Error: Email is not Valid';
+    }
+  }
+
+  function confirmPasswordCheck($confirm, $pwd) {
+    $verifyEquality = password_verify($confirm, $pwd) ?
+              'EQUAL' : 
+              'NOT EQUAL';
+    return $verifyEquality;
+  }
+
+  function checkInputsAreEqual($input1, $input2) {
+    $equalityCheck = $input1 === $input2 ?
+                      'EQUAL' :
+                      'Error: Your inputs do not Match';
+
+    return $equalityCheck;
   }
 ?>
