@@ -39,7 +39,7 @@
                 <label for="email" class="input-label">Email Address</label>
               </div>
               <div class="input-container">
-                <input type="text" id="email" name="email">
+                <input type="email" id="email" name="email">
               </div>
             </div>
             <div class="form-field-container mgb-mid">

@@ -1,19 +1,13 @@
 <?php
   require_once 'databaseActions.php';
+  require_once 'errorHandling.php'
   
   if($_REQUEST) {
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      foreach($errors as $key=>$value) {
-        echo "$key===>$value<br>";
-      }
+      findTargetErrorHandler($inputs['hidden'], $errors);
     } else {
-
-      foreach($inputs as $key=>$value) {
-        echo "$key===>$value<br>";
-      }
-
-      print_r(findTargetDatabase($inputs['hidden'], $inputs));
+      findTargetDatabaseQuery($inputs['hidden'], $inputs);
     }
   } 
 
@@ -69,7 +63,8 @@
         break;
       case 'email' :
       case 'confirm-email' :
-        return sanitizeValidateEmail($value);
+        $email = strtolower($value);
+        return sanitizeValidateEmail($email);
         break;
       case 'password' :
         $pswd = sanitizeValidateString($value);
