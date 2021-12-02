@@ -50,6 +50,20 @@
       }
     }
 
+    function getIndividualMovie($movieID) {
+      $conn = connectToDatabase();
+      $sql = "SELECT * FROM movies WHERE movieID = ?";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        $stmt->bind_param('i', $movieID);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return $res->fetch_assoc();
+      } else {
+        return 'STATEMENT ERROR';
+      }
+      
+    }
+
 
     function insertIntoMovieListings($movieName, $desc, $price, $rating) {
       $conn = connectToDatabase();

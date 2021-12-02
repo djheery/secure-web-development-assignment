@@ -89,7 +89,7 @@
             </div>
             <div class="buttons-container flex">
               <div class="btn bg-strong-orange">
-                <a href="bookingPage.php?id={$movie['movieID']}">Book Now</a>
+                <a href="bookingForm.php?id={$movie['movieID']}">Book Now</a>
               </div>
               <div class="btn">
                 <a href="filmListings.php">Back to all Films</a>
@@ -102,5 +102,53 @@
     TARGET;
 
     return $targetFilmListing;
+  };
+
+  function filmBookingItem($movieID, $customerID) {
+    $film = getIndividualMovie($movieID);
+    $formItem = <<<FORMITEM
+    <form action="../assets/src/validateForm.php" method="post" class="booking-form">
+        <div class="form-field-container flex mgb-mid">
+          <label for="movieID" class="input-label pastel-accent-clr">Film Chosen:</label>
+          <p>{$film['movie_name']}</p>
+          <input type="hidden" name="movieID" value="{$movieID}">
+        </div>
+        <div class="form-field-container flex mgb-mid">
+          <label for="date" class="input-label pastel-accent-clr">Date:</label>
+          <div class="input-container">
+            <input type="date" name="date-of-booking" id="date-of-booking">
+          </div>
+        </div>
+        <div class="form-field-container flex mgb-mid">
+          <label for="date" class="input-label pastel-accent-clr">Time:</label>
+          <div class="select-container">
+            <select name="choose-a-time" id="choose-a-time">
+              <option value="14:00">14:00</option>
+              <option value="16:00">16:00</option>
+              <option value="18:00">18:00</option>
+              <option value="20:00">20:00</option>
+              <option value="22:00">22:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="buttons-container flex">
+          <div class="btn bg-strong-orange">
+            <button type="submit" id="submit">Book Now</button>
+          </div>
+          <div class="btn">
+            <a href="filmListings.php">Back to All Films</a>
+          </div>
+        </div>
+        <input type="hidden" name="customerID" value="{$customerID}">
+        <input type="hidden" name="hidden" value="bookingForm.php">
+      </form>
+      </div>
+      <div class="page-right flex">
+      <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img'>
+    </div>
+
+    FORMITEM;
+    return $formItem;
   }
+
 ?>

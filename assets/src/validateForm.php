@@ -1,13 +1,15 @@
 <?php
   require_once 'databaseActions.php';
-  require_once 'errorHandling.php'
+  // require_once 'errorHandling.php';
   
   if($_REQUEST) {
+    print_r($_REQUEST);
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      findTargetErrorHandler($inputs['hidden'], $errors);
+      // print_r($errors);
+      // findTargetErrorHandler($inputs['hidden'], $errors);
     } else {
-      findTargetDatabaseQuery($inputs['hidden'], $inputs);
+      // findTargetDatabaseQuery($inputs['hidden'], $inputs);
     }
   } 
 
@@ -55,7 +57,7 @@
   }
 
   function sanitizeValidateUserInput($key, $value) {
-    if($value == null) return "Error: You must fill out input: $key";
+    if($value == null || $value == '') return "Error: You must fill out input: $key";
     switch($key) {
       case 'first-name' :
       case 'last-name' :
@@ -70,10 +72,17 @@
         $pswd = sanitizeValidateString($value);
         return password_hash($pswd, PASSWORD_DEFAULT);
         break;
+      case 'date-of-booking' :
+        echo "$key <br>";
+        $statement = $value ? 'YO' : 'UNDEFINED';
+        echo $statement;
+        break;
       case 'confirm-password' :
         return sanitizeValidateString($value);
         break;
-      case 'hidden' : 
+      case 'hidden' :
+      case 'movieID' :
+      case 'customerID' : 
         return $value;
       default :
         'Error: User Input is not Defined';
