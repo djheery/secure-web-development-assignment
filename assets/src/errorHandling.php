@@ -6,10 +6,10 @@
   // Email is not valid
 
   function findTargetErrorHandler($form, $errors) {
-    $targetFields = []
+    $targetFields = [];
     foreach($errors as $field=>$err) {
       switch($field) {
-        
+        //GIT FOR THE SAKE OF A GIT
       }
     }
   }
