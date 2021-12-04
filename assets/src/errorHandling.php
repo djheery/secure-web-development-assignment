@@ -9,7 +9,7 @@
     $targetFields = [];
     foreach($errors as $field=>$err) {
       switch($field) {
-        //GIT FOR THE SAKE OF A GIT
+        //GIT FOR THE SAKE OF A GIT HAPPY
       }
     }
   }
