@@ -4,6 +4,8 @@
   function findTargetDatabaseQuery($form, $data) {
     switch ($form) {
       case 'signUpForm.php' :
+        unset($data['confirm-email']);
+        unset($data['confirm-password']);
         $userCheck = checkUserExists($form, $data);
         return $userCheck ? 'USER EXISTS' : insertNewCustomer($userCheck); 
         break;
@@ -81,6 +83,7 @@
     function insertNewCustomer($data) {
       $conn = connectToDatabase();
       $sql = "INSERT INTO customers (password_hash, username, customer_forename, customer_surname) VALUES (?, ?, ?, ?)";
+      $data['password'] = password_hash($data['password']);
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
         mysqli_execute($stmt);
@@ -103,6 +106,7 @@
         return $movieObj;
       }
     }
+
 
     function getCustomerBookings() {
 

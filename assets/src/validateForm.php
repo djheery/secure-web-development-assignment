@@ -3,58 +3,34 @@
   // require_once 'errorHandling.php';
   
   if($_REQUEST) {
-    print_r($_REQUEST);
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      // print_r($errors);
-      // findTargetErrorHandler($inputs['hidden'], $errors);
+      print_r($errors);
+      // findTargetErrorHandler($form, $errors);
     } else {
-      // findTargetDatabaseQuery($inputs['hidden'], $inputs);
+      print_r($inputs);
+      // findTargetDatabaseQuery($form, $inputs);
     }
-  } 
+  } else {
+    header('location: /swd-final-assignment/content/loginForm.php');
+  }
 
   function validationSetup($request) {
-    $fieldsValidated = [];
+    $validated = [];
     $errors = [];
     foreach($request as $key=>$value) {
       $inputCheck = sanitizeValidateUserInput($key, $value);
       substr($inputCheck, 0, 6) == 'Error:' ?
         $errors[$key] = $inputCheck :
-        $fieldsValidated[$key] = $inputCheck; 
+        $validated[$key] = $inputCheck; 
+    }
+    if($validated['confirm-password'] || $validated['confirm-email']) {
+      list($validated, $errors) = furtherValidationChecks($validated, $errors);
     }
 
-    
-    if(count($errors) > 0) return array($fieldsValidated, $errors);
-    
-    if($fieldsValidated['confirm-email']) {
-      $equalityCheck = checkInputsAreEqual($fieldsValidated['email'], $fieldsValidated['confirm-email']);
-      unset($fieldsValidated['confirm-email']);
-      if($equalityCheck != 'EQUAL') {
-        $errors['email'] = 'Error: Emails do not match';
-      }  
-    }
-    
-    if($fieldsValidated['confirm-password']) {
-      $confirmPasswordCheck = confirmPasswordCheck($fieldsValidated['confirm-password'], $fieldsValidated['password']);
-      unset($fieldsValidated['confirm-password']);
-      if($confirmPasswordCheck != 'EQUAL') {
-        $errors['password'] = 'Error: Passwords do not match';
-      } 
-    }
-    
-    return array($fieldsValidated, $errors);
-    
-
+    return array($validated, $errors);   
   }
 
-  function runTests($errors, $inputs) {
-    foreach($inputs as $key=>$value) {
-      echo "$key==>>$value<br>";
-    }
-    foreach($errors as $key=>$value) {
-      echo "$key==>>$value<br>";
-    }
-  }
 
   function sanitizeValidateUserInput($key, $value) {
     if($value == null || $value == '') return "Error: You must fill out input: $key";
@@ -70,7 +46,8 @@
         break;
       case 'password' :
         $pswd = sanitizeValidateString($value);
-        return password_hash($pswd, PASSWORD_DEFAULT);
+        $pswd = checkPasswordLength($pswd);
+        return $pswd;
         break;
       case 'date-of-booking' :
         echo "$key <br>";
@@ -78,7 +55,8 @@
         echo $statement;
         break;
       case 'confirm-password' :
-        return sanitizeValidateString($value);
+        $pswd = sanitizeValidateString($value);
+        return $pswd;
         break;
       case 'hidden' :
       case 'movieID' :
@@ -87,6 +65,24 @@
       default :
         'Error: User Input is not Defined';
     }
+  }
+
+  function furtherValidationChecks($validated, $errors) {
+    $passwords = array_key_exists('confirm-password', $validated) ?
+    checkInputsAreEqual('password',$validated['password'], $validated['confirm-password']) : 
+    array('password'=>true);
+
+    $emails = array_key_exists('confirm-email', $validated) ?
+      checkInputsAreEqual('email', $validated['email'], $validated['confirm-email']) : 
+      array('email'=>true);
+
+    $reusableCheck = array($passwords, $emails);
+    for($i = 0; $i < count($reusableCheck); $i++) {
+      foreach($reusableCheck[$i] as $key=>$value) {
+       $value == 1 ? null : $errors[$key] = $value;
+      }
+    }
+    return array($validated, $errors);
   }
 
   function sanitizeValidateString($str) {
@@ -103,18 +99,18 @@
     }
   }
 
-  function confirmPasswordCheck($confirm, $pwd) {
-    $verifyEquality = password_verify($confirm, $pwd) ?
-              'EQUAL' : 
-              'NOT EQUAL';
-    return $verifyEquality;
-  }
-
-  function checkInputsAreEqual($input1, $input2) {
+  function checkInputsAreEqual($key, $input1, $input2) {
     $equalityCheck = $input1 === $input2 ?
-                      'EQUAL' :
-                      'Error: Your inputs do not Match';
+                      array($key=>true) :
+                      array($key=>"Error: Your {$key}s do not Match");
+
 
     return $equalityCheck;
+  }
+
+  function checkPasswordLength($password) {
+    $lengthCheck = strlen($password) < 8 ?
+                   'Error: Your password is to short, please enter a password of 8 characters or over.' : $password;
+    return $lengthCheck;
   }
 ?>
