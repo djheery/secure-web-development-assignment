@@ -6,11 +6,13 @@
       case 'signUpForm.php' :
         unset($data['confirm-email']);
         unset($data['confirm-password']);
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? 'USER EXISTS' : insertNewCustomer($userCheck); 
+        return $userCheck ? 'USER EXISTS' : insertNewCustomer($data); 
         break;
       case 'loginForm.php' :
         $userCheck = checkUserExists($form, $data);
+        return $userCheck ? password_verify($data['password'], $userCheck['password_hash']) : 'USER DOES NOT EXIST';
         break;
       case 'deleteUser' :
         break;
@@ -83,7 +85,6 @@
     function insertNewCustomer($data) {
       $conn = connectToDatabase();
       $sql = "INSERT INTO customers (password_hash, username, customer_forename, customer_surname) VALUES (?, ?, ?, ?)";
-      $data['password'] = password_hash($data['password']);
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
         mysqli_execute($stmt);
@@ -107,6 +108,18 @@
       }
     }
 
+    function verifyUsersPassword($pasword, $user) {
+      $conn = connectToDatabase();
+      $sql = "SELECT password_hash FROM customers WHERE customerID = ?";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        $stmt->bind_param('s', $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+      } else {
+        return "STATEMENT ERROR";
+      }
+    }
 
     function getCustomerBookings() {
 
@@ -122,5 +135,9 @@
 
     function addBookingToCustomer() {
       // Git to git
+    }
+
+    function closeConnection($conn) {
+      // $conn->close();
     }
 ?>

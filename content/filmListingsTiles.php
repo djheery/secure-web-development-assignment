@@ -139,8 +139,7 @@
             <a href="filmListings.php">Back to All Films</a>
           </div>
         </div>
-        <input type="hidden" name="customerID" value="{$customerID}">
-        <input type="hidden" name="hidden" value="bookingForm.php">
+        <input type="hidden" name="form-name" value="bookingForm.php">
       </form>
       </div>
       <div class="page-right flex">

@@ -3,13 +3,13 @@
   // require_once 'errorHandling.php';
   
   if($_REQUEST) {
+    print_r($_REQUEST);
+    $form = $_REQUEST['form-name'];
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      print_r($errors);
       // findTargetErrorHandler($form, $errors);
     } else {
-      print_r($inputs);
-      // findTargetDatabaseQuery($form, $inputs);
+      print_r(findTargetDatabaseQuery($form, $inputs));
     }
   } else {
     header('location: /swd-final-assignment/content/loginForm.php');
@@ -19,12 +19,12 @@
     $validated = [];
     $errors = [];
     foreach($request as $key=>$value) {
-      $inputCheck = sanitizeValidateUserInput($key, $value);
+      $inputCheck = sanitizeValidateUserInput($key, trim($value));
       substr($inputCheck, 0, 6) == 'Error:' ?
         $errors[$key] = $inputCheck :
         $validated[$key] = $inputCheck; 
     }
-    if($validated['confirm-password'] || $validated['confirm-email']) {
+    if(array_key_exists('confirm-password', $validated) || array_key_exists('confirm-password', $validated)) {
       list($validated, $errors) = furtherValidationChecks($validated, $errors);
     }
 
@@ -44,21 +44,18 @@
         $email = strtolower($value);
         return sanitizeValidateEmail($email);
         break;
+        case 'date-of-booking' :
+          echo "$key <br>";
+          $statement = $value ? 'YO' : 'UNDEFINED';
+          echo $statement;
+          break;
       case 'password' :
+      case 'confirm-password' :
         $pswd = sanitizeValidateString($value);
         $pswd = checkPasswordLength($pswd);
         return $pswd;
         break;
-      case 'date-of-booking' :
-        echo "$key <br>";
-        $statement = $value ? 'YO' : 'UNDEFINED';
-        echo $statement;
-        break;
-      case 'confirm-password' :
-        $pswd = sanitizeValidateString($value);
-        return $pswd;
-        break;
-      case 'hidden' :
+      case 'form-name' :
       case 'movieID' :
       case 'customerID' : 
         return $value;
@@ -103,8 +100,6 @@
     $equalityCheck = $input1 === $input2 ?
                       array($key=>true) :
                       array($key=>"Error: Your {$key}s do not Match");
-
-
     return $equalityCheck;
   }
 

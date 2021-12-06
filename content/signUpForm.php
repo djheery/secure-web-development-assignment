@@ -74,7 +74,7 @@
                 <a href="loginForm.php">Already have an account? Click here to login</a>
               </div>
             </div>
-            <input type="hidden" name="hidden" id="hidden" value="signUpForm.php">
+            <input type="hidden" name="form-name" value="signUpForm.php">
           </form>
         </div>
         <div class="page-right">
