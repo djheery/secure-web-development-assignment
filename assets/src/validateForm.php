@@ -4,12 +4,13 @@
   
   if($_REQUEST) {
     print_r($_REQUEST);
+    echo gettype($_REQUEST['booking-time']);
     $form = $_REQUEST['form-name'];
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
       // findTargetErrorHandler($form, $errors);
     } else {
-      print_r(findTargetDatabaseQuery($form, $inputs));
+      // print_r(findTargetDatabaseQuery($form, $inputs));
     }
   } else {
     header('location: /swd-final-assignment/content/loginForm.php');
@@ -37,6 +38,8 @@
     switch($key) {
       case 'first-name' :
       case 'last-name' :
+      case 'booking-date' :
+      case 'booking-time' :
         return sanitizeValidateString($value);
         break;
       case 'email' :
@@ -44,11 +47,6 @@
         $email = strtolower($value);
         return sanitizeValidateEmail($email);
         break;
-        case 'date-of-booking' :
-          echo "$key <br>";
-          $statement = $value ? 'YO' : 'UNDEFINED';
-          echo $statement;
-          break;
       case 'password' :
       case 'confirm-password' :
         $pswd = sanitizeValidateString($value);

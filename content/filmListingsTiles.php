@@ -114,15 +114,15 @@
           <input type="hidden" name="movieID" value="{$movieID}">
         </div>
         <div class="form-field-container flex mgb-mid">
-          <label for="date" class="input-label pastel-accent-clr">Date:</label>
+          <label for="booking-date" class="input-label pastel-accent-clr">Date:</label>
           <div class="input-container">
-            <input type="date" name="date-of-booking" id="date-of-booking">
+            <input type="date" name="booking-date" id="booking-date">
           </div>
         </div>
         <div class="form-field-container flex mgb-mid">
-          <label for="date" class="input-label pastel-accent-clr">Time:</label>
+          <label for="booking-time" class="input-label pastel-accent-clr">Time:</label>
           <div class="select-container">
-            <select name="choose-a-time" id="choose-a-time">
+            <select name="booking-time" id="booking-time">
               <option value="14:00">14:00</option>
               <option value="16:00">16:00</option>
               <option value="18:00">18:00</option>
@@ -145,7 +145,6 @@
       <div class="page-right flex">
       <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img'>
     </div>
-
     FORMITEM;
     return $formItem;
   }
