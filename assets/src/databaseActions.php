@@ -1,5 +1,10 @@
 <?php
-  require_once 'dbconn.php';
+
+  function connectToDatabase() {
+    $connection = mysqli_connect("localhost", "root", "", "assignment") or
+                  die('Database Connection Not Established');
+    return $connection;
+  }
 
   function findTargetDatabaseQuery($form, $data) {
     switch ($form) {
@@ -95,6 +100,8 @@
 
       closeConnection($conn);
     }
+
+    // Error - Will not let me book 2 of the same movie for the same customer
 
     function insertNewBooking($data, $userID, $screeningDateTime) {
       $conn = connectToDatabase();

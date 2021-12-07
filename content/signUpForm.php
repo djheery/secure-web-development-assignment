@@ -1,9 +1,11 @@
 <?php 
-  require_once 'buildPage.php';
-  require_once 'marketingBlock.php';
-  require_once '../assets/src/filmTiles.php';
+  require_once '../assets/src/buildPage.php';
+  require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
+  require_once '../assets/src/sessionFunctions.php';
 
+  generateSession();
+  $sessionData = getSessionData();
   $tagline = "Sign Up";
   $links = checkPageType('Logged Out', 'signUpForm.php');
   echo buildPageStart($tagline);

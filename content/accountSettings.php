@@ -1,3 +1,3 @@
 <?php 
-    require_once 'buildPage.php';
+    require_once '../assets/src/buildPage.php';
 ?>

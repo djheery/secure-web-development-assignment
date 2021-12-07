@@ -1,9 +1,7 @@
 <?php 
-  require_once 'buildPage.php';
-  require_once 'marketingBlock.php';
-  require_once 'filmListingsTiles.php';
+  require_once '../assets/src/buildPage.php';
   require_once '../assets/src/databaseActions.php';
-  require_once '../assets/src/filmTiles.php';
+  require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
   
   $tagline = "";

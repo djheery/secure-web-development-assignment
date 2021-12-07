@@ -1,10 +1,12 @@
 <?php 
-  require_once 'buildPage.php';
-  require_once 'marketingBlock.php';
-  require_once 'filmListingsTiles.php';
+  require_once '../assets/src/buildPage.php';
   require_once '../assets/src/getNavigationLinks.php';
-  require_once '../assets/src/filmTiles.php';
+  require_once '../assets/src/filmListingsFunctions.php';
+  require_once '../assets/src/sessionFunctions.php';
 
+  generateSession();
+  $sessionData = getSessionData();
+  $sessionData == 0 ? header('location: signUpForm.php?errors="You%20must%20be%20a%20member%20to%20book%20a%20page"') : '';
   $tagline = "Welcome";
   $links = checkPageType('Logged Out', 'index.php');
   $pageId = $_GET['id'];
