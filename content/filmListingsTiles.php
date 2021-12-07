@@ -106,6 +106,7 @@
 
   function filmBookingItem($movieID, $customerID) {
     $film = getIndividualMovie($movieID);
+    $todaysDate = date('Y-m-d');
     $formItem = <<<FORMITEM
     <form action="../assets/src/validateForm.php" method="post" class="booking-form">
         <div class="form-field-container flex mgb-mid">
@@ -116,7 +117,7 @@
         <div class="form-field-container flex mgb-mid">
           <label for="booking-date" class="input-label pastel-accent-clr">Date:</label>
           <div class="input-container">
-            <input type="date" name="booking-date" id="booking-date">
+            <input type="date" name="booking-date" id="booking-date" min="$todaysDate" value="$todaysDate">
           </div>
         </div>
         <div class="form-field-container flex mgb-mid">
@@ -131,10 +132,23 @@
             </select>
           </div>
         </div>
-        <div class="buttons-container flex">
-          <div class="btn bg-strong-orange">
-            <button type="submit" id="submit">Book Now</button>
+        <div class="form-field-container flex mgb-mid">
+          <label for="number-attending" class="input-label pastel-accent-clr">Attending:</label>
+          <div class="select-container">
+            <select name="number-attending" id="number-attending">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
           </div>
+        </div>
+        <div class="buttons-container flex">
+
+            <button class="btn bg-strong-orange" type="submit" id="submit">Book Now</button>
+
           <div class="btn">
             <a href="filmListings.php">Back to All Films</a>
           </div>

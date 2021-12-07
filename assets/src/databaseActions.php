@@ -8,17 +8,22 @@
         unset($data['confirm-password']);
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? 'USER EXISTS' : insertNewCustomer($data); 
+        return $userCheck ? false : insertNewCustomer($data); 
         break;
       case 'loginForm.php' :
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? password_verify($data['password'], $userCheck['password_hash']) : 'USER DOES NOT EXIST';
+        return $userCheck ? password_verify($data['password'], $userCheck['password_hash']) : false;
         break;
       case 'deleteUser' :
         break;
       case 'changePassword' :
         break;
-      case 'bookingsPage.php' :
+      case 'bookingForm.php' :
+        $data['email'] = 'heery@live.co.uk';
+        $screeningDateTime = "{$data['booking-date']} {$data['booking-time']}";
+        $userCheck = checkUserExists($form, $data);
+        return $userCheck ? insertNewBooking($data, $userCheck['customerID'], $screeningDateTime) :
+               false;
         break;
       case 'addMovies.php';
       default :
@@ -27,6 +32,8 @@
   }
 
   // Add Prepared Statements
+  // Add Reusable Statement Failure Function
+  // Potentially Add Reusable mysqli_execute, get_results, bind_param, etc
   
   function getTableData($table) {
     $conn = connectToDatabase();
@@ -39,10 +46,12 @@
       } 
       return $movieObj;
       }
+
+      closeConnection($conn);
     };
 
     function checkUserExists($form, $data) {
-      $conn = connectToDatabase();
+      $conn = connectToDatabase(); 
       $sql = "SELECT * FROM customers WHERE username = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, 's', $data['email']);
@@ -52,6 +61,8 @@
       } else {
         return 'STATEMENT ERROR';
       }
+
+      closeConnection($conn);
     }
 
     function getIndividualMovie($movieID) {
@@ -66,6 +77,7 @@
         return 'STATEMENT ERROR';
       }
       
+      closeConnection($conn);
     }
 
 
@@ -76,10 +88,28 @@
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssii", $movieName, $desc, $price, $rating);
         mysqli_execute($stmt);
-        return 'Movie Added <br>';
+        return true;
       } else {
         return 'Error submiting movie';
       }
+
+      closeConnection($conn);
+    }
+
+    function insertNewBooking($data, $userID, $screeningDateTime) {
+      $conn = connectToDatabase();
+      $sql = "INSERT INTO movie_bookings (movieID, customerID, screening_date_time, num_attending) VALUES (?, ?, ?, ?)" ;
+      $stmt = mysqli_prepare($conn, $sql);
+      if($stmt) {
+        $stmt->bind_param('iiss', $data['movieID'], $userID, $screeningDateTime, $data['number-attending']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return true;
+      } else {
+        return 'STATEMENT-ERROR';
+      }
+
+      closeConnection($conn);
     }
 
     function insertNewCustomer($data) {
@@ -88,10 +118,11 @@
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
         mysqli_execute($stmt);
-        return "Customer {$data['first-name']} {$data['last-name']} inserted into the Database";
+        return true;
       } else {
         return 'Customer Insert Failed';
       }
+      closeConnection($conn);
     }
 
     function getIndividualFilm($id) {
@@ -106,6 +137,7 @@
         }
         return $movieObj;
       }
+      closeConnection($conn);
     }
 
     function verifyUsersPassword($pasword, $user) {
@@ -119,6 +151,8 @@
       } else {
         return "STATEMENT ERROR";
       }
+
+      closeConnection($conn);
     }
 
     function getCustomerBookings() {
@@ -138,6 +172,6 @@
     }
 
     function closeConnection($conn) {
-      // $conn->close();
+      $conn->close();
     }
 ?>

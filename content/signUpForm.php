@@ -67,9 +67,7 @@
               </div>
             </div>
             <div class="buttons-container flex">
-              <div class="btn bg-strong-orange">
-                <button id="submit" type="submit">Sign Up Now</button>
-              </div>
+                <button id="submit" type="submit" class="btn bg-strong-orange">Sign Up Now</button>
               <div class="text-btn">
                 <a href="loginForm.php">Already have an account? Click here to login</a>
               </div>

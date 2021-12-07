@@ -34,9 +34,7 @@
             </div>
             <input type="hidden" name="form-name" id="form-name" value="loginForm.php">
             <div class="buttons-container flex">
-              <div class="btn bg-strong-orange">
-                <button id="submit" type="submit">Login</button>
-              </div>
+              <button id="submit" type="submit" class="btn bg-strong-orange">Login</button>
               <div class="text-btn">
                 <a href="signUpForm.php">Don't have an account? Click here to Sign Up</a>
               </div>

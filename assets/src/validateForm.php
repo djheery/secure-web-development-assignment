@@ -3,14 +3,13 @@
   // require_once 'errorHandling.php';
   
   if($_REQUEST) {
-    print_r($_REQUEST);
-    echo gettype($_REQUEST['booking-time']);
     $form = $_REQUEST['form-name'];
+    print_r($_REQUEST);
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      // findTargetErrorHandler($form, $errors);
+      findTargetErrorHandler($form, $errors);
     } else {
-      // print_r(findTargetDatabaseQuery($form, $inputs));
+      print_r(findTargetDatabaseQuery($form, $inputs));
     }
   } else {
     header('location: /swd-final-assignment/content/loginForm.php');
@@ -40,6 +39,7 @@
       case 'last-name' :
       case 'booking-date' :
       case 'booking-time' :
+      case 'number-attending' :
         return sanitizeValidateString($value);
         break;
       case 'email' :
