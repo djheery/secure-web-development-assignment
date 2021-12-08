@@ -4,7 +4,8 @@
   require_once '../assets/src/getNavigationLinks.php';
   require_once '../assets/src/sessionFunctions.php';
 
-  generateSession();
+  ini_set("session.save_path", "C:/xampp/htdocs/swd-final-assignment/assets/session-data");
+  session_start(); 
   $sessionData = getSessionData();
   $tagline = "Sign Up";
   $links = checkPageType('Logged Out', 'signUpForm.php');

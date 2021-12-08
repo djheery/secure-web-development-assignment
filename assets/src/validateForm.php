@@ -1,28 +1,34 @@
 <?php
   require_once 'databaseActions.php';
+  require_once 'redirects.php';
   // require_once 'errorHandling.php';
-  
   if($_REQUEST) {
     $form = $_REQUEST['form-name'];
-    print_r($_REQUEST);
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      findTargetErrorHandler($form, $errors);
+      inputError($form, $errors);
     } else {
-      print_r(findTargetDatabaseQuery($form, $inputs));
+      $databaseAction = findTargetDatabaseQuery($form, $inputs);
+      $databaseAction != 1 ?
+        inputError($form, $databaseAction) :
+        confirmationPage($form, $databaseAction);
     }
   } else {
-    header('location: /swd-final-assignment/content/loginForm.php');
+    header('location: /swd-final-assignment/content/index.php');
   }
 
   function validationSetup($request) {
     $validated = [];
     $errors = [];
+    $errorIndex = 0;
     foreach($request as $key=>$value) {
       $inputCheck = sanitizeValidateUserInput($key, trim($value));
-      substr($inputCheck, 0, 6) == 'Error:' ?
-        $errors[$key] = $inputCheck :
+      if(substr($inputCheck, 0, 6) == 'Error:') {
+        $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
+        $errorIndex++;
+      } else {
         $validated[$key] = $inputCheck; 
+      }              
     }
     if(array_key_exists('confirm-password', $validated) || array_key_exists('confirm-password', $validated)) {
       list($validated, $errors) = furtherValidationChecks($validated, $errors);
@@ -33,7 +39,7 @@
 
 
   function sanitizeValidateUserInput($key, $value) {
-    if($value == null || $value == '') return "Error: You must fill out input: $key";
+    if($value == null || $value == '') return "Error: input-empty";
     switch($key) {
       case 'first-name' :
       case 'last-name' :
@@ -58,7 +64,7 @@
       case 'customerID' : 
         return $value;
       default :
-        'Error: User Input is not Defined';
+        'Error: unknown';
     }
   }
 
@@ -90,20 +96,20 @@
     if($email = filter_var($email, FILTER_VALIDATE_EMAIL)) {
       return $email;
     } else {
-      return 'Error: Email is not Valid';
+      return 'Error: email-invalid';
     }
   }
 
   function checkInputsAreEqual($key, $input1, $input2) {
     $equalityCheck = $input1 === $input2 ?
                       array($key=>true) :
-                      array($key=>"Error: Your {$key}s do not Match");
+                      array($key=> $key == 'password' ? 'password-match' : 'email-match');
     return $equalityCheck;
   }
 
   function checkPasswordLength($password) {
     $lengthCheck = strlen($password) < 8 ?
-                   'Error: Your password is to short, please enter a password of 8 characters or over.' : $password;
+                   'Error: password-length' : $password;
     return $lengthCheck;
   }
 ?>

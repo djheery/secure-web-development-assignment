@@ -12,12 +12,12 @@
     }
   }
 
-  function setSessionData($usrData) {
+  function setSessionData($name, $email, $bookings) {
+    generateSession();
     $_SESSION['logged-in'] = 1;
-    $_SESSION['username'] = $usrData['username'];
-    $_SESSION['bookings'] = $usrData['bookings'];
-
-    return $_SESSION
+    $_SESSION['name'] = $name;
+    $_SESSION['username'] = $email;
+    $_SESSION['bookings'] = $bookings;
   };
 
   function unsetDestroySession() {

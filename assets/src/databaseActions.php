@@ -1,23 +1,31 @@
 <?php
+require_once 'redirects.php';
+require_once 'sessionFunctions.php';
 
-  function connectToDatabase() {
+function connectToDatabase() {
     $connection = mysqli_connect("localhost", "root", "", "assignment") or
                   die('Database Connection Not Established');
     return $connection;
   }
 
   function findTargetDatabaseQuery($form, $data) {
+    // if($form !== 'signUpForm.php' && $_SESSION['logged-in'] !== 1) restrictedPage();
     switch ($form) {
       case 'signUpForm.php' :
         unset($data['confirm-email']);
         unset($data['confirm-password']);
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $userCheck = checkUserExists($form, $data);
-        return $userCheck ? false : insertNewCustomer($data); 
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT); 
+        $userCheck = checkUserExists($form, $data) ?  
+                  array('user-exists') : 
+                  insertNewCustomer($data);
+        if($userCheck == 1) setSessionData($data['first-name'], $data['email'], null);
+        return $userCheck;
         break;
       case 'loginForm.php' :
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? password_verify($data['password'], $userCheck['password_hash']) : false;
+        return $userCheck ? 
+                  password_verify($data['password'], $userCheck['password_hash']) : 
+                  array('user-error');
         break;
       case 'deleteUser' :
         break;
@@ -27,10 +35,14 @@
         $data['email'] = 'heery@live.co.uk';
         $screeningDateTime = "{$data['booking-date']} {$data['booking-time']}";
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? insertNewBooking($data, $userCheck['customerID'], $screeningDateTime) :
-               false;
+        return $userCheck ? 
+                  insertNewBooking($data, $userCheck['customerID'], $screeningDateTime) :
+                  array('unknown');
         break;
-      case 'addMovies.php';
+
+      case 'addMovies.php':
+        break;
+
       default :
         break;
     }
@@ -64,7 +76,7 @@
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_assoc($result);
       } else {
-        return 'STATEMENT ERROR';
+        statementError($form);
       }
 
       closeConnection($conn);
@@ -79,7 +91,7 @@
         $res = $stmt->get_result();
         return $res->fetch_assoc();
       } else {
-        return 'STATEMENT ERROR';
+        statementError($form);
       }
       
       closeConnection($conn);

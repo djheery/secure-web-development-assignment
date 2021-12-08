@@ -1,0 +1,10 @@
+{
+  "user-exists": "The email you entered already has an account, have you forgotten your password?",
+  "user-error": "The entered username or password was wrong",
+  "password-match": "Your passwords do not match",
+  "email-match": "Your emails do not match",
+  "email-invalid": "The email format you entered is invalid",
+  "unknown": "Woops, something went wrong. Please try again later",
+  "password-length": "Your password is too short, please enter a password more than 8 characters",
+  "input-empty": "You must fill out the following information:"
+}
