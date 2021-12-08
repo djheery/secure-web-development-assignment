@@ -2,9 +2,19 @@
     require_once '../assets/src/buildPage.php';
     require_once '../assets/src/filmListingsFunctions.php';
     require_once '../assets/src/getNavigationLinks.php';
+    require_once '../assets/src/confirmationHandlers.php';
     require_once '../assets/src/sessionFunctions.php';
-    ini_set("session.save_path", "C:/xampp/htdocs/swd-final-assignment/assets/session-data");
-    session_start(); 
-    $s = getSessionData();
-    print_r($s);
+    generateSession();
+    $sess = getSessionData();
+    $refferer = $_GET['ref'];
+    $links = checkPageType('Logged Out', 'confirmation.php');
+    // Come up with tagline function;
+    echo buildPageStart('confirmed');
+    echo buildHeader($links);
+    echo startMainSection();
+    echo confirmationHandlers($sess, $refferer);
+    echo endMainSection();
+    echo buildFooter();
+    echo buildHamburgerBtn();
+    echo buildPageEnd();
 ?> 
