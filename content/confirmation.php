@@ -4,15 +4,18 @@
     require_once '../assets/src/getNavigationLinks.php';
     require_once '../assets/src/confirmationHandlers.php';
     require_once '../assets/src/sessionFunctions.php';
+
     generateSession();
-    $sess = getSessionData();
+    $sessionData = getSessionData();
+    // Add check for login;
+    // if there is no reff redirect
     $refferer = $_GET['ref'];
-    $links = checkPageType('Logged Out', 'confirmation.php');
+    $links = checkPageType($sessionData, 'confirmation.php');
     // Come up with tagline function;
     echo buildPageStart('confirmed');
     echo buildHeader($links);
     echo startMainSection();
-    echo confirmationHandlers($sess, $refferer);
+    echo confirmationHandlers($sessionData, $refferer);
     echo endMainSection();
     echo buildFooter();
     echo buildHamburgerBtn();

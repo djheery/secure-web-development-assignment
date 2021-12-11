@@ -3,12 +3,13 @@
   require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
   require_once '../assets/src/sessionFunctions.php';
+  require_once '../assets/src/sessionFunctions.php';
 
-  ini_set("session.save_path", "C:/xampp/htdocs/swd-final-assignment/assets/session-data");
-  session_start(); 
+  generateSession();
   $sessionData = getSessionData();
+  // Add Check for login - Redirect if logged in
   $tagline = "Sign Up";
-  $links = checkPageType('Logged Out', 'signUpForm.php');
+  $links = checkPageType($sessionData, 'signUpForm.php');
   echo buildPageStart($tagline);
   echo buildHeader($links);
   echo startMainSection();

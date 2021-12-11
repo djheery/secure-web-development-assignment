@@ -3,10 +3,14 @@
   require_once '../assets/src/databaseActions.php';
   require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
-  
+  require_once '../assets/src/sessionFunctions.php';
+
+  generateSession();
+  $sessionData = getSessionData();
+  // Add Check for login
   $tagline = "";
   $movie = getIndividualFilm($_GET['id']);
-  $links = checkPageType('Logged Out', 'index.php');
+  $links = checkPageType($sessionData, 'index.php');
   echo buildPageStart($tagline);
   echo buildHeader($links);
   echo startMainSection();

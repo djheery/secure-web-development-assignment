@@ -6,9 +6,10 @@
 
   generateSession();
   $sessionData = getSessionData();
-  $sessionData == 0 ? header('location: signUpForm.php?errors="You%20must%20be%20a%20member%20to%20book%20a%20page"') : '';
+  // Rework to check for login
+  $sessionData == 0 ? header("location: signUpForm.php?errors=member-error&film-id={$_GET['id']}") : null;
   $tagline = "Welcome";
-  $links = checkPageType('Logged Out', 'index.php');
+  $links = checkPageType($sessionData['logged-in'], 'index.php');
   $pageId = $_GET['id'];
 
   echo buildPageStart($tagline);

@@ -1,6 +1,24 @@
 <?php 
-  function getLinks() {
-    $baseLinks = array(
+  function getLinks($loginStatus) {
+    $loggedOutLinks = array(
+      array(
+        "text"=>"What's On",
+        "href"=>"filmListings.php",
+        "active"=>'false'
+      ),
+      array(
+        "text"=>"Security Report",
+        "href"=>"securityReport.php",
+        "active"=>'false'
+      ),
+      array(
+        "text"=>"Login",
+        "href"=>"loginForm.php",
+        "active"=>'false'
+      ),
+    );
+  
+    $loggedInLinks = array(
       array(
         "text"=>"What's On",
         "href"=>"filmListings.php",
@@ -12,48 +30,40 @@
         "active"=>'false'
       )    ,
       array(
-        "text"=>"Sign Up",
-        "href"=>"signUpForm.php",
-        "active"=>'false'
-      ),
-    );
-  
-    $loggedInLinks = array(
-      array(
         "text"=>'Hi',
         "href"=>"accountSettings.php",
         "active"=>'false'
       ),
       array(
         "text"=>"Logout",
-        "href"=>"index.php",
+        "href"=>"confirmation.php?ref=logout-user",
         "active"=>'false'
       )
     );
 
-    return $baseLinks;
+    $linksToShow = $loginStatus ? $loggedInLinks : $loggedOutLinks;
+
+    return $linksToShow;
   }
 
   
-  function checkPageType($loginStatus, $page) {
-    $baseLinks = getLinks();
+  function checkPageType($sessionData, $page) {
     $linkArray = [];
-    if($loginStatus === "Logged In") {
-      $linkArray = loggedInLinks();
+    if(isset($sessionData['logged-in']) && $sessionData['logged-in']) {
+      $navigationLinks = getLinks($sessionData['logged-in']);
+      $linkArray = populateLinksArray($page, $navigationLinks, $sessionData['name']);
+    } else {
+      $navigationLinks = getLinks(false);
+      $linkArray = populateLinksArray($page, $navigationLinks, null);
     }
-    if($loginStatus === "Logged Out"){
-      $linkArray = loggedOutLinks($page, $baseLinks);
-    } 
     return $linkArray;
   }
 
-  function loggedInLinks() {
 
-  }
-
-  function loggedOutLinks($page, $links) {
-    $replacementArray = array(); // THIS NEEDS TO CHANGE FIND OUT HOW TO MANIPULATE A GIVEN ARRAY, is it something to do with memory storage?
+  function populateLinksArray($page, $links, $name) {
+    $replacementArray = array();
     foreach($links as $l) {
+      if($l['href'] == 'accountSettings.php') $l['text'] .= ", $name";
       if($page == $l["href"]) {
         $l["active"] = 'true';
       }

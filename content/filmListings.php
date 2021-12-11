@@ -3,9 +3,13 @@
   require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
   require_once '../assets/src/databaseActions.php';
+  require_once '../assets/src/sessionFunctions.php';
 
+  generateSession();
+  $sessionData = getSessionData();
+  // Add Check For login
   $tagline = "Whats On?";
-  $links = checkPageType('Logged Out', 'filmListings.php');
+  $links = checkPageType($sessionData, 'filmListings.php');
   echo buildPageStart($tagline);
   echo buildHeader($links);
   echo startMainSection();

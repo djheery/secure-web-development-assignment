@@ -159,11 +159,11 @@ section, .page-section, .showcase, .settings-link-container, .dynamic-box-contai
   gap: 10px;
 }
 
-.central-content, #film-listings-showcase .inner-container {
+.central-content, #film-listings-showcase .inner-container, #confirmation-showcase .inner-container {
   height: 100%
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container {
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container, #confirmation-showcase .inner-container {
   justify-content: center;
   align-items: center;
 }
@@ -178,7 +178,7 @@ section, .page-section, .showcase, .settings-link-container, .dynamic-box-contai
   justify-content: center;
 }
 
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list  {
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list, #confirmation-showcase .inner-container  {
   flex-direction: column;
 }
 

@@ -21,6 +21,8 @@
   };
 
   function unsetDestroySession() {
+    unset($_SESSION);
+    session_destroy();
 
   };
 ?>

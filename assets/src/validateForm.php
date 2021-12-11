@@ -9,6 +9,7 @@
       inputError($form, $errors);
     } else {
       $databaseAction = findTargetDatabaseQuery($form, $inputs);
+      print_r($databaseAction);
       $databaseAction != 1 ?
         inputError($form, $databaseAction) :
         confirmationPage($form, $databaseAction);
@@ -31,7 +32,7 @@
       }              
     }
     if(array_key_exists('confirm-password', $validated) || array_key_exists('confirm-password', $validated)) {
-      list($validated, $errors) = furtherValidationChecks($validated, $errors);
+      list($validated, $errors) = confirmInputChecks($validated, $errors);
     }
 
     return array($validated, $errors);   
@@ -68,7 +69,9 @@
     }
   }
 
-  function furtherValidationChecks($validated, $errors) {
+  // FIX THIS FUNCTION
+
+  function confirmInputChecks($validated, $errors) {
     $passwords = array_key_exists('confirm-password', $validated) ?
     checkInputsAreEqual('password',$validated['password'], $validated['confirm-password']) : 
     array('password'=>true);

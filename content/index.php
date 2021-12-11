@@ -2,9 +2,13 @@
   require_once '../assets/src/buildPage.php';
   require_once '../assets/src/filmListingsFunctions.php';
   require_once '../assets/src/getNavigationLinks.php';
+  require_once '../assets/src/sessionFunctions.php';
 
+  generateSession();
+  $sessionData = getSessionData();
+  // Add Check for login
   $tagline = "Welcome";
-  $links = checkPageType('Logged Out', 'index.php');
+  $links = checkPageType($sessionData, 'index.php');
   echo buildPageStart($tagline);
   echo buildHeader($links);
   echo startMainSection();

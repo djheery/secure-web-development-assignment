@@ -22,10 +22,19 @@ function connectToDatabase() {
         return $userCheck;
         break;
       case 'loginForm.php' :
+        // REWORKKKKKKKKK!!!!!!!
         $userCheck = checkUserExists($form, $data);
-        return $userCheck ? 
-                  password_verify($data['password'], $userCheck['password_hash']) : 
-                  array('user-error');
+        if($userCheck) {
+          $validatePassword = password_verify($data['password'], $userCheck['password_hash']);
+          if($validatePassword) {
+            setSessionData($userCheck['customer_forename'], $userCheck['username'], getCustomerBookings());
+            return $validatePassword;
+          } else {
+            return array('user-error');
+          }
+        } else {
+          return array('user-error');
+        }                             
         break;
       case 'deleteUser' :
         break;
@@ -175,7 +184,7 @@ function connectToDatabase() {
     }
 
     function getCustomerBookings() {
-
+      return array("bookings"=>null);
     }
 
     function updateCustomerDetails() {
@@ -184,10 +193,6 @@ function connectToDatabase() {
 
     function deleteTableItem() {
 
-    }
-
-    function addBookingToCustomer() {
-      // Git to git
     }
 
     function closeConnection($conn) {
