@@ -1,7 +1,7 @@
 <?php
-  require_once 'databaseActions.php';
+  require_once 'preDatabaseInteraction.php';
   require_once 'redirects.php';
-  // require_once 'errorHandling.php';
+  
   if($_REQUEST) {
     $form = $_REQUEST['form-name'];
     list($inputs, $errors) = validationSetup($_REQUEST);
@@ -9,7 +9,6 @@
       inputError($form, $errors);
     } else {
       $databaseAction = findTargetDatabaseQuery($form, $inputs);
-      print_r($databaseAction);
       $databaseAction != 1 ?
         inputError($form, $databaseAction) :
         confirmationPage($form, $databaseAction);

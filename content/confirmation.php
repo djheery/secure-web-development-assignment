@@ -8,8 +8,7 @@
     generateSession();
     $sessionData = getSessionData();
     // Add check for login;
-    // if there is no reff redirect
-    $refferer = $_GET['ref'];
+    $refferer = isset($_GET['ref']) ? $_GET['ref'] : '';
     $links = checkPageType($sessionData, 'confirmation.php');
     // Come up with tagline function;
     echo buildPageStart('confirmed');

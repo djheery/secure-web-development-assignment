@@ -8,55 +8,6 @@ function connectToDatabase() {
     return $connection;
   }
 
-  function findTargetDatabaseQuery($form, $data) {
-    // if($form !== 'signUpForm.php' && $_SESSION['logged-in'] !== 1) restrictedPage();
-    switch ($form) {
-      case 'signUpForm.php' :
-        unset($data['confirm-email']);
-        unset($data['confirm-password']);
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT); 
-        $userCheck = checkUserExists($form, $data) ?  
-                  array('user-exists') : 
-                  insertNewCustomer($data);
-        if($userCheck == 1) setSessionData($data['first-name'], $data['email'], null);
-        return $userCheck;
-        break;
-      case 'loginForm.php' :
-        // REWORKKKKKKKKK!!!!!!!
-        $userCheck = checkUserExists($form, $data);
-        if($userCheck) {
-          $validatePassword = password_verify($data['password'], $userCheck['password_hash']);
-          if($validatePassword) {
-            setSessionData($userCheck['customer_forename'], $userCheck['username'], getCustomerBookings());
-            return $validatePassword;
-          } else {
-            return array('user-error');
-          }
-        } else {
-          return array('user-error');
-        }                             
-        break;
-      case 'deleteUser' :
-        break;
-      case 'changePassword' :
-        break;
-      case 'bookingForm.php' :
-        $data['email'] = 'heery@live.co.uk';
-        $screeningDateTime = "{$data['booking-date']} {$data['booking-time']}";
-        $userCheck = checkUserExists($form, $data);
-        return $userCheck ? 
-                  insertNewBooking($data, $userCheck['customerID'], $screeningDateTime) :
-                  array('unknown');
-        break;
-
-      case 'addMovies.php':
-        break;
-
-      default :
-        break;
-    }
-  }
-
   // Add Prepared Statements
   // Add Reusable Statement Failure Function
   // Potentially Add Reusable mysqli_execute, get_results, bind_param, etc
@@ -183,8 +134,22 @@ function connectToDatabase() {
       closeConnection($conn);
     }
 
-    function getCustomerBookings() {
-      return array("bookings"=>null);
+    function getCustomerBookings($id) {
+      $conn = connectToDatabase();
+      $sql = "SELECT movie_name, screening_date_time, movie_bookings.movieID
+              FROM movie_bookings
+              INNER JOIN movies ON movie_bookings.movieID = movies.movieID
+              WHERE customerID = ?";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $bookingsArray = [];
+        while($row = $result->fetch_assoc()) {
+          array_push($bookingsArray, $row);
+        }
+        return $bookingsArray;
+      }
     }
 
     function updateCustomerDetails() {

@@ -247,6 +247,10 @@ button {
   border-radius: 5px;
 }
 
+.bg-warning-red {
+  background-color: #d0342c !important;
+}
+
 
 
 /* 
@@ -745,7 +749,7 @@ Flim listings Page
   }
 
   .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight {
-    padding: 15px
+    padding: 3%;
   }
 
   #adv-settings .inner-container .page-left {
@@ -793,6 +797,11 @@ Flim listings Page
     margin: unset;
   }
 
+  .dynamic-box-container, .dynamic-box {
+    max-width: 500px;
+    min-height: 500px;
+  }
+
   #adv-settings .inner-container .page-right {
     width: unset;
   }
@@ -815,6 +824,10 @@ Flim listings Page
 
   #marketing-section .inner-container, #sign-up .inner-container, #adv-settings .inner-container {
     flex-direction: row;
+  }
+
+  #adv-settings .inner-container .page-left .settings-links {
+    align-items: unset;
   }
 
    /* 
@@ -916,13 +929,21 @@ Flim listings Page
 
   /* 
   ================================
-  Advance Settings 
+  Advanced Settings 
   ================================
   */
+
+  .settings-links {
+    overflow: visible;
+  }
 
   .box-background {
     top: -30px;
     left: -30px;
+  }
+
+  .settings-links .background-highlight {
+    width: 50%;
   }
 
 }

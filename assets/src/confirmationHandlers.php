@@ -25,6 +25,13 @@
       case 'logout-user' :
         unsetDestroySession();
         header('location: /swd-final-assignment/content/index.php');
+        break;
+      default :
+        $pageContent .= <<<CONTENT
+          <h1 class="heading-primary text-upper">Well Done... <span class="pastel-accent-clr">For something</span></h1>
+          <p>I don't know what you have confirmed... but well done for it!</p>
+          CONTENT;
+        break;
       };
     $pageContent .= "</div></section>";
     return $pageContent;

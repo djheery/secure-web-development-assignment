@@ -20,6 +20,11 @@
     $_SESSION['bookings'] = $bookings;
   };
 
+  function addBookingToSession($booking) {
+    generateSession();
+    $_SESSION['bookings'] = $booking;
+  }
+
   function unsetDestroySession() {
     unset($_SESSION);
     session_destroy();
