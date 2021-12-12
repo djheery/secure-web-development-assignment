@@ -1,4 +1,4 @@
-{
+[{
   "user-exists": "The email you entered already has an account, have you forgotten your password?",
   "user-error": "The entered username or password was wrong",
   "password-match": "Your passwords do not match",
@@ -8,4 +8,4 @@
   "password-length": "Your password is too short, please enter a password more than 8 characters",
   "input-empty": "You must fill out the following information:",
   "member-error": "You must be a member to book your film"
-}
+}]

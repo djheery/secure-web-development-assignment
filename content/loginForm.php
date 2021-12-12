@@ -17,6 +17,7 @@
       <div class="inner-container flex">
         <div class="page-left">
           <h1 class="heading-secondary text-upper mgb-large"><span class="pastel-accent-clr">Login</span> To Your<span class="pastel-accent-clr"> Account</span></h1>
+          <div class="error-block"></div>
           <!-- Form -->
           <form action="../assets/src/validateForm.php" method="post">
             <div class="form-field-container mgb-mid">
@@ -54,5 +55,6 @@
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();
+  echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo buildPageEnd();
 ?>

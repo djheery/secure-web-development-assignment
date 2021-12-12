@@ -19,7 +19,8 @@
         <div class="page-left">
           <h1 class="heading-secondary text-upper mgb-large">Sign <span class="pastel-accent-clr">Up</span> For<span class="pastel-accent-clr"> Cinema Club</span></h1>
           <!-- Form -->
-          <form action="../assets/src/validateForm.php" method="post">
+          <div class="error-block"></div>
+          <form action="../assets/src/validateForm.php" method="post" class="form-block">
             <div class="two-input-row mgb-mid flex">
               <div class="form-field-container">
                 <div class="mgb-small">
@@ -89,5 +90,7 @@
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();
+  echo "<script src='/swd-final-assignment/assets/src/js/errors.json'></script>";
+  echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo buildPageEnd();
 ?>

@@ -27,7 +27,7 @@
         </div>
     </section>
         <!-- Film Search Criteria -->
-        <section id="film-search-criteria" class="page-section bg-light-grey">
+      <section id="film-search-criteria" class="page-section bg-light-grey">
       <div class="inner-container flex">
         <div class="search-criteria-block">
           <div class="mgb-mid">
@@ -61,7 +61,7 @@
       </div>
     </section>
 <?php 
-  echo createFilmListingsSection();
+  echo createFilmListingsSection($sessionData);
   echo buildMarketingBlock();
   echo endMainSection();
   echo buildFooter();

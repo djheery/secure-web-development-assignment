@@ -1,12 +1,12 @@
 <?php
   require_once '../assets/src/databaseActions.php';
-  function createFilmListingsSection() {
+  function createFilmListingsSection($sessionData) {
     $filmListingsContainer = <<<FILMLISTINGS
     <section id="film-listings" class="bg-off-black page-section">
       <div class="inner-container flex">
     FILMLISTINGS;
     $filmItems = getTableData('movies');
-    $filmListingsContainer = createFilmItems($filmListingsContainer, $filmItems);
+    $filmListingsContainer = createFilmItems($filmListingsContainer, $filmItems, $sessionData);
     $filmListingsContainer .= "</section></div>";
     return $filmListingsContainer;
   }
@@ -43,7 +43,7 @@
     return $filmTiles;
   }
 
-  function createFilmItems($container, $items) {
+  function createFilmItems($container, $items, $sessionData) {
 
     for($i = 0; $i < count($items); $i++) {
       $container .= <<<FILMITEM
@@ -73,18 +73,34 @@
                 </ul>
               </div>
             </div>
-            <div class="buttons-container flex">
-              <div class="btn">
-                <a href="individualFilmListing.php?id={$items[$i]['movieID']}">Find Out More</a>
-              </div>
-              <div class="btn bg-strong-orange">
-                <a href="">Book Now</a>
-              </div>
-            </div>
+      FILMITEM;
+
+      if($sessionData) {
+        $container .= <<<BUTTONS
+        <div class="buttons-container flex">
+          <div class="btn">
+            <a href="individualFilmListing.php?id={$items[$i]['movieID']}">Find Out More</a>
+          </div>
+          <div class="btn bg-strong-orange">
+            <a href="bookingForm.php?id={$items[$i]['movieID']}">Book Now</a>
           </div>
         </div>
-      FILMITEM;
+        BUTTONS;
+      } else {
+        $container .= <<<BUTTONS
+        <div class="buttons-container flex">
+          <div class="btn">
+            <a href="individualFilmListing.php?id={$items[$i]['movieID']}">Find Out More</a>
+          </div>
+          <div class="btn bg-strong-orange">
+            <a href="loginForm.php">Login to Book</a>
+          </div>
+        </div>
+        BUTTONS;
+      }
+      $container .= "</div></div>";
     }
+
 
     return $container;
   }

@@ -23,7 +23,6 @@
         break;
       case 'add-movie':
         break;
-
       default :
         break;
     }

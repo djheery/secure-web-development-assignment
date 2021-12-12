@@ -44,6 +44,10 @@ h1, h2, h3, label, .logo, .bold {
   font-weight: 600;
 }
 
+.user-error-text {
+  font-size: 1rem !important;
+}
+
 section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li {
   position: relative
 }
@@ -82,6 +86,12 @@ section, .page-section, .showcase, .settings-link-container, .dynamic-box-contai
   right: 0;
   background-color: #000;
   opacity: .7
+}
+
+.warning-block {
+  padding: 10px 20px;
+  border: 2px solid var(--white);
+  border-radius: 10px;
 }
 
 
