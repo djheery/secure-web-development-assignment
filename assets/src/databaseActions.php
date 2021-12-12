@@ -27,11 +27,11 @@ function connectToDatabase() {
       closeConnection($conn);
     };
 
-    function checkUserExists($form, $data) {
+    function checkUserExists($form, $email) {
       $conn = connectToDatabase(); 
       $sql = "SELECT * FROM customers WHERE username = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
-        mysqli_stmt_bind_param($stmt, 's', $data['email']);
+        mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_assoc($result);
@@ -82,8 +82,9 @@ function connectToDatabase() {
       if($stmt) {
         $stmt->bind_param('iiss', $data['movieID'], $userID, $screeningDateTime, $data['number-attending']);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return true;
+        $stmt->store_result();
+        $result = mysqli_stmt_affected_rows($stmt);
+        return $result;
       } else {
         return 'STATEMENT-ERROR';
       }
@@ -150,14 +151,39 @@ function connectToDatabase() {
         }
         return $bookingsArray;
       }
+      closeConnection($conn);
     }
 
-    function updateCustomerDetails() {
+    function updatePassword($newPassword, $customerID) {
+      $conn = connectToDatabase();
+      $sql = "UPDATE customers SET password_hash = ?
+              WHERE customerID = ?";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        $stmt->bind_param('si', $newPassword, $customerID);
+        $stmt->execute();
+        $stmt->store_result();
+        $result = mysqli_stmt_affected_rows($stmt);
+        return $result;
 
+      } else {
+        return 'failed';
+      }
     }
 
-    function deleteTableItem() {
+    // RESEARCH STORE RESULT;
 
+    function deleteUserFromDatabase($userID) {
+      $conn = connectToDatabase();
+      $sql = "DELETE customers, movie_bookings FROM customers
+              LEFT JOIN movie_bookings ON
+              customers.customerID = movie_bookings.customerID
+              WHERE movie_bookings.customerID OR customers.customerID  = ?";
+      if($stmt = mysqli_prepare($conn, $sql)) {
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $stmt->store_result();
+        return mysqli_stmt_affected_rows($stmt);
+      }
     }
 
     function closeConnection($conn) {

@@ -7,7 +7,6 @@
 
   generateSession();
   $sessionData = getSessionData();
-  // Add Check for login
   $tagline = "";
   $movie = getIndividualFilm($_GET['id']);
   $links = checkPageType($sessionData, 'index.php');

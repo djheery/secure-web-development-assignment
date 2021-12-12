@@ -7,7 +7,7 @@
 
   generateSession();
   $sessionData = getSessionData();
-  // Add Check for login - Redirect if logged in
+  if($sessionData) header('location: accountSettings.php');
   $tagline = "Sign Up";
   $links = checkPageType($sessionData, 'signUpForm.php');
   echo buildPageStart($tagline);
@@ -76,7 +76,8 @@
                 <a href="loginForm.php">Already have an account? Click here to login</a>
               </div>
             </div>
-            <input type="hidden" name="form-name" value="signUpForm.php">
+            <input type="hidden" name="form-path" value="signUpForm.php">
+            <input type="hidden" name="form-name" value="sign-up">
           </form>
         </div>
         <div class="page-right">

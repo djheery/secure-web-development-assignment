@@ -144,7 +144,8 @@
         <div class="form-field-container flex mgb-mid">
           <label for="movieID" class="input-label pastel-accent-clr">Film Chosen:</label>
           <p>{$film['movie_name']}</p>
-          <input type="hidden" name="movieID" value="{$movieID}">
+          <input type="hidden" name="movieID" value="{$film['movieID']}">
+          <input type="hidden" name="movie-name" value="{$film['movie_name']}">
         </div>
         <div class="form-field-container flex mgb-mid">
           <label for="booking-date" class="input-label pastel-accent-clr">Date:</label>
@@ -185,7 +186,8 @@
             <a href="filmListings.php">Back to All Films</a>
           </div>
         </div>
-        <input type="hidden" name="form-name" value="bookingForm.php">
+        <input type="hidden" name="form-path" value="bookingForm.php?id={$movieID}">
+        <input type="hidden" name="form-name" value="booking-form">
       </form>
       </div>
       <div class="page-right flex">

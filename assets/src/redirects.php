@@ -6,14 +6,12 @@
   }
 
   function confirmationPage($refferer, $db) {
-    print_r($reffer);
-    print_r("called");
       $path = getPath();
       header("location:$path/confirmation.php?ref=$refferer");
   }
 
   function inputError($form, $errors) {
-    if(gettype($errors) == 'boolean') return;
+    if(gettype($errors) !== 'array') return;
     $path = getPath();
     $path = "$path/$form?error=";
 

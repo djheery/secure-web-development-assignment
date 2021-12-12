@@ -7,9 +7,9 @@
   generateSession();
   $sessionData = getSessionData();
   // Rework to check for login
-  $sessionData == 0 ? header("location: signUpForm.php?errors=member-error&film-id={$_GET['id']}") : null;
+  if($sessionData == false) header('location: loginForm.php');
   $tagline = "Welcome";
-  $links = checkPageType($sessionData['logged-in'], 'index.php');
+  $links = checkPageType($sessionData, 'index.php');
   $pageId = $_GET['id'];
 
   echo buildPageStart($tagline);

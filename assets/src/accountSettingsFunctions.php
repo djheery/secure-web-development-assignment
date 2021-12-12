@@ -42,7 +42,7 @@
           <ul class="flex bookings-list">
         BOXTITLE;
       foreach($sessionData['bookings'] as $b) {
-        echo  "<br><br>";
+       
         $content .= <<<LISTITEM
         <li>
           <a href='individualFilmListing.php?id={$b['movieID']}'>
@@ -89,15 +89,16 @@
       </div>
       <div class="form-field-container mgb-mid">
         <div class="mgb-small">
-          <label for="confrim-password" class="input-label">Confirm New Password</label>
+          <label for="confirm-password" class="input-label">Confirm New Password</label>
         </div>
         <div class="input-container">
-          <input type="password" id="confrim-password" name="confrim-password">
+          <input type="password" id="confirm-password" name="confirm-password">
         </div>
       </div>
       <div class="buttons-container flex">
           <button id="submit" type="submit" class="btn bg-strong-orange">Change Password</button>
       </div>
+      <input type="hidden" name="form-path" value="accountSettings.php?ref=change-password">
       <input type="hidden" name="form-name" value="change-password">
     </form>
     PSWDFORM;
@@ -122,16 +123,17 @@
       </div>
       <div class="form-field-container mgb-mid">
         <div class="mgb-small">
-          <label for="confrim-password" class="input-label">Confirm New Password</label>
+          <label for="confirm-password" class="input-label">Confirm New Password</label>
         </div>
         <div class="input-container">
-          <input type="password" id="confrim-password" name="confrim-password">
+          <input type="password" id="confirm-password" name="confirm-password">
         </div>
       </div>
       <div class="buttons-container flex">
           <button id="submit" type="submit" class="btn bold bg-warning-red">Delete Account</button>
       </div>
-      <input type="hidden" name="form-name" value="delete-account">
+      <input type="hidden" name="form-path" value="accountSettings.php?ref=delete-account">
+      <input type="hidden" name="form-name" value="delete-user">
     </form>
     PSWDFORM;
 

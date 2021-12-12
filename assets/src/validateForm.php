@@ -3,16 +3,18 @@
   require_once 'redirects.php';
   
   if($_REQUEST) {
-    $form = $_REQUEST['form-name'];
+    $formPath = $_REQUEST['form-path'];
+    $formName = $_REQUEST['form-name'];
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
-      inputError($form, $errors);
+      inputError($formPath, $errors);
     } else {
-      $databaseAction = findTargetDatabaseQuery($form, $inputs);
+      $databaseAction = findTargetDatabaseQuery($formName, $inputs);
+      print_r($databaseAction);
       $databaseAction != 1 ?
-        inputError($form, $databaseAction) :
-        confirmationPage($form, $databaseAction);
-    }
+        inputError($formPath, $databaseAction) :
+        confirmationPage($formName, $databaseAction);
+      }
   } else {
     header('location: /swd-final-assignment/content/index.php');
   }
@@ -24,6 +26,7 @@
     foreach($request as $key=>$value) {
       $inputCheck = sanitizeValidateUserInput($key, trim($value));
       if(substr($inputCheck, 0, 6) == 'Error:') {
+        echo $key."===>".$value."<br>";
         $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
         $errorIndex++;
       } else {
@@ -31,7 +34,7 @@
       }              
     }
     if(array_key_exists('confirm-password', $validated) || array_key_exists('confirm-password', $validated)) {
-      list($validated, $errors) = confirmInputChecks($validated, $errors);
+      list($validated, $errors) = confirmInputChecks($validated, $errors, $errorIndex);
     }
 
     return array($validated, $errors);   
@@ -46,6 +49,7 @@
       case 'booking-date' :
       case 'booking-time' :
       case 'number-attending' :
+      case 'movie-name' :
         return sanitizeValidateString($value);
         break;
       case 'email' :
@@ -54,27 +58,29 @@
         return sanitizeValidateEmail($email);
         break;
       case 'password' :
+      case 'old-password' :
       case 'confirm-password' :
         $pswd = sanitizeValidateString($value);
         $pswd = checkPasswordLength($pswd);
         return $pswd;
         break;
       case 'form-name' :
+      case 'form-path' :
       case 'movieID' :
       case 'customerID' : 
         return $value;
+        break;
       default :
-        'Error: unknown';
+        return 'Error: unknown';
     }
   }
 
   // FIX THIS FUNCTION
 
-  function confirmInputChecks($validated, $errors) {
+  function confirmInputChecks($validated, $errors, $errorIndex) {
     $passwords = array_key_exists('confirm-password', $validated) ?
     checkInputsAreEqual('password',$validated['password'], $validated['confirm-password']) : 
     array('password'=>true);
-
     $emails = array_key_exists('confirm-email', $validated) ?
       checkInputsAreEqual('email', $validated['email'], $validated['confirm-email']) : 
       array('email'=>true);
@@ -82,7 +88,8 @@
     $reusableCheck = array($passwords, $emails);
     for($i = 0; $i < count($reusableCheck); $i++) {
       foreach($reusableCheck[$i] as $key=>$value) {
-       $value == 1 ? null : $errors[$key] = $value;
+       $value == 1 ? null : $errors[$errorIndex] = $value;
+       $errorIndex++;
       }
     }
     return array($validated, $errors);
@@ -105,7 +112,9 @@
   function checkInputsAreEqual($key, $input1, $input2) {
     $equalityCheck = $input1 === $input2 ?
                       array($key=>true) :
-                      array($key=> $key == 'password' ? 'password-match' : 'email-match');
+                      array($key == 'password' ? 
+                        'password-match' : 
+                        'email-match');
     return $equalityCheck;
   }
 

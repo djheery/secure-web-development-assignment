@@ -7,6 +7,7 @@
     generateSession();
     $sessionData = getSessionData();
     // Add Check for login
+    if($sessionData == false) header('location: loginForm.php');
     $ref = isset($_GET['ref']) ? $_GET['ref'] : '';
     $tagline = "Account Settings";
     $links = checkPageType($sessionData, 'index.php');

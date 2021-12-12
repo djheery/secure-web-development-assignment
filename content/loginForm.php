@@ -6,7 +6,7 @@
 
   generateSession();
   $sessionData = getSessionData();
-  // Add Check for login - redirect if logged in
+  if($sessionData) header('location: accountSettings.php');
   $tagline = "Welcome";
   $links = checkPageType($sessionData, 'index.php');
   echo buildPageStart($tagline);
@@ -36,6 +36,7 @@
               </div>
             </div>
             <input type="hidden" name="form-name" id="form-name" value="loginForm.php">
+            <input type="hidden" name="form-name" value="login">
             <div class="buttons-container flex">
               <button id="submit" type="submit" class="btn bg-strong-orange">Login</button>
               <div class="text-btn">

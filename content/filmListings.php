@@ -7,7 +7,6 @@
 
   generateSession();
   $sessionData = getSessionData();
-  // Add Check For login
   $tagline = "Whats On?";
   $links = checkPageType($sessionData, 'filmListings.php');
   echo buildPageStart($tagline);

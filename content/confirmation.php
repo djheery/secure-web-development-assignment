@@ -6,9 +6,9 @@
     require_once '../assets/src/sessionFunctions.php';
 
     generateSession();
-    $sessionData = getSessionData();
-    // Add check for login;
     $refferer = isset($_GET['ref']) ? $_GET['ref'] : '';
+    if($refferer == 'delete-user') unsetDestroySession();
+    $sessionData = getSessionData();
     $links = checkPageType($sessionData, 'confirmation.php');
     // Come up with tagline function;
     echo buildPageStart('confirmed');

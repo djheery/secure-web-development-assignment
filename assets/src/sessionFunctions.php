@@ -12,6 +12,10 @@
     }
   }
 
+  function preventSessionFixation() {
+    
+  }
+
   function setSessionData($name, $email, $bookings) {
     generateSession();
     $_SESSION['logged-in'] = 1;
@@ -21,13 +25,11 @@
   };
 
   function addBookingToSession($booking) {
-    generateSession();
-    $_SESSION['bookings'] = $booking;
+    array_push($_SESSION['bookings'], $booking);
   }
 
   function unsetDestroySession() {
     unset($_SESSION);
     session_destroy();
-
   };
 ?>
