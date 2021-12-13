@@ -45,7 +45,6 @@
         setSessionData($userCheck['customer_forename'], 
                        $userCheck['username'], 
                        getCustomerBookings($userCheck['customerID']));
-        print_r(getCustomerBookings($userCheck['customerID']));
         return $validatePassword;
       } else {
         return array('user-error');
@@ -69,6 +68,7 @@
           "movieID"=>$data['movieID'],
           "screening_date_time"=>$screeningDateTime, 
           "movie_name"=>$data['movie-name']));
+          preventSessionFixation();
         return $result;
       } else {
         return array('booking-exists');
@@ -89,6 +89,7 @@
       $verifyNewPassword = password_verify($data['password'], $userCheck['password_hash']);
       // If it is not then update the password for a specific user
       if($verifyOldPassword && $verifyNewPassword != 1) {
+        preventSessionFixation();
         $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
         return updatePassword($passwordHash, $userCheck['customerID']);
       }
@@ -103,6 +104,7 @@
       $verifyPassword = password_verify($data['password'], $userCheck['password_hash']);
       if($verifyPassword) {
         $delete = deleteUserFromDatabase($userCheck['customerID']);
+        preventSessionFixation();
         return $delete <= 0 ? array('account-delete-failed') : true;
       } else {
         return array('password-match');

@@ -34,7 +34,7 @@
 </section>
 <?php 
   echo buildFilmTiles("What's <span class=\"pastel-accent-clr\">On?</span>");
-  echo buildMarketingBlock();
+  echo buildMarketingBlock($sessionData);
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();

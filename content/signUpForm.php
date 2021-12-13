@@ -90,7 +90,6 @@
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();
-  echo "<script src='/swd-final-assignment/assets/src/js/errors.json'></script>";
   echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo buildPageEnd();
 ?>

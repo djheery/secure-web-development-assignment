@@ -62,7 +62,7 @@
     </section>
 <?php 
   echo createFilmListingsSection($sessionData);
-  echo buildMarketingBlock();
+  echo buildMarketingBlock($sessionData);
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();

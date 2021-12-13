@@ -15,7 +15,7 @@
   echo startMainSection();
   echo createIndividualFilmListing($movie[0]);
   echo buildFilmTiles("More <span class=\"pastel-accent-clr\">Films</span>");
-  echo buildMarketingBlock();
+  echo buildMarketingBlock($sessionData);
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();

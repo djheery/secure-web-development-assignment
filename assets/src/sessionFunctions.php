@@ -13,7 +13,7 @@
   }
 
   function preventSessionFixation() {
-    
+    session_regenerate_id(true);
   }
 
   function setSessionData($name, $email, $bookings) {
