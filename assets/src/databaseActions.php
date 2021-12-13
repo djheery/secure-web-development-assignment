@@ -58,16 +58,16 @@ function connectToDatabase() {
     }
 
 
-    function insertIntoMovieListings($movieName, $desc, $price, $rating) {
+    function insertIntoMovieListings($form, $data) {
       $conn = connectToDatabase();
-      $sql = "INSERT INTO movies (movie_name, description, ticket_price, rating) 
-              VALUES (?, ?, ?, ?)";
+      $sql = "INSERT INTO movies (movie_name, description, ticket_price, rating,      img_path, director, duration) VALUES (?, ?, ?, ?, ?, ?, ?)";
       if($stmt = mysqli_prepare($conn, $sql)) {
-        mysqli_stmt_bind_param($stmt, "ssii", $movieName, $desc, $price, $rating);
+        mysqli_stmt_bind_param($stmt, "ssiisss", $data['movie-name'], $data['description'], $data['price'], $data['rating'], $data['img-path'], $data['director'], $data['duration']);
         mysqli_execute($stmt);
-        return true;
+        mysqli_stmt_store_result($stmt);
+        return mysqli_stmt_affected_rows($stmt);
       } else {
-        return 'Error submiting movie';
+        return false;
       }
 
       closeConnection($conn);

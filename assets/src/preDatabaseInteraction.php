@@ -22,6 +22,8 @@
         return bookingForm($form, $data);
         break;
       case 'add-movie':
+        $insert = insertIntoMovieListings($form, $data);
+        return $insert == 1 ? true : array('movie-insert-error'); 
         break;
       default :
         break;
@@ -111,5 +113,7 @@
       }
     }
   }
+
+  
 
 ?>

@@ -10,7 +10,6 @@
       inputError($formPath, $errors);
     } else {
       $databaseAction = findTargetDatabaseQuery($formName, $inputs);
-      print_r($databaseAction);
       $databaseAction != 1 ?
         inputError($formPath, $databaseAction) :
         confirmationPage($formName, $databaseAction);
@@ -43,19 +42,31 @@
 
   function sanitizeValidateUserInput($key, $value) {
     if($value == null || $value == '') return "Error: input-empty";
+    // echo var_dump($value);
+    // echo "<br>";
     switch($key) {
       case 'first-name' :
       case 'last-name' :
+      case 'movie-name' :
+      case 'img-path' :
+      case 'description' :
       case 'booking-date' :
       case 'booking-time' :
       case 'number-attending' :
       case 'movie-name' :
+      case 'rating' :
+      case 'director' :
+      case 'duration' :
         return sanitizeValidateString($value);
         break;
       case 'email' :
       case 'confirm-email' :
         $email = strtolower($value);
         return sanitizeValidateEmail($email);
+        break;
+      case 'price' :
+        $number =  number_format(sanitizeValidateNumbers($value), 2);
+        return $number;
         break;
       case 'password' :
       case 'old-password' :
@@ -123,4 +134,11 @@
                    'Error: password-length' : $password;
     return $lengthCheck;
   }
+
+  function sanitizeValidateNumbers($number) {
+    $validatedNumber = filter_var($number, FILTER_VALIDATE_FLOAT);
+    return $validatedNumber;
+  }
+
+
 ?>

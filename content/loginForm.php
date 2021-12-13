@@ -37,7 +37,7 @@
               </div>
             </div>
             <input type="hidden" name="form-name" id="form-name" value="loginForm.php">
-            <input type="hidden" name="form-name" value="login">
+            <input type="hidden" name="form-path" value="login">
             <div class="buttons-container flex">
               <button id="submit" type="submit" class="btn bg-strong-orange">Login</button>
               <div class="text-btn">

@@ -38,6 +38,14 @@
           <p>We are sorry you had to go, we will be ready to take you back whenever you are ready.</p>
         CONTENT;
         break;
+      case 'add-movies' : 
+        $pageContent .= <<<CONTENT
+        <h1 class="heading-primary text-upper"><span class="pastel-accent-clr">Booking <span class="pastel-accent-clr">Added</span></h1>
+        <p>Listing Sucessfully added</p>
+        <div class="btn-container">
+          <a class="btn bg-strong-orange" href="addMovieForm.php">Add Another Movie</a>
+        </div>
+      CONTENT;
       default :
         $pageContent .= <<<CONTENT
           <h1 class="heading-primary text-upper">Well Done... <span class="pastel-accent-clr">For something</span></h1>
