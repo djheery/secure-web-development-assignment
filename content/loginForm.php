@@ -36,8 +36,8 @@
                 <input type="password" id="password" name="password">
               </div>
             </div>
-            <input type="hidden" name="form-name" id="form-name" value="loginForm.php">
-            <input type="hidden" name="form-path" value="login">
+            <input type="hidden" name="form-path" id="form-name" value="loginForm.php">
+            <input type="hidden" name="form-name" value="login">
             <div class="buttons-container flex">
               <button id="submit" type="submit" class="btn bg-strong-orange">Login</button>
               <div class="text-btn">
@@ -56,5 +56,6 @@
   echo buildFooter();
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
+  echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

@@ -6,6 +6,7 @@
   errorParams = [];
   url.forEach(u => console.log(u.slice(0, 6)))
   url.forEach(param => param.slice(0,3) === 'ref' ? '' : 
+                       param.slice(0,2) === 'id' ? '' :
                        param.slice(0,6) == 'error=' ? 
                          errorParams.push(param.substr(6)) : 
                          errorParams.push(param));
@@ -32,5 +33,4 @@
     })
     .catch(err => console.log(err))
 
-  
 })()

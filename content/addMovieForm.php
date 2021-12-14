@@ -7,7 +7,7 @@
 
   generateSession();
   $sessionData = getSessionData();
-  if($sessionData) header('location: accountSettings.php');
+  // if($sessionData) header('location: accountSettings.php');
   $tagline = "Sign Up";
   $links = checkPageType($sessionData, 'signUpForm.php');
   echo buildPageStart($tagline);
@@ -101,5 +101,6 @@
   echo buildFooter();
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
+  echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

@@ -13,8 +13,10 @@
   function inputError($form, $errors) {
     if(gettype($errors) !== 'array') return;
     $path = getPath();
-    $path = "$path/$form?error=";
-
+    strpos($form, '?', 0) != 0 ?
+          $path = "$path/$form&error=" :
+          $path = "$path/$form?error=";
+    
     for($i = 0; $i < count($errors); $i++) {
       $path .= $errors[$i];
       if($i != count($errors) -1) {

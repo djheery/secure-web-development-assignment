@@ -29,5 +29,6 @@
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();
+  echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

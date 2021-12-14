@@ -49,7 +49,7 @@ function connectToDatabase() {
         $stmt->bind_param('i', $movieID);
         $stmt->execute();
         $res = $stmt->get_result();
-        return $res->fetch_assoc();
+        return mysqli_fetch_assoc($res);
       } else {
         statementError($form);
       }
@@ -58,14 +58,13 @@ function connectToDatabase() {
     }
 
 
+
     function insertIntoMovieListings($form, $data) {
       $conn = connectToDatabase();
       $sql = "INSERT INTO movies (movie_name, description, ticket_price, rating,      img_path, director, duration) VALUES (?, ?, ?, ?, ?, ?, ?)";
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssiisss", $data['movie-name'], $data['description'], $data['price'], $data['rating'], $data['img-path'], $data['director'], $data['duration']);
-        mysqli_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-        return mysqli_stmt_affected_rows($stmt);
+        return executeStoreGetAffected($stmt);
       } else {
         return false;
       }
@@ -73,18 +72,13 @@ function connectToDatabase() {
       closeConnection($conn);
     }
 
-    // Error - Will not let me book 2 of the same movie for the same customer
-
     function insertNewBooking($data, $userID, $screeningDateTime) {
       $conn = connectToDatabase();
       $sql = "INSERT INTO movie_bookings (movieID, customerID, screening_date_time, num_attending) VALUES (?, ?, ?, ?)" ;
       $stmt = mysqli_prepare($conn, $sql);
       if($stmt) {
         $stmt->bind_param('iiss', $data['movieID'], $userID, $screeningDateTime, $data['number-attending']);
-        $stmt->execute();
-        $stmt->store_result();
-        $result = mysqli_stmt_affected_rows($stmt);
-        return $result;
+        return executeStoreGetAffected($stmt);
       } else {
         return 'STATEMENT-ERROR';
       }
@@ -97,41 +91,10 @@ function connectToDatabase() {
       $sql = "INSERT INTO customers (password_hash, username, customer_forename, customer_surname) VALUES (?, ?, ?, ?)";
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
-        mysqli_execute($stmt);
-        return true;
+        return executeStoreGetAffected($stmt);
       } else {
         return 'Customer Insert Failed';
       }
-      closeConnection($conn);
-    }
-
-    function getIndividualFilm($id) {
-      $conn = connectToDatabase();
-      $sql = "SELECT * FROM movies
-              WHERE movieID = $id";
-      $queryResult = mysqli_query($conn, $sql);
-      if($queryResult !== '') {
-        $movieObj = [];
-        while($row = mysqli_fetch_assoc($queryResult)) {
-          array_push($movieObj, $row);
-        }
-        return $movieObj;
-      }
-      closeConnection($conn);
-    }
-
-    function verifyUsersPassword($pasword, $user) {
-      $conn = connectToDatabase();
-      $sql = "SELECT password_hash FROM customers WHERE customerID = ?";
-      if($stmt = mysqli_prepare($conn, $sql)) {
-        $stmt->bind_param('s', $user);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
-      } else {
-        return "STATEMENT ERROR";
-      }
-
       closeConnection($conn);
     }
 
@@ -143,13 +106,7 @@ function connectToDatabase() {
               WHERE customerID = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $bookingsArray = [];
-        while($row = $result->fetch_assoc()) {
-          array_push($bookingsArray, $row);
-        }
-        return $bookingsArray;
+        return getArrayOfResults($stmt);
       }
       closeConnection($conn);
     }
@@ -160,11 +117,7 @@ function connectToDatabase() {
               WHERE customerID = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('si', $newPassword, $customerID);
-        $stmt->execute();
-        $stmt->store_result();
-        $result = mysqli_stmt_affected_rows($stmt);
-        return $result;
-
+        return executeStoreGetAffected($stmt);
       } else {
         return 'failed';
       }
@@ -180,13 +133,46 @@ function connectToDatabase() {
               WHERE movie_bookings.customerID OR customers.customerID  = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('i', $userID);
-        $stmt->execute();
-        $stmt->store_result();
-        return mysqli_stmt_affected_rows($stmt);
+        return executeStoreGetAffected($stmt);
       }
+    }
+
+    function getArrayOfResults($stmt) {
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $resultsArray = [];
+      while($row = $result->fetch_assoc()) {
+        array_push($resultsArray, $row);
+      }
+      return $resultsArray;
+    }
+
+    function executeStoreGetAffected($stmt) {
+      $stmt->execute();
+      $stmt->store_result();
+      return mysqli_stmt_affected_rows($stmt);
     }
 
     function closeConnection($conn) {
       $conn->close();
     }
+
+    // IS THIS USED?
+    
+    // function verifyUsersPassword($pasword, $user) {
+    //   $conn = connectToDatabase();
+    //   $sql = "SELECT password_hash FROM customers WHERE customerID = ?";
+    //   if($stmt = mysqli_prepare($conn, $sql)) {
+    //     $stmt->bind_param('s', $user);
+    //     return getArrayOfResults($stmt);
+    //     $stmt->execute();
+    //     $result = $stmt->get_result();
+    //     return $result->fetch_assoc();
+    //   } else {
+    //     return "STATEMENT ERROR";
+    //   }
+
+    //   closeConnection($conn);
+    // }
+
 ?>

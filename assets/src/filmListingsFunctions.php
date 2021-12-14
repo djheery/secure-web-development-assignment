@@ -12,6 +12,8 @@
   }
 
   function buildFilmTiles($title) {
+    $movieArray = getTableData('movies');
+    if(!$movieArray) return;
     $filmTiles = <<<FILMTILES
       <section id="film-tiles" class="page-section bg-off-black">
       <div class="inner-container flex">
@@ -19,37 +21,46 @@
           <h2 class="heading-secondary text-upper">$title</h2>
         </div>
         <div class="film-tiles-block flex mgb-large">
-          <div class="film-tile__container">
-            <img src="/swd-final-assignment/assets/images/avengers.jpg" alt="Avengers Infinity War">
-          </div>
-          <div class="film-tile__container">
-            <img src="/swd-final-assignment/assets/images/jb-film-poster.jpg" alt="">
-          </div>
-          <div class="film-tile__container">
-            <img src="/swd-final-assignment/assets/images/pulp-fiction.jpg" alt="">
-          </div>
-          <div class="film-tile__container">
-            <img src="/swd-final-assignment/assets/images/the-prestige.jpg" alt="">
-          </div>
+    FILMTILES;
+    for($i = 0; $i < 4; $i++) {
+      $movieID = htmlspecialchars($movieArray[$i]['movieID']);
+      $movieImg = htmlspecialchars($movieArray[$i]['img_path']);
+      $movieName = htmlspecialchars($movieArray[$i]['movie_name']);
+
+      $filmTiles .= <<<FILMITEM
+      <div class="film-tile__container">
+        <div class="ft-container__inner">
+        <a href="individualFilmListing.php?id={$movieID}" class="film-tile-link"></a>
+        <img src="../assets/images/{$movieImg}" alt="{$movieName}">
         </div>
+      </div>
+      FILMITEM;
+    }
+
+    $filmTiles .= <<<FILMEND
+      </div>
         <div class="buttons-container flex">
           <div class="btn bg-strong-orange">
-            <a href="#">View all Films</a>
+            <a href="filmListings.php">View all Films</a>
           </div>
         </div>
       </div>
     </section>
-    FILMTILES;
+    FILMEND;
     return $filmTiles;
   }
 
   function createFilmItems($container, $items, $sessionData) {
 
     for($i = 0; $i < count($items); $i++) {
+      $itemImg = htmlspecialchars($items[$i]['img_path']);
+      $itemTitle = htmlspecialchars($items[$i]['movie_name']);
+      $itemDirector = htmlspecialchars($items[$i]['director']);
+    
       $container .= <<<FILMITEM
         <div class="film-listings__item-container flex mgb-large">
           <div class="film-listings__item-img flex mgb-mid">
-            <img src="../assets/images/{$items[$i]['img_path']}" alt="">
+            <img src="../assets/images/$itemImg" alt="">
           </div>
           <div class="film-listings__item-content flex">
             <div class="film-listings__item-heading mgb-mid">
@@ -152,8 +163,7 @@
     return $targetFilmListing;
   };
 
-  function filmBookingItem($movieID, $customerID) {
-    $film = getIndividualMovie($movieID);
+  function filmBookingForm($film) {
     $todaysDate = date('Y-m-d');
     $formItem = <<<FORMITEM
     <form action="../assets/src/validateForm.php" method="post" class="booking-form">
@@ -202,7 +212,7 @@
             <a href="filmListings.php">Back to All Films</a>
           </div>
         </div>
-        <input type="hidden" name="form-path" value="bookingForm.php?id={$movieID}">
+        <input type="hidden" name="form-path" value="bookingForm.php?id={$film['movieID']}">
         <input type="hidden" name="form-name" value="booking-form">
       </form>
       </div>

@@ -30,7 +30,7 @@
         "active"=>'false'
       )    ,
       array(
-        "text"=>'Hi',
+        "text"=>'Settings',
         "href"=>"accountSettings.php",
         "active"=>'false'
       ),
@@ -63,7 +63,6 @@
   function populateLinksArray($page, $links, $name) {
     $replacementArray = array();
     foreach($links as $l) {
-      if($l['href'] == 'accountSettings.php') $l['text'] .= ", $name";
       if($page == $l["href"]) {
         $l["active"] = 'true';
       }

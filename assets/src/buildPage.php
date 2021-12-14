@@ -28,11 +28,12 @@
           </div>
           <!-- Navigation -->
           <nav>
+            <div class="nav-inner">
             <ul class="flex nav-bar">
     HEADER;
     // 
     $headerContent = addNavigationLinks($headerContent, $navigationLinks);
-    $headerContent .= "</ul></nav></div></header>";
+    $headerContent .= "</ul></nav></div></div></header>";
     return $headerContent;
   }
 
@@ -68,6 +69,8 @@
         </div>
       </aside>
     HAMBURGER;
+
+    return $hamburger;
   }
 
   function buildFooter() {
@@ -139,7 +142,7 @@
       $marketingBlock .= <<<DYNAMICBTNCONTENT
       <div class="buttons-container flex mgb-large">
         <div class="btn bg-strong-orange">
-          <a href="signUp.php">Sign Up!</a>
+          <a href="signUpForm.php">Sign Up!</a>
         </div>
       </div>      
       DYNAMICBTNCONTENT;

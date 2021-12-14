@@ -1,6 +1,28 @@
 <?php
   require_once 'preDatabaseInteraction.php';
   require_once 'redirects.php';
+
+  function getKnownInputs() {
+    $knownInputs = array(
+      'first-name',
+      'last-name',
+      'email',
+      'confirm-email',
+      'password',
+      'confirm-password',
+      'movie-name',
+      'director',
+      'description',
+      'rating',
+      'number-attending',
+      'booking-time',
+      'booking-date',
+      'form-path',
+      'form-name',
+    );
+
+    return $knownInputs;
+  }
   
   if($_REQUEST) {
     $formPath = $_REQUEST['form-path'];
@@ -8,7 +30,7 @@
     list($inputs, $errors) = validationSetup($_REQUEST);
     if(count($errors) > 0) {
       inputError($formPath, $errors);
-    } else {
+    } else {  
       $databaseAction = findTargetDatabaseQuery($formName, $inputs);
       $databaseAction != 1 ?
         inputError($formPath, $databaseAction) :
@@ -23,9 +45,12 @@
     $errors = [];
     $errorIndex = 0;
     foreach($request as $key=>$value) {
+      if(array_search($key, getKnownInputs()) == false) {
+        $errors[$errorIndex] = 'unknown';
+        return array($validated, $errors);
+      }
       $inputCheck = sanitizeValidateUserInput($key, trim($value));
       if(substr($inputCheck, 0, 6) == 'Error:') {
-        echo $key."===>".$value."<br>";
         $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
         $errorIndex++;
       } else {
@@ -42,22 +67,11 @@
 
   function sanitizeValidateUserInput($key, $value) {
     if($value == null || $value == '') return "Error: input-empty";
-    // echo var_dump($value);
-    // echo "<br>";
+    $value = filter_var($value, FILTER_SANITIZE_STRING);
     switch($key) {
       case 'first-name' :
       case 'last-name' :
-      case 'movie-name' :
-      case 'img-path' :
-      case 'description' :
-      case 'booking-date' :
-      case 'booking-time' :
-      case 'number-attending' :
-      case 'movie-name' :
-      case 'rating' :
-      case 'director' :
-      case 'duration' :
-        return sanitizeValidateString($value);
+        return checkNamesAreValid($value);
         break;
       case 'email' :
       case 'confirm-email' :
@@ -70,19 +84,11 @@
         break;
       case 'password' :
       case 'old-password' :
-      case 'confirm-password' :
-        $pswd = sanitizeValidateString($value);
-        $pswd = checkPasswordLength($pswd);
+        $pswd = checkPasswordLength($value);
         return $pswd;
         break;
-      case 'form-name' :
-      case 'form-path' :
-      case 'movieID' :
-      case 'customerID' : 
-        return $value;
-        break;
       default :
-        return 'Error: unknown';
+        return $value;
     }
   }
 
@@ -106,9 +112,14 @@
     return array($validated, $errors);
   }
 
-  function sanitizeValidateString($str) {
-    $str = filter_var($str, FILTER_SANITIZE_STRING);
-    return $str;
+  function checkNamesAreValid($name) {
+    if(strpos($name, ' ') != 0) {
+      return 'Error: whitespace-in-name';
+    } elseif(strlen($name) > 12) {
+      return 'Error: name-length';
+    } else {
+      return $name;
+    }
   }
 
   function sanitizeValidateEmail($email) {

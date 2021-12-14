@@ -7,5 +7,9 @@
   "unknown": "Woops, something went wrong. Please try again later",
   "password-length": "Your password is too short, please enter a password more than 8 characters",
   "input-empty": "You must fill out the following information:",
-  "member-error": "You must be a member to book your film"
+  "member-error": "You must be a member to book your film",
+  "booking-exists": "You have already booked this film",
+  "account-delete-failed": "Your account delete failed, please try again",
+  "whitespace-in-name": "Please do not use the space key within the first name or last name fields",
+  "name-length": "Your name cannot be longer than 24 characters"
 }]

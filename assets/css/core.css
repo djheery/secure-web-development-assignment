@@ -48,7 +48,7 @@ h1, h2, h3, label, .logo, .bold {
   font-size: 1rem !important;
 }
 
-section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li {
+section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li, .ft-container__inner {
   position: relative
 }
 
@@ -268,6 +268,16 @@ button {
 }
 
 
+.film-tile-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+
 
 /* 
 ============================
@@ -322,13 +332,37 @@ input:focus-within {
 
 /* 
 ===============================
-  Header
+  Header/navigaiton
 ===============================
 
 */
 
 nav {
-  display: none;
+  display: block;
+  position: fixed;
+  z-index: -10;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--off-black);
+  scroll-snap-type: none;
+  transition: .6s all;
+}
+
+.nav-inner {
+  position: relative;
+  height: 100%;
+}
+
+.nav-bar {
+  position: absolute;
+  flex-direction: column;
+  gap: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 
 #site-header, #site-footer {
@@ -343,6 +377,37 @@ nav {
   color: var(--pastel-orange)
 }
 
+#mobile-hamburger-menu {
+  position: sticky;
+  bottom: 0;
+  padding: 10px;
+  border: 1px var(--white) solid;
+  z-index: 10;
+}
+
+.menu-acitve .menu-icon .menu-line {
+  transform: rotate(49deg);
+}
+
+.menu-line {
+  padding: 1px;
+  border-bottom: 2px solid var(--white);
+  width: 55px;
+  margin-bottom: 5px;
+}
+
+.menu-line:first-child, .menu-line:last-child{
+  border-color: var(--pastel-orange);
+}
+
+.menu-line:last-child {
+  margin-bottom: 0;
+}
+
+.menu-icon {
+  flex-direction: column;
+  align-items: center;
+}
 
 /* 
 ====================================
@@ -568,6 +633,21 @@ Flim listings Page
     justify-content: space-between;
   }
 
+  nav {
+    position: unset;
+    z-index: 1;
+    opacity: 1;
+  }
+
+  
+  .nav-bar {
+    position: unset;
+    flex-direction: row;
+    gap: 0px;
+    transform: unset;
+    z-index: 1;
+  }
+
   /* 
    ======================
    Footer 
@@ -766,7 +846,7 @@ Flim listings Page
     background-color: var(--pastel-orange);
   }
 
-  select:hover, input:hover {
+  select:hover, input:hover, .film-tile__container:hover {
     cursor: pointer;
   }
 
@@ -776,6 +856,14 @@ Flim listings Page
 
   .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight {
     padding: 3%;
+  }
+
+  .film-tile__container {
+    transition: all ease-in-out 0.3s;
+  }
+
+  .film-tile__container:hover {
+    transform: translateY(-10px);
   }
 
   #adv-settings .inner-container .page-left {
@@ -813,10 +901,6 @@ Flim listings Page
 
   #adv-settings {
     padding: 180px 50px;
-  }
-
-  .page-left {
-    max-width: 1000px;
   }
 
   .dynamic-box {
@@ -866,14 +950,14 @@ Flim listings Page
   height: unset;
   gap: 70px;
 }
-.film-tile__container {
-  
+.film-tile__container { 
   width: 20%
 }
 .film-tile__container img {
   width: 100%;
   height: auto
 }
+
 
   .film-tile__container:nth-child(even) {
     display: block;
@@ -886,7 +970,7 @@ Flim listings Page
   */
 
   .page-left {
-    max-width: 700px
+    max-width: 650px
   }
 
   .page-right {

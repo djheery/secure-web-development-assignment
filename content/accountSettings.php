@@ -10,7 +10,7 @@
     if($sessionData == false) header('location: loginForm.php');
     $ref = isset($_GET['ref']) ? $_GET['ref'] : '';
     $tagline = "Account Settings";
-    $links = checkPageType($sessionData, 'index.php');
+    $links = checkPageType($sessionData, 'accountSettings.php');
     echo buildPageStart($tagline);
     echo buildHeader($links);
     echo startMainSection();
@@ -55,5 +55,6 @@
     echo endMainSection();
     echo buildFooter();
     echo buildHamburgerBtn();
+    echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
     echo buildPageEnd();
 ?>
