@@ -26,40 +26,7 @@
         </div>
         </div>
     </section>
-        <!-- Film Search Criteria -->
-      <section id="film-search-criteria" class="page-section bg-light-grey">
-      <div class="inner-container flex">
-        <div class="search-criteria-block">
-          <div class="mgb-mid">
-            <label for="choose-a-date" class="input-label  text-upper">Date</label>
-          </div>
-          <div class="select-container">
-            <input type="date" name="date" id="date">
-          </div>
-        </div>
-        <div class="search-criteria-block">
-          <div class="mgb-mid">
-            <label for="catagories" class="input-label  text-upper">Catagories</label>
-          </div>
-          <div class="select-container">
-            <select name="catagories" id="catagories">
-              <option value="family">Family</option>
-              <option value="action">Action</option>
-              <option value="thriller">Thriller</option>
-              <option value="comedy">Comedy</option>
-            </select>
-          </div>
-        </div>
-        <div class="search-criteria-block">
-          <div class="mgb-mid">
-            <label for="search" class="input-label  text-upper">Search</label>
-          </div>
-          <div class="search-container">
-            <input type="text" name="search" id="search">
-          </div>
-        </div>
-      </div>
-    </section>
+
 <?php 
   echo createFilmListingsSection($sessionData);
   echo buildMarketingBlock($sessionData);

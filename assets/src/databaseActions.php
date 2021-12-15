@@ -12,18 +12,14 @@ function connectToDatabase() {
   // Add Reusable Statement Failure Function
   // Potentially Add Reusable mysqli_execute, get_results, bind_param, etc
   
-  function getTableData($table) {
+  function getMovieData() {
     $conn = connectToDatabase();
-    $sql = "SELECT  * FROM $table";
-    $queryResult = mysqli_query($conn, $sql);
-    if($queryResult !== '') {
-      $movieObj = [];
-      while ($row = mysqli_fetch_assoc($queryResult)) {
-        array_push($movieObj, $row);
-      } 
-      return $movieObj;
-      }
-
+    $sql = "SELECT  * FROM movies";
+    if($stmt = mysqli_prepare($conn, $sql)) {
+      return getArrayOfResults($stmt);
+    } else {
+      return false;
+    } 
       closeConnection($conn);
     };
 
@@ -32,11 +28,9 @@ function connectToDatabase() {
       $sql = "SELECT * FROM customers WHERE username = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, 's', $email);
-        mysqli_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        return mysqli_fetch_assoc($result);
+        return getArrayOfResults($stmt);
       } else {
-        statementError($form);
+        return false;
       }
 
       closeConnection($conn);
@@ -47,11 +41,9 @@ function connectToDatabase() {
       $sql = "SELECT * FROM movies WHERE movieID = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('i', $movieID);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        return mysqli_fetch_assoc($res);
+        return getArrayOfResults($stmt);
       } else {
-        statementError($form);
+        return false;
       }
       
       closeConnection($conn);
@@ -80,7 +72,7 @@ function connectToDatabase() {
         $stmt->bind_param('iiss', $data['movieID'], $userID, $screeningDateTime, $data['number-attending']);
         return executeStoreGetAffected($stmt);
       } else {
-        return 'STATEMENT-ERROR';
+        return false;
       }
 
       closeConnection($conn);
@@ -93,7 +85,7 @@ function connectToDatabase() {
         mysqli_stmt_bind_param($stmt, "ssss", $data['password'], $data['email'], $data['first-name'], $data['last-name']);
         return executeStoreGetAffected($stmt);
       } else {
-        return 'Customer Insert Failed';
+        return false;
       }
       closeConnection($conn);
     }
@@ -138,11 +130,18 @@ function connectToDatabase() {
     }
 
     function getArrayOfResults($stmt) {
-      $stmt->execute();
+      $stmt->execute();      
       $result = $stmt->get_result();
       $resultsArray = [];
-      while($row = $result->fetch_assoc()) {
-        array_push($resultsArray, $row);
+      $numRows = mysqli_num_rows($result);
+      if($numRows) {
+        if($numRows > 1) {
+          while($row = mysqli_fetch_assoc($result)) {
+            array_push($resultsArray, $row);
+          } 
+        } else {
+         $resultsArray = mysqli_fetch_assoc($result); 
+        }
       }
       return $resultsArray;
     }

@@ -25,7 +25,7 @@
           <div class="section-text-block mgb-mid">
             <p class="bold">Select from the options below:</p>
           </div>
-          <section class="settings-links flex">
+          <div class="settings-links flex">
             <div class="settings-link-container mgb-small">
               <a href="?ref=view-bookings" class="bold adv-link">View Your Bookings</a>
               <div class="background-highlight bg-strong-orange"></div>
@@ -42,7 +42,7 @@
               <a href="filmListings.php" class="bold adv-link">Back to Film Listings</a>
               <div class="background-highlight bg-strong-orange"></div>
             </div>
-          </section>
+          </div>
         </div>
         <div class="page-right flex">
             <?php 
@@ -50,6 +50,7 @@
             ?>
         </div>
       </div>
+    </div>
     </section>
   <?php 
     echo endMainSection();

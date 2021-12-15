@@ -22,8 +22,8 @@
       <header id="site-header" class="bg-off-black">
         <div class="inner-container flex">
           <div class="logo">
-            <a href="index.php">
-              <span class="text-upper pastel-accent-clr">Galactic Cinema</span>
+            <a href="index.php" class="text-upper pastel-accent-clr" aria-label="Navigate to main page">
+              Galactic Cinema
             </a>
           </div>
           <!-- Navigation -->
@@ -33,7 +33,7 @@
     HEADER;
     // 
     $headerContent = addNavigationLinks($headerContent, $navigationLinks);
-    $headerContent .= "</ul></nav></div></div></header>";
+    $headerContent .= "</ul></div></nav></div></header>";
     return $headerContent;
   }
 
@@ -60,7 +60,7 @@
 
   function buildHamburgerBtn() {
     $hamburger = <<<HAMBURGER
-      <aside id="mobile-hamburger-menu" class="bg-off-black" data-menuStatus="inactive">
+      <aside id="mobile-hamburger-menu" class="bg-off-black" aria-label="mobile navigation link">
         <div class="menu-icon flex">
           <div class="menu-line"></div>
           <div class="menu-line"></div>
@@ -80,8 +80,8 @@
           <div class="logo mgb-large">
             <p class="pastel-accent-clr text-upper">Cinema City</p>
           </div>
-          <div class="footer-links flex"> <!-- Ask if a semtantic tag would be semantically correct here? -->
-            <section class="footer-links__section">
+          <div class="footer-links flex">
+            <section class="footer-links__section" aria-label="site-navigation" role="navigation">
               <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Site Navigation</h3>
               <ul class="footer-navigation-list flex mgb-mid">
                 <li class="mgb-small" data-pageReference="home"><a href="#">Home</a></li>
@@ -90,7 +90,7 @@
                 <li class="mgb-small" data-pageReference="login-page"><a href="#">Login/ Join</a></li>
               </ul>
             </section>
-            <section class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
+            <section class="footer-links__section" aria-label="assignment-reference-links" role="navigation">
               <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Assignment References</h3>
               <ul class="footer-navigation-list mgb-mid flex">
                 <li class="mgb-small" data-pageReference="home"><a href="#">Design Process</a></li>
@@ -98,19 +98,11 @@
                 <li class="mgb-small" data-pageReference="film-listings"><a href="#">Weekly Analysis</a></li>
               </ul>
             </section>
-            <section id="social-media" class="footer-links__section"> <!-- Ask if a semtantic tag would be semantically correct here? -->
-              <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Social Media</h3>
-              <ul class="footer-navigation-list mgb-mid flex">
-                <li class="mgb-small"><a href="#" target="_blank">Facebook</a></li>
-                <li class="mgb-small"><a href="#" target="_blank">Instagram</a></li>
-                <li class="mgb-small"><a href="#" target="_blank">Twitter</a></li>
-                <li class="mgb-small"><a href="#" target="_blank">YouTube</a></li>
-              </ul>
-            </section>
+
           </div>
-          <section class="copyright-statement text-center">
+          <div class="copyright-statement text-center" >
             <span>Copyright &copy; Cinema City, December 2021</span>
-          </section>
+          </div>
         </div>
       </footer>
     FOOTER;
@@ -119,7 +111,7 @@
 
   function buildMarketingBlock($sessionData) {
     $marketingBlock = <<<MARKETING
-      <section id="marketing-section" class="page-section bg-light-grey">
+      <section id="marketing-section" class="page-section bg-light-grey" role="complementary">
         <div class="inner-container flex">
           <div class="page-left">
             <div class="section-heading mgb-large">
@@ -151,7 +143,7 @@
     $marketingBlock .= <<<BLOCKFINISH
     </div>
     <div class="page-right">
-        <img src="/swd-final-assignment/assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+        <img aria-hidden="true" src="/swd-final-assignment/assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
         </div>
       </div>
     </section>
@@ -163,4 +155,12 @@
   function buildPageEnd() {
     return "</body></html>";
   }  
+
+  function makeOutputSafe($outputArray) {
+    $cleanOutputArray = [];
+    foreach($outputArray as $key=>$value) {
+      $cleanOutputArray[$key] = htmlspecialchars($value);
+    }
+    return $cleanOutputArray;
+  }
 ?>

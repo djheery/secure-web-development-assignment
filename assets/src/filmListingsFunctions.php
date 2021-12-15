@@ -4,15 +4,18 @@
     $filmListingsContainer = <<<FILMLISTINGS
     <section id="film-listings" class="bg-off-black page-section">
       <div class="inner-container flex">
+        <div class="mgb-large">
+          <h2 class="text-upper heading-secondary">Film <span class="pastel-accent-clr">Listings</span></h2>
+        </div>
     FILMLISTINGS;
-    $filmItems = getTableData('movies');
+    $filmItems = getMovieData('movies');
     $filmListingsContainer = createFilmItems($filmListingsContainer, $filmItems, $sessionData);
-    $filmListingsContainer .= "</section></div>";
+    $filmListingsContainer .= "</div></section>";
     return $filmListingsContainer;
   }
 
   function buildFilmTiles($title) {
-    $movieArray = getTableData('movies');
+    $movieArray = getMovieData('movies');
     if(!$movieArray) return;
     $filmTiles = <<<FILMTILES
       <section id="film-tiles" class="page-section bg-off-black">
@@ -31,7 +34,7 @@
       <div class="film-tile__container">
         <div class="ft-container__inner">
         <a href="individualFilmListing.php?id={$movieID}" class="film-tile-link"></a>
-        <img src="../assets/images/{$movieImg}" alt="{$movieName}">
+        <img src="../assets/images/{$movieImg}" alt="{$movieName} - Link to more information about {$movieName}">
         </div>
       </div>
       FILMITEM;
@@ -51,7 +54,6 @@
   }
 
   function createFilmItems($container, $items, $sessionData) {
-
     for($i = 0; $i < count($items); $i++) {
       $itemImg = htmlspecialchars($items[$i]['img_path']);
       $itemTitle = htmlspecialchars($items[$i]['movie_name']);
@@ -168,7 +170,7 @@
     $formItem = <<<FORMITEM
     <form action="../assets/src/validateForm.php" method="post" class="booking-form">
         <div class="form-field-container flex mgb-mid">
-          <label for="movieID" class="input-label pastel-accent-clr">Film Chosen:</label>
+          <label class="input-label pastel-accent-clr">Film Chosen:</label>
           <p>{$film['movie_name']}</p>
           <input type="hidden" name="movieID" value="{$film['movieID']}">
           <input type="hidden" name="movie-name" value="{$film['movie_name']}">
@@ -176,13 +178,13 @@
         <div class="form-field-container flex mgb-mid">
           <label for="booking-date" class="input-label pastel-accent-clr">Date:</label>
           <div class="input-container">
-            <input type="date" name="booking-date" id="booking-date" min="$todaysDate" value="$todaysDate">
+            <input type="date" name="booking-date" id="booking-date" min="$todaysDate" value="$todaysDate" aria-label="Booking date">
           </div>
         </div>
         <div class="form-field-container flex mgb-mid">
           <label for="booking-time" class="input-label pastel-accent-clr">Time:</label>
           <div class="select-container">
-            <select name="booking-time" id="booking-time">
+            <select name="booking-time" id="booking-time" aria-label="Booking Time">
               <option value="14:00">14:00</option>
               <option value="16:00">16:00</option>
               <option value="18:00">18:00</option>
@@ -194,7 +196,7 @@
         <div class="form-field-container flex mgb-mid">
           <label for="number-attending" class="input-label pastel-accent-clr">Attending:</label>
           <div class="select-container">
-            <select name="number-attending" id="number-attending">
+            <select name="number-attending" id="number-attending" aria-label="number-attending">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -205,9 +207,7 @@
           </div>
         </div>
         <div class="buttons-container flex">
-
             <button class="btn bg-strong-orange" type="submit" id="submit">Book Now</button>
-
           <div class="btn">
             <a href="filmListings.php">Back to All Films</a>
           </div>
@@ -217,7 +217,7 @@
       </form>
       </div>
       <div class="page-right flex">
-      <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img'>
+      <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img' aria-hidden="true">
     </div>
     FORMITEM;
     return $formItem;

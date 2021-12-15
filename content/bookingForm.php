@@ -30,7 +30,6 @@
     <?php
       echo filmBookingForm($movie);
     ?>
-    </div>
   </div>
 </section>
 <?php 

@@ -17,7 +17,7 @@
 <section id="index-showcase" class="showcase">
   <div class="background-image-filter"></div>
   <div class="inner-container flex central-content">
-    <div class="showcase-title text-center">
+    <div class="showcase-title text-center" role="img" aria-label="Advertisement for the new James Bond Film">
       <h1 class="heading-primary text-upper">James Bond</h1>
       <h3 class="sub-heading text-upper">No Time To Die</h3>
     </div>

@@ -3,17 +3,21 @@
   require_once 'redirects.php';
 
   function getKnownInputs() {
+    // Placeholder value in $knownInputs[0] as when first-name was in array[0] the valid input check was always firing
     $knownInputs = array(
+      'PLACEHOLDER_VALUE_FOR_CHECK_LINE_52',
       'first-name',
       'last-name',
       'email',
       'confirm-email',
+      'old-password',
       'password',
       'confirm-password',
       'movie-name',
       'director',
       'description',
       'rating',
+      'movieID',
       'number-attending',
       'booking-time',
       'booking-date',
@@ -101,12 +105,13 @@
     $emails = array_key_exists('confirm-email', $validated) ?
       checkInputsAreEqual('email', $validated['email'], $validated['confirm-email']) : 
       array('email'=>true);
-
-    $reusableCheck = array($passwords, $emails);
-    for($i = 0; $i < count($reusableCheck); $i++) {
-      foreach($reusableCheck[$i] as $key=>$value) {
-       $value == 1 ? null : $errors[$errorIndex] = $value;
-       $errorIndex++;
+      $reusableCheck = array($passwords, $emails);
+      for($i = 0; $i < count($reusableCheck); $i++) {
+        foreach($reusableCheck[$i] as $key=>$value) {
+          if($value != 1) {
+            $errors[$errorIndex] = $value;
+            $errorIndex++;
+          }
       }
     }
     return array($validated, $errors);

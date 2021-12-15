@@ -28,6 +28,10 @@ ul {
   list-style: none;
 }
 
+fieldset {
+  border: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -36,11 +40,11 @@ p {
   letter-spacing: 0.1rem;
 }
 
-p, a, h1, h2, h3, span, label, li {
+p, a, h1, h2, h3, span, label, li, legend {
   color:var(--white)
 }
 
-h1, h2, h3, label, .logo, .bold {
+h1, h2, h3, label, .logo, .bold, legend {
   font-weight: 600;
 }
 
@@ -601,7 +605,7 @@ Flim listings Page
     font-size: 1rem;
   }
 
-  .footer-navigation-list li, .input-label {
+  .footer-navigation-list li, .input-label, legend {
     font-size: 1.2rem;
   }
 

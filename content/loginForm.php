@@ -8,7 +8,7 @@
   $sessionData = getSessionData();
   if($sessionData) header('location: accountSettings.php');
   $tagline = "Welcome";
-  $links = checkPageType($sessionData, 'index.php');
+  $links = checkPageType($sessionData, 'loginForm.php');
   echo buildPageStart($tagline);
   echo buildHeader($links);
   echo startMainSection();
@@ -20,22 +20,25 @@
           <div class="error-block"></div>
           <!-- Form -->
           <form action="../assets/src/validateForm.php" method="post">
-            <div class="form-field-container mgb-mid">
-              <div class="mgb-small">
-                <label for="email" class="input-label">Email Address</label>
+            <fieldset>
+              <legend class="mgb-mid">Login Details</legend>
+              <div class="form-field-container mgb-mid">
+                <div class="mgb-small">
+                  <label for="email" class="input-label">Email Address</label>
+                </div>
+                <div class="input-container">
+                  <input type="email" id="email" name="email">
+                </div>
               </div>
-              <div class="input-container">
-                <input type="email" id="email" name="email">
+              <div class="form-field-container mgb-mid">
+                <div class="mgb-small">
+                  <label for="password" class="input-label">Password</label>
+                </div>
+                <div class="input-container">
+                  <input type="password" id="password" name="password">
+                </div>
               </div>
-            </div>
-            <div class="form-field-container mgb-mid">
-              <div class="mgb-small">
-                <label for="password" class="input-label">Password</label>
-              </div>
-              <div class="input-container">
-                <input type="password" id="password" name="password">
-              </div>
-            </div>
+            </fieldset>
             <input type="hidden" name="form-path" id="form-name" value="loginForm.php">
             <input type="hidden" name="form-name" value="login">
             <div class="buttons-container flex">

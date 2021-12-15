@@ -35,7 +35,7 @@
                   <label for="last-name" class="input-label">Last Name</label>
                 </div>
                 <div class="input-container">
-                  <input type="text" id="last-name" name="last-name">
+                  <input type="text" id="last-name" name="last-name" >
                 </div>
               </div>
             </div>
@@ -72,9 +72,9 @@
               </div>
             </div>
             <div class="buttons-container flex">
-                <button id="submit" type="submit" class="btn bg-strong-orange">Sign Up Now</button>
+                <button aria-label="Submit sign up form" id="submit" type="submit" class="btn bg-strong-orange">Sign Up Now</button>
               <div class="text-btn">
-                <a href="loginForm.php">Already have an account? Click here to login</a>
+                <a href="loginForm.php" aria-label="Login">Already have an account? Click here to login</a>
               </div>
             </div>
             <input type="hidden" name="form-path" value="signUpForm.php">
@@ -82,7 +82,7 @@
           </form>
         </div>
         <div class="page-right">
-          <img src="../assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+          <img aria-hidden="true" src="../assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
         </div>
       </div>
     </section>
