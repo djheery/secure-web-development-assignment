@@ -62,7 +62,7 @@
       $container .= <<<FILMITEM
         <div class="film-listings__item-container flex mgb-large">
           <div class="film-listings__item-img flex mgb-mid">
-            <img src="../assets/images/$itemImg" alt="">
+            <img src="../assets/images/$itemImg" alt="$itemTitle film poster" aria-hidden="true">
           </div>
           <div class="film-listings__item-content flex">
             <div class="film-listings__item-heading mgb-mid">
@@ -217,7 +217,9 @@
       </form>
       </div>
       <div class="page-right flex">
-      <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img' aria-hidden="true">
+      <div class="film-listings__item-img flex">
+        <img src="../assets/images/{$film['img_path']}" alt="{$film['movie_name']}" class='poster-img' aria-hidden="true">
+      </div>
     </div>
     FORMITEM;
     return $formItem;

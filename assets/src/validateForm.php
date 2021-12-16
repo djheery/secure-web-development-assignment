@@ -55,8 +55,10 @@
       }
       $inputCheck = sanitizeValidateUserInput($key, trim($value));
       if(substr($inputCheck, 0, 6) == 'Error:') {
-        $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
-        $errorIndex++;
+        if(in_array(substr($inputCheck, 7, strlen($inputCheck) - 1), $errors) == false) {
+          $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
+          $errorIndex++;
+        }
       } else {
         $validated[$key] = $inputCheck; 
       }              

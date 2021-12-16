@@ -1,9 +1,10 @@
 <?php 
-  require_once '../assets/src/buildPage.php';
-  require_once '../assets/src/databaseActions.php';
-  require_once '../assets/src/filmListingsFunctions.php';
-  require_once '../assets/src/getNavigationLinks.php';
-  require_once '../assets/src/sessionFunctions.php';
+  require_once "../assets/src/buildPage.php";
+  $filePaths = filePaths();
+  require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
+  require_once "{$filePaths['scripts']}/getNavigationLinks.php";
+  require_once "{$filePaths['scripts']}/databaseActions.php";
+  require_once "{$filePaths['scripts']}/sessionFunctions.php";
 
   generateSession();
   $sessionData = getSessionData();

@@ -36,7 +36,7 @@ a {
   text-decoration: none;
 }
 
-p {
+p, .sub-heading {
   letter-spacing: 0.1rem;
 }
 
@@ -44,7 +44,7 @@ p, a, h1, h2, h3, span, label, li, legend {
   color:var(--white)
 }
 
-h1, h2, h3, label, .logo, .bold, legend {
+h1, h2, h3, label, .logo, .bold, legend, .text-btn, select, input, textarea {
   font-weight: 600;
 }
 
@@ -52,27 +52,20 @@ h1, h2, h3, label, .logo, .bold, legend {
   font-size: 1rem !important;
 }
 
-section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li, .ft-container__inner {
+section, .page-section, .showcase, .settings-link-container, .dynamic-box-container, li, .ft-container__inner, .nav-inner, .film-tiles-block, .adv-link, .dynamic-box, .page-right {
   position: relative
 }
 
-textarea {
-  border: none;
-  resize: none;
-  width: 100%;
-}
 
 
 /*
 ===============================
-  Containers 
+  Reused Styles on Refactor
 ================================
 */
 
-
-.section-heading {
-  text-align: center;
-  z-index: 2;
+.dynamic-box, .section-heading, .adv-link {
+  z-index: 2
 }
 
 .showcase-title, .showcase .inner-container .section-text-block {
@@ -89,20 +82,41 @@ textarea {
 }
 
 .background-image-filter {
+  background-color: #000;
+  opacity: .75
+}
+
+.film-tile-link, .background-image-, .nav-bar, .film-tile__container, .background-highligh,.background-image-filter {
   position: absolute;
+}
+
+nav, .film-tile-link, .background-image-filter {
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #000;
-  opacity: .7
 }
 
 .warning-block {
   padding: 10px 20px;
+}
+
+.individual-film-time, .warning-block, .dynamic-box {
   border: 2px solid var(--white);
+}
+
+.select-container, .search-container, .input-container, .warning-block {
   border-radius: 10px;
 }
+
+#mobile-hamburger-menu, .btn, button {
+  padding: 10px;
+}
+
+.camera-operator-illustration, .film-tile__container img, .film-listings__item-img img, #booking-page .inner-container .page-right img {
+  height: auto;
+}
+
 
 
 
@@ -158,7 +172,7 @@ textarea {
   color: var(--strong-orange)
 }
 
-.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text, #adv-settings .inner-container .page-left {
+.text-center, .footer-section-header, .section-text-block, .showcase-title, .film-listings__item-heading, .film-listings__item-text, #adv-settings .inner-container .page-left, .section-heading, .btn {
   text-align: center;
 }
 
@@ -183,12 +197,13 @@ textarea {
   height: 100%
 }
 
-#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container, #confirmation-showcase .inner-container {
+/* #site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container, #confirmation-showcase .inner-container  */
+.inner-container, .film-listings__item-img, .footer-navigation-list, .settings-links, .menu-icon {
   justify-content: center;
   align-items: center;
 }
 
-.buttons-container, .film-listings__item-times, .pagination-buttons {
+.buttons-container, .film-listings__item-times, .pagination-buttons, .search-criteria-block, select, input, textarea, .select-container, .search-container, .input-container, .textarea {
   width: 100%;
 }
 
@@ -198,7 +213,7 @@ textarea {
   justify-content: center;
 }
 
-#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list, #confirmation-showcase .inner-container  {
+#site-footer .inner-container, .footer-links, .footer-navigation-list, #film-tiles .inner-container, #marketing-section .inner-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, .film-listings__item-container, .film-listings__item-content, #film-listings .inner-container, .two-input-row, #sign-up .inner-container, #booking-page .inner-container, .form-field-container, #adv-settings .inner-container, .settings-links, .bookings-list, #confirmation-showcase .inner-container, .nav-bar, .menu-icon {
   flex-direction: column;
 }
 
@@ -223,7 +238,6 @@ textarea {
 
 .sub-heading {
   font-size: 1.2rem;
-  letter-spacing: 0.1rem;
 }
 
 .inner-container {
@@ -232,11 +246,11 @@ textarea {
 }
 
 .heading-primary {
-  font-size: 2.25rem;
+  font-size: 1.9rem;
 }
 
 .heading-secondary {
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 /* 
@@ -245,42 +259,30 @@ textarea {
 =========================
 */
 
-.btn, button {
-  padding: 10px;
+.btn, button, .pagination-buttons li {
   border: var(--white) 1px solid;
-  border-radius: 5px
 }
 
 button {
-  color: white;
-  background-color: #E17000;
+  color: var(--white);
+  background-color: var(--strong-orange);
 }
 
 .text-btn {
   text-decoration: underline;
-  font-weight: 600;
 }
 
 .pagination-buttons li {
   padding: 4px 10px;
-  border: 1px solid var(--white);
-  border-radius: 5px;
 }
 
 .bg-warning-red {
   background-color: #d0342c !important;
 }
 
-
-.film-tile-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.btn, button, .pagination-buttons li, .individual-film-time   {
+  border-radius: 5px;
 }
-
-
 
 
 /* 
@@ -299,31 +301,25 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.search-criteria-block {
-  width: 100%;
-}
 select, input, textarea {
   border: none;
   padding: 15px;
-  width: 100%;
   font-size: 1rem;
-  font-weight: 600;
 }
 
-input:focus-within {
-  border: none
+textarea {
+  resize: none;
 }
+
 .select-container, .search-container, .input-container {
   background-color: var(--white);
-  /* padding: 10px; */
-  width: 100%;
   padding: 0 10px;
-  border-radius: 10px;
 }
 
 .two-input-row .form-field-container:first-child {
   margin-bottom: 10px;
 }
+
 
 
 /* 
@@ -346,23 +342,15 @@ nav {
   position: fixed;
   z-index: -10;
   opacity: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: var(--off-black);
-  scroll-snap-type: none;
   transition: .6s all;
 }
 
 .nav-inner {
-  position: relative;
   height: 100%;
 }
 
 .nav-bar {
-  position: absolute;
-  flex-direction: column;
   gap: 50px;
   top: 50%;
   left: 50%;
@@ -384,13 +372,8 @@ nav {
 #mobile-hamburger-menu {
   position: sticky;
   bottom: 0;
-  padding: 10px;
   border: 1px var(--white) solid;
   z-index: 10;
-}
-
-.menu-acitve .menu-icon .menu-line {
-  transform: rotate(49deg);
 }
 
 .menu-line {
@@ -400,39 +383,29 @@ nav {
   margin-bottom: 5px;
 }
 
-.menu-line:first-child, .menu-line:last-child{
-  border-color: var(--pastel-orange);
-}
-
 .menu-line:last-child {
   margin-bottom: 0;
 }
 
-.menu-icon {
-  flex-direction: column;
-  align-items: center;
-}
-
 /* 
 ====================================
-  Show Case Sections
+  Show Case Section Background Images
 ====================================
 */
 
-#index-showcase {
-  background-image: url('/swd-final-assignment/assets/images/james-bond.jpg');
+#index-showcase, #film-listings-showcase {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: contain;
+}
+
+#index-showcase {
+  background-image: url('/swd-final-assignment/assets/images/james-bond.jpg');
 }
 
 #film-listings-showcase {
   background-image: url('/swd-final-assignment/assets/images/newcastle-upon-tyne.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  object-fit: contain;
 }
 
 
@@ -445,7 +418,6 @@ nav {
 
 .camera-operator-illustration {
   width: 80%;
-  height: auto;
 }
 
 /* 
@@ -455,16 +427,13 @@ nav {
 */
 
 .film-tiles-block {
-  position: relative;
   height: 300px;
 }
 .film-tile__container {
-  position: absolute;
   transform: translateX(-50%);
 }
 .film-tile__container img {
   width: 200px;
-  height: auto;
 }
 
 /* 
@@ -475,13 +444,10 @@ Flim listings Page
 
 .individual-film-time {
   padding: 5px 9px;
-  border: 2px solid var(--white);
-  border-radius: 5px;
 }
 
 .film-listings__item-img img, #booking-page .inner-container .page-right img {
   width: 70%;
-  height: auto;
   max-width: 350px;
 }
 
@@ -505,10 +471,6 @@ Flim listings Page
 ==========================
 */
 
-.adv-link {
-  position: relative;
-  z-index: 2
-}
 
 .settings-links {
   font-size: 1.1rem;
@@ -516,7 +478,6 @@ Flim listings Page
 }
 
 .background-highlight {
-  position: absolute;
   left: -5px;
   bottom: -5px;
   right: -5px;
@@ -528,7 +489,6 @@ Flim listings Page
 .dynamic-box {
   margin-top: 50px;
   padding: 20px;
-  border: 2px solid var(--white);
   border-radius: 15px;
 }
 
@@ -552,15 +512,15 @@ Flim listings Page
     justify-content: center;
   }
 
-  .buttons-container {
+  .buttons-container, .footer-links__section {
     justify-content: unset;
   }
 
-  #film-listings-showcase .inner-container, .buttons-container {
+  #film-listings-showcase .inner-container, .buttons-container, .footer-links {
     align-items: unset;
   }
 
-  #booking-page .inner-container {
+  #booking-page .inner-container, .film-tiles-block {
     gap: 70px;
   }
   
@@ -574,6 +534,19 @@ Flim listings Page
   .page-section {
     padding: 180px 100px
   }
+
+  nav, .nav-bar, .film-tile__container {
+    position: unset;
+    z-index: 1;
+  }
+
+  .nav-bar, .footer-links, #film-search-criteria .inner-container {    
+    flex-direction: row;
+  }
+
+  #film-search-criteria .inner-container, .footer-links {
+    justify-content: space-around;
+  }
   /* 
   =========================
     Text
@@ -584,9 +557,13 @@ Flim listings Page
     font-size: 1.7rem
   }
   
-  .btn, .bookings-list li {
+  .btn, .bookings-list li, .individual-film-time {
     font-size: 1.4rem;
   }
+
+  .nav-bar, .logo {
+    font-size: .8rem;
+  } 
   
 
   .heading-primary {
@@ -601,15 +578,9 @@ Flim listings Page
     text-align: unset;
   }
 
-  .sub-heading {
-    font-size: 1rem;
-  }
-
-  .footer-navigation-list li, .input-label, legend {
+  .sub-heading, .footer-navigation-list li, .input-label, legend {
     font-size: 1.2rem;
   }
-
-
 
   /* 
    =======================
@@ -629,7 +600,7 @@ Flim listings Page
     margin-left: 15px;
   }
 
-  #mobile-hamburger-menu {
+  #mobile-hamburger-menu, .film-tile__container:nth-child(even), .camera-operator-illustration {
     display: none;
   }
 
@@ -637,19 +608,15 @@ Flim listings Page
     justify-content: space-between;
   }
 
-  nav {
-    position: unset;
-    z-index: 1;
+
+  nav {        
     opacity: 1;
   }
 
   
-  .nav-bar {
-    position: unset;
-    flex-direction: row;
+  .nav-bar {    
     gap: 0px;
-    transform: unset;
-    z-index: 1;
+    transform: unset;    
   }
 
   /* 
@@ -667,14 +634,7 @@ Flim listings Page
   }
 
   .footer-links {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: unset;
-    width: 100%;
-  }
-
-  .footer-links__section {
-    justify-content: unset;
+    width: 80%
   }
 
 
@@ -687,30 +647,15 @@ Flim listings Page
 
 .film-tiles-block {
   height: unset;
-  gap: 70px;
 }
 .film-tile__container {
-  position: unset;
   transform: unset;
 }
 .film-tile__container img {
   width: 270px;
 }
 
-  .film-tile__container:nth-child(even) {
-    display: none;
-  }
-
-  /* 
-    ========================
-    Marketing Section
-    ========================
-  */
-
   
-.camera-operator-illustration {
-  display: none;
-} 
 
   /* 
   =============================
@@ -722,19 +667,12 @@ Flim listings Page
     padding: 50px
   }
 
-  #film-search-criteria .inner-container {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
   .search-criteria-block  {
     max-width: 32%;
   }
 
   .individual-film-time {
     padding: 8px 14px;
-    font-size: 1.4rem;
-    border: 2px solid var(--white);
     border-radius: 5px;
   }
 
@@ -753,15 +691,12 @@ Flim listings Page
   ================================
   */
 
-  .dynamic-box {
-    position: relative;
+  .dynamic-box, .box-background {
     padding: 50px;
-    z-index: 2
   }
 
   .box-background {
     position: absolute;
-    padding: 50px;
     height: calc(100% - 50px);
     width: 100%;
     left: -80px;
@@ -772,8 +707,11 @@ Flim listings Page
 
 } 
 
-
-
+@media only screen and (min-width: 840px) {
+  .nav-bar, .logo {
+    font-size: 1rem;
+  } 
+}
 /* 
 ===========================================
 ===========================================
@@ -789,15 +727,6 @@ Flim listings Page
     =======================
   */
 
-  p {
-    font-size: 1.7rem
-  }
-  
-  .btn {
-    font-size: 1.4rem;
-  }
-  
-
   .heading-primary {
     font-size: 4rem;
   }
@@ -807,25 +736,24 @@ Flim listings Page
   }
 
   .footer-link-heading {
-    font-size: 1.5rem;
     letter-spacing: .3rem;
   }
 
-  .section-heading, .section-text-block, .btn {
-    text-align: unset;
-  }
 
-  .sub-heading {
+  .sub-heading,  #individual-film-listing .inner-container .film-listings__item-content p {
     font-size: 1.5rem;
   }
 
-  .footer-navigation-list li {
-    font-size: 1.8rem;
-  }
 
   a:hover {
     color: var(--pastel-orange);
-    cursor: pointer;
+    }
+    select:hover, input:hover, .film-tile__container:hover, a:hover, button:hover, .btn:hover {
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--pastel-orange);
     }
 
     section {
@@ -836,30 +764,18 @@ Flim listings Page
       margin-left: 30px;
     }
 
-    .logo, .nav-link {
-      font-size: 1.3rem;
+    .logo, .nav-link,.footer-navigation-list li {
+      font-size: 1.2rem;
     }
   
     
-  .btn a:hover {
+  .btn a:hover, .settings-link-container:hover > a {
     color: var(--white)
   }
 
-  .btn:hover {
-    cursor:pointer;
-    background-color: var(--pastel-orange);
-  }
-
-  select:hover, input:hover, .film-tile__container:hover {
-    cursor: pointer;
-  }
-
-  .settings-link-container:hover > a {
-    color: var(--white)
-  }
 
   .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight {
-    padding: 3%;
+    padding: 4%;
   }
 
   .film-tile__container {
@@ -870,7 +786,7 @@ Flim listings Page
     transform: translateY(-10px);
   }
 
-  #adv-settings .inner-container .page-left {
+  #adv-settings .inner-container .page-left, .film-listings__item-heading, .film-listings__item-text {
     text-align: left;
   }
 
@@ -883,6 +799,10 @@ Flim listings Page
     =======================
   */
 
+  .film-listings__item-container,  #marketing-section .inner-container, #sign-up .inner-container, #adv-settings .inner-container {
+    flex-direction: row;
+  }
+
   .showcase {
     height: 60vh;
   }
@@ -891,16 +811,7 @@ Flim listings Page
     max-width: 1500px;
   }
   .film-listings__item-container {
-    flex-direction: row;
     gap: 100px;
-  }
-
-  .film-listings__item-heading, .film-listings__item-text{
-    text-align: left;
-  }
-
-  .page-section {
-    padding: 180px 100px
   }
 
   #adv-settings {
@@ -912,8 +823,11 @@ Flim listings Page
   }
 
   .dynamic-box-container, .dynamic-box {
-    max-width: 500px;
     min-height: 500px;
+  }
+
+  .dynamic-box-container, .dynamic-box, #individual-film-listing .inner-container .film-listings__item-container .film-listings__item-img img  {
+    max-width: 500px;
   }
 
   #adv-settings .inner-container .page-right {
@@ -927,8 +841,9 @@ Flim listings Page
   Formatting
   ============================
   */
+  
 
-  #film-tiles .inner-container {
+  #film-tiles .inner-container, .film-listings__item-content,   .film-listings__item-content .buttons-container, .film-times, #individual-film-listing .inner-container .film-listings__item-container {
     justify-content: unset;
   }
 
@@ -936,12 +851,21 @@ Flim listings Page
     justify-content: space-between;
   }
 
-  #marketing-section .inner-container, #sign-up .inner-container, #adv-settings .inner-container {
-    flex-direction: row;
+
+  #adv-settings .inner-container .page-left .settings-links, .film-listings__item-content {
+    align-items: unset;
   }
 
-  #adv-settings .inner-container .page-left .settings-links {
-    align-items: unset;
+  .film-tile__container:nth-child(even), #marketing-section .inner-container .page-right .camera-operator-illustration,  #sign-up .inner-container .page-right .camera-operator-illustration {
+    display: block;
+  }
+
+  .page-left {
+    max-width: 650px
+  }
+
+  .page-right {
+    width: 30%;
   }
 
    /* 
@@ -952,7 +876,6 @@ Flim listings Page
 
 .film-tiles-block {
   height: unset;
-  gap: 70px;
 }
 .film-tile__container { 
   width: 20%
@@ -963,42 +886,31 @@ Flim listings Page
 }
 
 
-  .film-tile__container:nth-child(even) {
-    display: block;
-  }
-
   /* 
     ========================
     Marketing Section
     ========================
   */
 
-  .page-left {
-    max-width: 650px
-  }
-
-  .page-right {
-    position: relative;
-    width: 30%;
-  }
+  #marketing-section .inner-container .page-right
+  .camera-operator-illustration, #sign-up .inner-container .page-right .camera-operator-illustration {
+    position: absolute;
+    width: auto;
+    }
+ 
 
   #marketing-section .inner-container .page-right
-  .camera-operator-illustration{
-    display: block;
-    position: absolute;
+  .camera-operator-illustration {
     top: 0;
     height: 100%;
-    width: auto;
+    
   }
 
   #sign-up .inner-container .page-right .camera-operator-illustration {
-    display: block;
-    position: absolute;
     top: 50%;
     left: 15%;
     transform: translateY(-50%);
     height: 70%;
-    width: auto;
   }
 
   /* 
@@ -1007,39 +919,17 @@ Flim listings Page
     ============================
   */
 
-  .film-listings__item-content {
-    justify-content: unset;
-    align-items: unset;
-  }
-
-  .film-listings__item-content .buttons-container {
-    justify-content: unset;
-  }
-
   .film-times {
     flex-wrap: nowrap;
-    justify-content: unset;
   }
 
   .film-listings__item-img img {
     width: 90%
   }
 
-  #individual-film-listing .inner-container .film-listings__item-container {
-    justify-content: unset;
-  }
-
-  #individual-film-listing .inner-container .film-listings__item-container .film-listings__item-img img {
-    max-width: 500px;
-  }
-
   #individual-film-listing .inner-container .film-listings__item-content {
     width: 50%
   }
-
-  #individual-film-listing .inner-container .film-listings__item-content p {
-    font-size: 1.5rem;
-  } 
 
   /* 
   ================================
@@ -1057,7 +947,7 @@ Flim listings Page
   }
 
   .settings-links .background-highlight {
-    width: 50%;
+    width: 55%;
   }
 
 }
@@ -1077,12 +967,15 @@ Flim listings Page
     =======================
   */
 
-  p, .booking-form .form-field-container label {
+  .logo, .nav-link, .footer-navigation-list li {
+    font-size: 1.5rem;
+  }
+
+  p, .booking-form .form-field-container label, .footer-link-heading{
     font-size: 1.8rem
   }
 
   .footer-link-heading {
-    font-size: 1.8rem;
     letter-spacing: .3rem;
   }
   

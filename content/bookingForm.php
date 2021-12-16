@@ -11,6 +11,7 @@
   $pageName = getPageName($_SERVER['PHP_SELF']);
   $links = checkPageType($sessionData, $pageName);
   $movie = getIndividualMovie($_GET['id']);
+  $errors = getErrorQueries($_SERVER['QUERY_STRING']);
   if($movie == null) header("location:filmListings.php");
   echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);

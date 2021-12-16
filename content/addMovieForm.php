@@ -9,6 +9,8 @@
   $sessionData = getSessionData();
   $pageName = getPageName($_SERVER['PHP_SELF']);
   $links = checkPageType($sessionData, $pageName);
+  $errors = getErrorQueries($_SERVER['QUERY_STRING']);
+  
   echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
