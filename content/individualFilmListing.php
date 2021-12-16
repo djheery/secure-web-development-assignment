@@ -7,11 +7,11 @@
 
   generateSession();
   $sessionData = getSessionData();
-  $tagline = "";
   $movie = getIndividualMovie($_GET['id']);
   if($movie == null) header("location:filmListings.php");
-  $links = checkPageType($sessionData, 'index.php');
-  echo buildPageStart($tagline);
+  $pageName = getPageName($_SERVER['PHP_SELF']);
+  $links = checkPageType($sessionData, $pageName);
+  echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
   echo createIndividualFilmListing($movie);

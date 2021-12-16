@@ -9,9 +9,9 @@
     // Add Check for login
     if($sessionData == false) header('location: loginForm.php');
     $ref = isset($_GET['ref']) ? $_GET['ref'] : '';
-    $tagline = "Account Settings";
-    $links = checkPageType($sessionData, 'accountSettings.php');
-    echo buildPageStart($tagline);
+    $pageName = getPageName($_SERVER['PHP_SELF']);
+    $links = checkPageType($sessionData, $pageName);
+    echo buildPageStart(getPageTitle($pageName));
     echo buildHeader($links);
     echo startMainSection();
   ?>
@@ -20,7 +20,11 @@
       <div class="inner-container flex">
         <div class="page-left">
           <div class="section-heading">
-            <h1 class="heading-secondary text-upper mgb-mid">Welcome Back <span class="pastel-accent-clr"><?php echo $sessionData['name'] ?></span></h1>
+            <h1 class="heading-secondary text-upper mgb-mid">Welcome Back <span class="pastel-accent-clr">
+              <?php 
+                echo htmlspecialchars($sessionData['name']) ?>
+              </span>
+            </h1>
           </div>
           <div class="section-text-block mgb-mid">
             <p class="bold">Select from the options below:</p>

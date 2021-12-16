@@ -7,9 +7,9 @@
 
   generateSession();
   $sessionData = getSessionData();
-  $tagline = "Whats On?";
-  $links = checkPageType($sessionData, 'filmListings.php');
-  echo buildPageStart($tagline);
+  $pageName = getPageName($_SERVER['PHP_SELF']);
+  $links = checkPageType($sessionData, $pageName);
+  echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
 ?>

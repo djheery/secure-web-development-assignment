@@ -7,9 +7,10 @@
   generateSession();
   $sessionData = getSessionData();
   if($sessionData) header('location: accountSettings.php');
-  $tagline = "Welcome";
-  $links = checkPageType($sessionData, 'loginForm.php');
-  echo buildPageStart($tagline);
+  $pageName = getPageName($_SERVER['PHP_SELF']);
+  $errors = getErrorQueries($_SERVER['QUERY_STRING']);
+  $links = checkPageType($sessionData, $pageName);
+  echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
 ?>
@@ -17,7 +18,11 @@
       <div class="inner-container flex">
         <div class="page-left">
           <h1 class="heading-secondary text-upper mgb-large"><span class="pastel-accent-clr">Login</span> To Your<span class="pastel-accent-clr"> Account</span></h1>
-          <div class="error-block"></div>
+          <div class="error-block">
+            <?php 
+              if($errors) echo showFormErrors($errors); 
+            ?>
+          </div>
           <!-- Form -->
           <form action="../assets/src/validateForm.php" method="post">
             <fieldset>
@@ -58,7 +63,6 @@
   echo endMainSection();
   echo buildFooter();
   echo buildHamburgerBtn();
-  echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

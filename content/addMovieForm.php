@@ -7,10 +7,9 @@
 
   generateSession();
   $sessionData = getSessionData();
-  // if($sessionData) header('location: accountSettings.php');
-  $tagline = "Sign Up";
-  $links = checkPageType($sessionData, 'signUpForm.php');
-  echo buildPageStart($tagline);
+  $pageName = getPageName($_SERVER['PHP_SELF']);
+  $links = checkPageType($sessionData, $pageName);
+  echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
 ?>
@@ -19,7 +18,11 @@
         <div class="page-left">
           <h1 class="heading-secondary text-upper mgb-large">Add <span class="pastel-accent-clr">A Movie<span class="pastel-accent-clr"></h1>
           <!-- Form -->
-          <div class="error-block"></div>
+          <div class="error-block">
+          <?php 
+              if($errors) echo showFormErrors($errors); 
+            ?>
+          </div>
           <form action="../assets/src/validateForm.php" method="post" class="form-block">
             <div class="two-input-row mgb-mid flex">
               <div class="form-field-container">

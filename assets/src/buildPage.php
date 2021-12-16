@@ -1,4 +1,39 @@
 <?php 
+  function filePaths() {
+    return array(
+      'content'=>'/content',
+      'scripts'=>'../assets/src',
+      'css'=>'../assets/css/',
+      );
+  };
+
+  function getPageName($url) {
+    $pageName = '';
+    $splitUrl = explode('/', $url);
+    foreach($splitUrl as $split) {
+      if(strpos($split, '.php') != 0) {
+        return $split;
+      }
+    }
+  };
+
+  function getPageTitle($page) {
+    $knownPages = array(
+      'index.php'=>'The Home of Cinema',
+      'accountSettings.php'=>'Account Settings',
+      'addMovieForm.php'=>'Add A Movie!',
+      'bookingForm.php'=>'Book a Film!',
+      'confirmation.php'=>'Confirmed',
+      'filmListings.php'=>'Watch Great Films With Us!',
+      'individualFilmListing.php'=>'Find Out More',
+      'loginForm.php'=>'Login to your account',
+      'signUpForm.php'=>'Sign Up Today!',
+    );
+
+    $title = $knownPages[$page] ? $knownPages[$page] : $knownPages['index.php'];
+    return $title;
+  }
+
   function buildPageStart($tagline) {
     $pageStartContent = <<<PAGESTART
     <!DOCTYPE html>
@@ -162,5 +197,56 @@
       $cleanOutputArray[$key] = htmlspecialchars($value);
     }
     return $cleanOutputArray;
+  }
+
+  function getErrorQueries($queryString) {
+    $splitUrlQueries = explode('&',$queryString);
+    $errorArray = [];
+    $queryheading = 'error=';
+    $counter = 0;
+    for($i = 0; $i < count($splitUrlQueries); $i++) {
+      if(strstr($splitUrlQueries[$i], 'error=') != 0) {
+        $errorArray[$counter] = substr($splitUrlQueries[$i], strlen($queryheading), 
+                                strlen($splitUrlQueries[$i]) - 1);
+        $counter++;
+      }        
+    }
+    return $errorArray;
+
+  }
+
+  function showFormErrors($errors) {
+    $errorOutput = '';
+    foreach($errors as $err) {
+      $errorText = searchKnownErrors($err);
+      $errorOutput .= <<<ERRORITEM
+      <div class="warning-block bg-warning-red mgb-mid">
+        <p class="user-error-text">$errorText</p>
+      </div>
+      ERRORITEM;
+    }
+    return $errorOutput;
+  }
+
+  function searchKnownErrors($error) {
+    $knownErrors = array(
+      "user-exists"=>"The email you entered already has an account",
+      "user-error"=>"The entered username or password was wrong",
+      "password-match"=>"Your passwords do not match",
+      "email-match"=>"Your emails do not match",
+      "email-invalid"=>"The email format you entered is invalid",
+      "unknown"=>"Woops, something went wrong. Please try again later",
+      "password-length"=>"Your password is too short, please enter a password more than 8 characters",
+      "input-empty"=>"You must fill out all of the Inputs below",
+      "member-error"=>"You must be a member to book your film",
+      "booking-exists"=>"You have already booked this film",
+      "account-delete-failed"=>"Your account delete failed, please try again",
+      "whitespace-in-name"=>"Please do not use the space key within the first name or last name fields",
+      "name-length"=>"Your name cannot be longer than 24 characters"
+    );
+
+    return array_key_exists($error, $knownErrors) ? $knownErrors[$error] : 
+                                                    $knownErrors['unknown'];
+    
   }
 ?>

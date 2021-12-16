@@ -8,11 +8,11 @@
   $sessionData = getSessionData();
   // Rework to check for login
   if($sessionData == false) header('location: loginForm.php');
-  $tagline = "Welcome";
-  $links = checkPageType($sessionData, 'individualFilmListing.php');
+  $pageName = getPageName($_SERVER['PHP_SELF']);
+  $links = checkPageType($sessionData, $pageName);
   $movie = getIndividualMovie($_GET['id']);
   if($movie == null) header("location:filmListings.php");
-  echo buildPageStart($tagline);
+  echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
 ?>
@@ -26,7 +26,11 @@
       <div class="section-text-block mgb-mid">
         <p>Your only a few steps away from booking your film time with us. We can't wait to see you. All you have to do is <span class="pastel-accent-clr bold">sign in</span>, tell us the <span class="pastel-accent-clr bold">date & time</span> you would like and that's it! <span class="bold">Free of charge!</span></p>
       </div>
-      <div class="error-block"></div>
+      <div class="error-block">
+      <?php 
+        if($errors) echo showFormErrors($errors); 
+      ?>
+      </div>
     <?php
       echo filmBookingForm($movie);
     ?>
@@ -39,6 +43,5 @@
   echo buildFooter();
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
-  echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo buildPageEnd();
 ?>

@@ -20,7 +20,7 @@
     for($i = 0; $i < count($errors); $i++) {
       $path .= $errors[$i];
       if($i != count($errors) -1) {
-        $path .= '&';
+        $path .= '&error=';
       }
     }
 
