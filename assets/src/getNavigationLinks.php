@@ -31,7 +31,7 @@
       )    ,
       array(
         "text"=>'Settings',
-        "href"=>"accountSettings.php",
+        "href"=>"accountSettings.php?ref=view-bookings",
         "active"=>'false'
       ),
       array(
@@ -72,16 +72,15 @@
 
     function createAccountSettingsLinks($ref) {
       $accSettingsLinks = array(
-        'veiw-bookings'=>'View Your Bookings',
+        'view-bookings'=>'View Your Bookings',
         'change-password'=>'Change Your Password',
         'delete-account'=>'Delete Your Account',
-        'filmListings.php'=>'Back to Film Listings'
       );
   
       $output = '';
   
       foreach($accSettingsLinks as $link=>$title) {
-        if($link == $ref || $ref == '') {
+        if($link == $ref) {
           $output .= <<<LINK
           <div class="settings-link-container mgb-small">
             <a href="?ref=$link" class="bold adv-link">$title</a>
@@ -97,6 +96,13 @@
           LINK;
         }      
       }
+
+      $output .= <<<FINALLINK
+      <div class="settings-link-container mgb-small">
+        <a href="filmListings.php" class="bold adv-link">Back to Film Listings</a>
+        <div class="background-highlight bg-strong-orange"></div>
+      </div>
+      FINALLINK;
   
       return $output;
     }
