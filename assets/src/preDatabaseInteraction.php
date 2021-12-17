@@ -3,6 +3,7 @@
   require_once 'sessionFunctions.php';
   require_once 'redirects.php';
 
+  // Switch Statement To Define what Function  
   function findTargetDatabaseQuery($form, $data) {
     switch ($form) {
       case 'sign-up' :
@@ -50,9 +51,12 @@
     if($userCheck) {
       $validatePassword = password_verify($data['password'], $userCheck['password_hash']);
       // Password Correct ? Set Session Data : Do Nothing
-      $validatePassword ? 
-          setSessionData($userCheck['customer_forename'], $userCheck['username'], getCustomerBookings($userCheck['customerID'])) :
-          null;
+      if($validatePassword) {
+        $bookings = getCustomerBookings($userCheck['customerID']);
+        // Find out it booking is assoc-array by looking for the key 0 if it is not make it an array for correct data format in session['booking]
+        $bookings = array_key_exists(0, $bookings) ? $bookings : array($bookings);
+        setSessionData($userCheck['customer_forename'], $userCheck['username'], $bookings);
+      } 
       // Password Correct ? Return 1 : Return Error to be displayed
       return $validatePassword ? $validatePassword : array('user-error');
     } else {

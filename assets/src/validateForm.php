@@ -29,12 +29,11 @@
   }
   
   if($_REQUEST) {
-    print_r($_REQUEST);
     $formPath = $_REQUEST['form-path'];
     $formName = $_REQUEST['form-name'];
-    list($inputs, $errors) = validationSetup($_REQUEST);
+    list($inputs, $errors) = validationSetup($_REQUEST, $formName);
     if(count($errors) > 0) {
-      inputError($formPath, $errors);
+      inputError($formPath, $errors, $_REQUEST);
     } else {  
       $databaseAction = findTargetDatabaseQuery($formName, $inputs);
       $databaseAction != 1 ?
@@ -46,7 +45,7 @@
   }
 
 
-  function validationSetup($request) {
+  function validationSetup($request, $formName) {
     $validated = [];
     $errors = [];
     $errorIndex = 0;
@@ -55,7 +54,7 @@
         $errors[$errorIndex] = 'unknown';
         return array($validated, $errors);
       }
-      $inputCheck = sanitizeValidateUserInput($key, trim($value));
+      $inputCheck = sanitizeValidateUserInput($key, trim($value), $formName);
       if(substr($inputCheck, 0, 6) == 'Error:') {
         if(in_array(substr($inputCheck, 7, strlen($inputCheck) - 1), $errors) == false) {
           $errors[$errorIndex] = substr($inputCheck, 7, strlen($inputCheck) - 1);
@@ -73,12 +72,13 @@
   }
 
 
-  function sanitizeValidateUserInput($key, $value) {
+  function sanitizeValidateUserInput($key, $value, $formName) {
     if($value == null || $value == '') return "Error: input-empty";
     $value = filter_var($value, FILTER_SANITIZE_STRING);
     switch($key) {
       case 'first-name' :
       case 'last-name' :
+        $value = strtolower($value);
         return checkNamesAreValid($value);
         break;
       case 'email' :
@@ -95,15 +95,28 @@
         break;
       case 'password' :
       case 'old-password' :
-        $pswd = checkPasswordLength($value);
-        return $pswd;
+        $lengthCheckNeeded = checkFormForLengthError($formName);
+        return $lengthCheckNeeded == false ?
+                  $pswd : checkPasswordLength($value);;
         break;
       default :
         return $value;
     }
   }
 
-  // FIX THIS FUNCTION
+  function checkFormForLengthError($currentForm) {
+    $formsWithoutLengthCheck = array(
+      'login-form',
+      'delete-user',
+    );
+
+    $checkNeeded = true;
+    foreach($formsWithoutLengthCheck as $flc) {
+      if($flc == $currentForm) $checkNeeded = false;
+    }
+
+    return $checkNeeded;
+  }
 
   function confirmInputChecks($validated, $errors, $errorIndex) {
     $passwords = array_key_exists('confirm-password', $validated) ?

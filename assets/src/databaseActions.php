@@ -7,10 +7,6 @@ function connectToDatabase() {
                   die('Database Connection Not Established');
     return $connection;
   }
-
-  // Add Prepared Statements
-  // Add Reusable Statement Failure Function
-  // Potentially Add Reusable mysqli_execute, get_results, bind_param, etc
   
   function getMovieData() {
     $conn = connectToDatabase();

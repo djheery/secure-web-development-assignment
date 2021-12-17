@@ -21,7 +21,7 @@
           <h1 class="heading-primary text-upper mgb-large">What's <span class="pastel-accent-clr">On?</span></h1>
         </div>
         <div class="section-text-block">
-            <p class="mgb-large">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates doloribus ullam repellendus at esse id similique illo aperiam perferendis voluptas magnam quia est in soluta voluptate ea quis nihil dolor dolores, odio repudiandae? Numquam, omnis porro esse quis eaque error nihil quos et eligendi laboriosam ullam amet. Illo quod tenetur animi officiis magnam minus numquam quo. Rerum </p>
+            <p class="mgb-large">Find the latest and greatest of film with us. See our listings below to get started with booking your first film. You must have an account to book a movie with us, so once that's ready, book yourself a seat, and get ready for the galaxies top film experience</p>
             <h3 class="sub-heading"><span class='pastel-accent-clr'>Location:</span> Newcastle Upon Tyne</h3>
         </div>
         </div>

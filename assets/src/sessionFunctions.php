@@ -19,7 +19,7 @@
   function setSessionData($name, $email, $bookings) {
     generateSession();
     $_SESSION['logged-in'] = 1;
-    $_SESSION['name'] = $name;
+    $_SESSION['name'] = ucfirst($name);
     $_SESSION['username'] = $email;
     $_SESSION['bookings'] = $bookings;
   };

@@ -197,8 +197,9 @@ nav, .film-tile-link, .background-image-filter {
   height: 100%
 }
 
-/* #site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container, #confirmation-showcase .inner-container  */
-.inner-container, .film-listings__item-img, .footer-navigation-list, .settings-links, .menu-icon {
+/* .inner-container, .film-listings__item-img, .footer-navigation-list, .settings-links,  */
+
+#site-header .inner-container, #site-footer .inner-container, .footer-links__section, .footer-navigation-list, #film-tiles .inner-container, .central-content, .buttons-container, #film-listings-showcase .inner-container, #film-search-criteria .inner-container, #film-listings .inner-container, .film-listings__item-container, .film-listings__item-content, .film-listings__item-img, #sign-up.inner-container, #booking-page .inner-container, #booking-page .inner-container .page-right, .settings-links, .pagination-container, #adv-settings .inner-container, #confirmation-showcase .inner-container, .menu-icon {
   justify-content: center;
   align-items: center;
 }
@@ -314,6 +315,11 @@ textarea {
 .select-container, .search-container, .input-container {
   background-color: var(--white);
   padding: 0 10px;
+}
+
+select {
+  /* FOR FIREFOX */
+  background-color: var(--white);
 }
 
 .two-input-row .form-field-container:first-child {
@@ -811,7 +817,7 @@ Flim listings Page
   }
 
   .showcase {
-    height: 60vh;
+    height: 800px;
   }
 
  #site-footer .inner-container {

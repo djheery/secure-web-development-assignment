@@ -1,24 +1,26 @@
 <?php
+  require_once 'buildPage.php';
   require_once 'sessionFunctions.php';
 
   function confirmationHandlers($sess, $refferer) {
+    $safeOutput = makeOutputSafe($sess);
     $pageContent = "<section id='confirmation-showcase' class='bg-light-grey showcase'><div class='inner-container flex'><div class='page-left'>";
     switch($refferer) {
       case 'booking-form' :
           $pageContent .= <<<CONTENT
-              <h1  class="heading-primary text-upper">Booking Confirmed!</h1>
-              <p><span class="pastel-accent-clr">{$sess['name']}</span>, your booking has been confirmed we look forward to seeing you soon</p>
+              <h1  class="heading-primary text-upper">Booking <span class="pastel-accent-clr">Confirmed!</h1>
+              <p>{$safeOutput['name']}</span>, your booking has been confirmed we look forward to seeing you soon</p>
           CONTENT;
           break;
       case 'sign-up' :
           $pageContent .= <<<CONTENT
-            <h1 class="heading-primary text-upper">Welcome <span class="pastel-accent-clr">{$sess['name']}</span></h1>
+            <h1 class="heading-primary text-upper">Welcome <span class="pastel-accent-clr">{$safeOutput['name']}</span></h1>
             <p>You can now book films, view your account and read my security report!</p>
           CONTENT;
           break;
       case 'login' :
           $pageContent .= <<<CONTENT
-            <h1 class="heading-primary text-upper">Welcome <span class="pastel-accent-clr">{$sess['name']}</span></h1>
+            <h1 class="heading-primary text-upper">Welcome <span class="pastel-accent-clr">{$safeOutput['name']}</span></h1>
             <p>You can now book films, view your account and read my security report!</p>
           CONTENT;
           break;

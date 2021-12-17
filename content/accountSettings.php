@@ -11,6 +11,7 @@
     $ref = isset($_GET['ref']) ? $_GET['ref'] : '';
     $pageName = getPageName($_SERVER['PHP_SELF']);
     $links = checkPageType($sessionData, $pageName);
+    $errors = getErrorQueries($_SERVER['QUERY_STRING']);
     echo buildPageStart(getPageTitle($pageName));
     echo buildHeader($links);
     echo startMainSection();
@@ -37,7 +38,7 @@
         </div>
         <div class="page-right flex">
             <?php 
-                echo generateSideBox($ref, $sessionData);
+                echo generateSideBox($ref, $sessionData, $errors);
             ?>
         </div>
       </div>

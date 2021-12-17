@@ -162,10 +162,10 @@
         <div class="inner-container flex">
           <div class="page-left">
             <div class="section-heading mgb-large">
-              <h2 class="heading-secondary text-upper">Want <span class="pastel-accent-clr">Exclusive</span> Discounts?</h2>
+              <h2 class="heading-secondary text-upper">The <span class="pastel-accent-clr">Galaxies</span> Best Film <span class="pastel-accent-clr">Experience</span></h2>
             </div>
             <div class="section-text-block mgb-large">
-              <p>Exclusive discounts, early bird tickets to mattenes and much more! If this sounds good to you, you should sign up to our cinema club. It's free of charge and allows you to receive the exclusive offers listed above, and much more</p>
+              <p>An account with us offers you the most extraordinary film experience in the known universe. Book yourself a movie with us today, we promise you won't regret it!</p>
             </div>        
     MARKETING;
 
@@ -206,9 +206,14 @@
   function makeOutputSafe($outputArray) {
     $cleanOutputArray = [];
     foreach($outputArray as $key=>$value) {
-      $cleanOutputArray[$key] = htmlspecialchars($value);
+      $type = gettype($value);
+      if($type == 'string') {
+        $cleanOutputArray[$key] = htmlspecialchars($value);
+      } elseif($type == 'array') {
+        $cleanOutputArray[$key] = makeOutputSafe($value);
+      } 
     }
-    return $cleanOutputArray;
+    return $outputArray;
   }
 
   function getErrorQueries($queryString) {
@@ -255,7 +260,8 @@
       "account-delete-failed"=>"Your account delete failed, please try again",
       "whitespace-in-name"=>"Please do not use the space key within the first name or last name fields",
       "name-length"=>"Your name cannot be longer than 24 characters",
-      "invalid-date"=>"Sorry, this movie is unavailable on your specified date"
+      "invalid-date"=>"Sorry, this movie is unavailable on your specified date",
+      "password-change-fail"=>"Password Change Failed"
     );
 
     return array_key_exists($error, $knownErrors) ? $knownErrors[$error] : 

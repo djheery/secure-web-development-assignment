@@ -1,12 +1,12 @@
 <?php
-  function generateSideBox($refferer, $sessionData) {
+  function generateSideBox($refferer, $sessionData, $errors) {
     $boxContent = boxStart();
     switch ($refferer) {
       case 'change-password' :
-        $boxContent .= changePassword();
+        $boxContent .= changePassword($errors);
         break;
       case 'delete-account' :
-        $boxContent .= deleteAccount();
+        $boxContent .= deleteAccount($errors);
         break;
       case 'give-full-detail' :
         break;
@@ -42,11 +42,12 @@
           <ul class="flex bookings-list">
         BOXTITLE;
       foreach($sessionData['bookings'] as $b) {
-       
+        $dateTimeReformat = date("d/m/Y H:i", strtotime($b['screening_date_time']));
+        $movieID = strval($b['movie_name']);
         $content .= <<<LISTITEM
         <li>
           <a href='individualFilmListing.php?id={$b['movieID']}'>
-            <span class='bold'>{$b['screening_date_time']} - </span><br>{$b['movie_name']}
+            <span class='bold'>$dateTimeReformat</span><br>{$b['movie_name']}
           </a>
         </li>
         LISTITEM;
@@ -65,10 +66,15 @@
     return $content;
   }
 
-  function changePassword() {
+  function changePassword($errors) {
     $content = <<<PSWDFORM
     <div class="mgb-mid">
       <p class="bold">Change Your <span class="pastel-accent-clr">password...</span></p>
+    </div>
+    <div class='error-block'>
+    PSWDFORM;
+    if($errors) $content .= showFormErrors($errors);
+    $content .= <<<PSWDFORM
     </div>
     <form action="../assets/src/validateForm.php" method="post">
       <div class="form-field-container">
@@ -106,12 +112,15 @@
     return $content;
   }
 
-  function deleteAccount() {
-    $content = <<<PSWDFORM
+  function deleteAccount($errors) {
+    $content = <<<DELETEACCFORM
     <div class="mgb-mid">
       <p class="bold text-upper mgb-small">I can't live, if living is without<span class="pastel-accent-clr"> you...</span></p>
       <p>Delete your account?</p>
     </div>
+    DELETEACCFORM;
+    if($errors) $content .= showFormErrors($errors);
+    $content .= <<<DELETEACCFORM
     <form action="../assets/src/validateForm.php" method="post">
       <div class="form-field-container">
         <div class="mgb-small">
@@ -135,7 +144,7 @@
       <input type="hidden" name="form-path" value="accountSettings.php?ref=delete-account">
       <input type="hidden" name="form-name" value="delete-user">
     </form>
-    PSWDFORM;
+    DELETEACCFORM;
 
     return $content;
   }

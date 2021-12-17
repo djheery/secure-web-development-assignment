@@ -25,10 +25,16 @@
         </div>
         <div class="film-tiles-block flex mgb-large">
     FILMTILES;
+    $visitedNode = [];
     for($i = 0; $i < 4; $i++) {
-      $movieID = htmlspecialchars($movieArray[$i]['movieID']);
-      $movieImg = htmlspecialchars($movieArray[$i]['img_path']);
-      $movieName = htmlspecialchars($movieArray[$i]['movie_name']);
+      $randomInt = rand(0, count($movieArray) - 1);
+      if(array_key_exists($movieArray[$randomInt]['movieID'], $visitedNode)) {
+        $i--;
+        continue;
+      }
+      $movieID = htmlspecialchars($movieArray[$randomInt]['movieID']);
+      $movieImg = htmlspecialchars($movieArray[$randomInt]['img_path']);
+      $movieName = htmlspecialchars($movieArray[$randomInt]['movie_name']);
 
       $filmTiles .= <<<FILMITEM
       <div class="film-tile__container">
@@ -38,6 +44,7 @@
         </div>
       </div>
       FILMITEM;
+      $visitedNode[$movieArray[$randomInt]['movieID']] = $movieArray[$randomInt]['movie_name'];
     }
 
     $filmTiles .= <<<FILMEND
