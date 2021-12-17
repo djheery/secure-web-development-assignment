@@ -26,7 +26,12 @@
         $insert = insertIntoMovieListings($form, $data);
         return $insert == 1 ? true : array('movie-insert-error'); 
         break;
+      case 'individual-listing-page' :
+      case 'booking-page' :
+        return validatePageId($data);
+        break;
       default :
+        header('location: index.php');
         break;
     }
   }
@@ -129,6 +134,16 @@
   function userCheckFailureWhilstLoggedIn() {
     unsetDestroySession();
     inputError('loginForm.php', 'user-error');
+  }
+
+  function validatePageId($queryID) {
+    $queryID = filter_var($queryID, FILTER_SANITIZE_STRING);
+    $queryID = filter_var($queryID, FILTER_VALIDATE_INT);
+    if($queryID) {
+      return getIndividualMovie($queryID);
+    } else {
+      return false;
+    }
   }
 
   

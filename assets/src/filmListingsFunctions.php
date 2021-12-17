@@ -167,6 +167,7 @@
 
   function filmBookingForm($film) {
     $todaysDate = date('Y-m-d');
+    $maxBookingDate = date('Y-m-d', strtotime($todaysDate . ' +14 days'));
     $formItem = <<<FORMITEM
     <form action="../assets/src/validateForm.php" method="post" class="booking-form">
         <div class="form-field-container flex mgb-mid">
@@ -178,7 +179,7 @@
         <div class="form-field-container flex mgb-mid">
           <label for="booking-date" class="input-label pastel-accent-clr">Date:</label>
           <div class="input-container">
-            <input type="date" name="booking-date" id="booking-date" min="$todaysDate" value="$todaysDate" aria-label="Booking date">
+            <input type="date" name="booking-date" id="booking-date" min="$todaysDate" max="$maxBookingDate" value="$todaysDate" aria-label="Booking date">
           </div>
         </div>
         <div class="form-field-container flex mgb-mid">

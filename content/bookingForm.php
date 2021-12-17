@@ -1,18 +1,19 @@
 <?php 
-  require_once '../assets/src/buildPage.php';
-  require_once '../assets/src/getNavigationLinks.php';
-  require_once '../assets/src/filmListingsFunctions.php';
-  require_once '../assets/src/sessionFunctions.php';
+  require_once "../assets/src/buildPage.php";
+  $filePaths = filePaths();
+  require_once "{$filePaths['scripts']}/preDatabaseInteraction.php";
+  require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
+  require_once "{$filePaths['scripts']}/getNavigationLinks.php";
+  require_once "{$filePaths['scripts']}/sessionFunctions.php";
 
   generateSession();
   $sessionData = getSessionData();
-  // Rework to check for login
   if($sessionData == false) header('location: loginForm.php');
   $pageName = getPageName($_SERVER['PHP_SELF']);
   $links = checkPageType($sessionData, $pageName);
-  $movie = getIndividualMovie($_GET['id']);
-  $errors = getErrorQueries($_SERVER['QUERY_STRING']);
+  $movie = findTargetDatabaseQuery('individual-listing-page', $_GET['id']);
   if($movie == null) header("location:filmListings.php");
+  $errors = getErrorQueries($_SERVER['QUERY_STRING']);
   echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();
@@ -41,7 +42,7 @@
   echo buildFilmTiles("What's <span class=\"pastel-accent-clr\">On?</span>");
   echo buildMarketingBlock($sessionData);
   echo endMainSection();
-  echo buildFooter();
+  echo buildFooter($links);
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();

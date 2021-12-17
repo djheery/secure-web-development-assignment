@@ -103,7 +103,7 @@
   </section>
 <?php 
   echo endMainSection();
-  echo buildFooter();
+  echo buildFooter($links);
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";

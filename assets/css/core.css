@@ -86,7 +86,7 @@ section, .page-section, .showcase, .settings-link-container, .dynamic-box-contai
   opacity: .75
 }
 
-.film-tile-link, .background-image-, .nav-bar, .film-tile__container, .background-highligh,.background-image-filter {
+.film-tile-link, .background-image-, .nav-bar, .film-tile__container, .background-highlight,.background-image-filter, .background-highlight-active {
   position: absolute;
 }
 
@@ -472,12 +472,14 @@ Flim listings Page
 */
 
 
+
+
 .settings-links {
   font-size: 1.1rem;
   transition: all ease-in-out
 }
 
-.background-highlight {
+.background-highlight, .background-highlight-active {
   left: -5px;
   bottom: -5px;
   right: -5px;
@@ -485,6 +487,11 @@ Flim listings Page
   z-index: 1;
   transition: all .5s ease-in-out
 }
+
+.background-highlight-active {
+  
+} 
+
 
 .dynamic-box {
   margin-top: 50px;
@@ -774,8 +781,8 @@ Flim listings Page
   }
 
 
-  .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight {
-    padding: 4%;
+  .settings-link-container:hover > .background-highlight, .nav-bar li:hover > .background-highlight, .background-highlight-active {
+    padding: 3.3%;
   }
 
   .film-tile__container {
@@ -946,7 +953,7 @@ Flim listings Page
     left: -30px;
   }
 
-  .settings-links .background-highlight {
+  .settings-links .background-highlight, .background-highlight-active {
     width: 55%;
   }
 

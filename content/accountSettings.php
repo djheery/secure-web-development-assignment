@@ -30,22 +30,9 @@
             <p class="bold">Select from the options below:</p>
           </div>
           <div class="settings-links flex">
-            <div class="settings-link-container mgb-small">
-              <a href="?ref=view-bookings" class="bold adv-link">View Your Bookings</a>
-              <div class="background-highlight bg-strong-orange"></div>
-            </div>
-            <div class="settings-link-container mgb-small">
-              <a href="?ref=change-password" class="bold adv-link">Change Your Password</a>
-              <div class="background-highlight bg-strong-orange"></div>
-            </div>
-            <div class="settings-link-container mgb-small">
-              <a href="?ref=delete-account" class="bold adv-link">Delete Your Account</a>
-              <div class="background-highlight bg-strong-orange"></div>
-            </div>
-            <div class="settings-link-container">
-              <a href="filmListings.php" class="bold adv-link">Back to Film Listings</a>
-              <div class="background-highlight bg-strong-orange"></div>
-            </div>
+           <?php
+             echo createAccountSettingsLinks($ref)
+           ?>
           </div>
         </div>
         <div class="page-right flex">
@@ -58,7 +45,7 @@
     </section>
   <?php 
     echo endMainSection();
-    echo buildFooter();
+    echo buildFooter($links);
     echo buildHamburgerBtn();
     echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
     echo buildPageEnd();

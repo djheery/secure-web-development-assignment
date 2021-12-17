@@ -57,18 +57,48 @@
       $linkArray = populateLinksArray($page, $navigationLinks, null);
     }
     return $linkArray;
-  }
+  }    
+    
+    function populateLinksArray($page, $links, $name) {
+      $replacementArray = array();
+      foreach($links as $l) {
+        if($page == $l["href"]) {
+          $l["active"] = 'true';
+        }
+        array_push($replacementArray, $l);
+      }  
+      return $replacementArray;
+    }
 
-
-  function populateLinksArray($page, $links, $name) {
-    $replacementArray = array();
-    foreach($links as $l) {
-      if($page == $l["href"]) {
-        $l["active"] = 'true';
+    function createAccountSettingsLinks($ref) {
+      $accSettingsLinks = array(
+        'veiw-bookings'=>'View Your Bookings',
+        'change-password'=>'Change Your Password',
+        'delete-account'=>'Delete Your Account',
+        'filmListings.php'=>'Back to Film Listings'
+      );
+  
+      $output = '';
+  
+      foreach($accSettingsLinks as $link=>$title) {
+        if($link == $ref || $ref == '') {
+          $output .= <<<LINK
+          <div class="settings-link-container mgb-small">
+            <a href="?ref=$link" class="bold adv-link">$title</a>
+            <div class="background-highlight-active bg-strong-orange"></div>
+          </div>
+          LINK;
+        } else {
+          $output .= <<<LINK
+          <div class="settings-link-container mgb-small">
+            <a href="?ref=$link" class="bold adv-link">$title</a>
+            <div class="background-highlight bg-strong-orange"></div>
+          </div>
+          LINK;
+        }      
       }
-      array_push($replacementArray, $l);
-    }  
-    return $replacementArray;
-  }
-
-?>
+  
+      return $output;
+    }
+    
+    ?>

@@ -99,6 +99,8 @@ function connectToDatabase() {
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('i', $id);
         return getArrayOfResults($stmt);
+      } else {
+        return false;
       }
       closeConnection($conn);
     }
@@ -111,7 +113,7 @@ function connectToDatabase() {
         $stmt->bind_param('si', $newPassword, $customerID);
         return executeStoreGetAffected($stmt);
       } else {
-        return 'failed';
+        return false;
       }
     }
 
@@ -126,6 +128,8 @@ function connectToDatabase() {
       if($stmt = mysqli_prepare($conn, $sql)) {
         $stmt->bind_param('i', $userID);
         return executeStoreGetAffected($stmt);
+      } else {
+        return false;
       }
     }
 
@@ -155,23 +159,4 @@ function connectToDatabase() {
     function closeConnection($conn) {
       $conn->close();
     }
-
-    // IS THIS USED?
-    
-    // function verifyUsersPassword($pasword, $user) {
-    //   $conn = connectToDatabase();
-    //   $sql = "SELECT password_hash FROM customers WHERE customerID = ?";
-    //   if($stmt = mysqli_prepare($conn, $sql)) {
-    //     $stmt->bind_param('s', $user);
-    //     return getArrayOfResults($stmt);
-    //     $stmt->execute();
-    //     $result = $stmt->get_result();
-    //     return $result->fetch_assoc();
-    //   } else {
-    //     return "STATEMENT ERROR";
-    //   }
-
-    //   closeConnection($conn);
-    // }
-
 ?>

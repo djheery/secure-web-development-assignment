@@ -2,7 +2,7 @@
   require_once 'sessionFunctions.php';
 
   function confirmationHandlers($sess, $refferer) {
-    $pageContent = "<section id='confirmation-showcase' class='bg-light-grey showcase'><div class='inner-container flex'>";
+    $pageContent = "<section id='confirmation-showcase' class='bg-light-grey showcase'><div class='inner-container flex'><div class='page-left'>";
     switch($refferer) {
       case 'booking-form' :
           $pageContent .= <<<CONTENT
@@ -53,7 +53,7 @@
         CONTENT;
         break;
       };
-    $pageContent .= "</div></section>";
+    $pageContent .= "</div></div></section>";
     return $pageContent;
   }
 ?>

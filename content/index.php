@@ -27,7 +27,7 @@
   echo buildFilmTiles("What's <span class=\"pastel-accent-clr\">On?</span>");
   echo buildMarketingBlock($sessionData);
   echo endMainSection();
-  echo buildFooter();
+  echo buildFooter($links);
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();

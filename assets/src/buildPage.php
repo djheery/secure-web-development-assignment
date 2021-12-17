@@ -67,22 +67,30 @@
             <ul class="flex nav-bar">
     HEADER;
     // 
-    $headerContent = addNavigationLinks($headerContent, $navigationLinks);
+    $headerContent = addNavigationLinks($headerContent, $navigationLinks, 'header');
     $headerContent .= "</ul></div></nav></div></header>";
     return $headerContent;
   }
 
-  function addNavigationLinks($header, $links) {
+  function addNavigationLinks($navigationContainer, $links, $callingFunction) {
     foreach($links as $l) {
       if($l['active'] == 'true') {
-        $header .= "
-        <li class=\"text-upper\"><a href=\"{$l['href']}\" class=\"nav-link semi-bold nav-active-page\">{$l['text']}</a></li>";
+        if($callingFunction == 'header') {    
+          $navigationContainer .= "
+          <li class='text-upper' aria-label='Current Page'><a href={$l['href']} class='nav-link semi-bold nav-active-page'>{$l['text']}</a></li>";
+        } else {
+          $navigationContainer .= "<li class='mgb-small '><a href='{$l['href']}' class'nav-active-page nav-link'>{$l['text']}</a></li>";
+        }
       } else {
-        $header .= "
-        <li class=\"text-upper\"><a href=\"{$l['href']}\" class=\"nav-link semi-bold\">{$l['text']}</a></li>";
+        if($callingFunction == 'header') {
+          $navigationContainer .= "
+          <li class='text-upper'><a href='{$l['href']}' class='nav-link semi-bold'>{$l['text']}</a></li>";          
+        } else {
+          $navigationContainer .= "<li class='mgb-small' ><a href='{$l['href']}'>{$l['text']}</a></li>";
+        }
       }
     }
-    return $header;
+    return $navigationContainer;
   }
 
   function startMainSection() {
@@ -108,21 +116,21 @@
     return $hamburger;
   }
 
-  function buildFooter() {
+  function buildFooter($links) {
     $footerContent = <<<FOOTER
       <footer id="site-footer" class="bg-off-black">
         <div class="inner-container flex">      
           <div class="logo mgb-large">
-            <p class="pastel-accent-clr text-upper">Cinema City</p>
+            <p class="pastel-accent-clr text-upper">Galactic Cinema</p>
           </div>
           <div class="footer-links flex">
             <section class="footer-links__section" aria-label="site-navigation" role="navigation">
               <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Site Navigation</h3>
               <ul class="footer-navigation-list flex mgb-mid">
-                <li class="mgb-small" data-pageReference="home"><a href="#">Home</a></li>
-                <li class="mgb-small" data-pageReference="about-us"><a href="#">About Us</a></li>
-                <li class="mgb-small" data-pageReference="film-listings"><a href="#">Film Listings</a></li>
-                <li class="mgb-small" data-pageReference="login-page"><a href="#">Login/ Join</a></li>
+    FOOTER;
+    $footerContent = addNavigationLinks($footerContent, $links, 'footer');
+
+    $footerContent .= <<<FOOTER
               </ul>
             </section>
             <section class="footer-links__section" aria-label="assignment-reference-links" role="navigation">
@@ -136,13 +144,17 @@
 
           </div>
           <div class="copyright-statement text-center" >
-            <span>Copyright &copy; Cinema City, December 2021</span>
+            <span>Copyright &copy; Galactic Cinema, December 2021</span>
           </div>
         </div>
       </footer>
     FOOTER;
+
+    
     return $footerContent;
   }
+
+
 
   function buildMarketingBlock($sessionData) {
     $marketingBlock = <<<MARKETING
@@ -242,7 +254,8 @@
       "booking-exists"=>"You have already booked this film",
       "account-delete-failed"=>"Your account delete failed, please try again",
       "whitespace-in-name"=>"Please do not use the space key within the first name or last name fields",
-      "name-length"=>"Your name cannot be longer than 24 characters"
+      "name-length"=>"Your name cannot be longer than 24 characters",
+      "invalid-date"=>"Sorry, this movie is unavailable on your specified date"
     );
 
     return array_key_exists($error, $knownErrors) ? $knownErrors[$error] : 

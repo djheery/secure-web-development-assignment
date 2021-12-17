@@ -29,6 +29,7 @@
   }
   
   if($_REQUEST) {
+    print_r($_REQUEST);
     $formPath = $_REQUEST['form-path'];
     $formName = $_REQUEST['form-name'];
     list($inputs, $errors) = validationSetup($_REQUEST);
@@ -43,6 +44,7 @@
   } else {
     header('location: /swd-final-assignment/content/index.php');
   }
+
 
   function validationSetup($request) {
     $validated = [];
@@ -84,6 +86,9 @@
         $email = strtolower($value);
         return sanitizeValidateEmail($email);
         break;
+      case 'booking-date' : 
+        return checkBookingDate($value);
+        break;
       case 'price' :
         $number =  number_format(sanitizeValidateNumbers($value), 2);
         return $number;
@@ -117,6 +122,14 @@
       }
     }
     return array($validated, $errors);
+  } 
+
+  function checkBookingDate($date) {
+    if(strtotime($date) > strtotime(date('y-m-d') . ' +14 days') || strtotime($date) < strtotime(date('y-m-d'))) {
+      $date = 'Error: invalid-date'; 
+    }
+    
+    return $date;
   }
 
   function checkNamesAreValid($name) {

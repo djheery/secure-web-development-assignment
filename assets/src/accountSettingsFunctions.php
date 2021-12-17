@@ -140,7 +140,4 @@
     return $content;
   }
 
-  function updateAccountDetails() {
-
-  }
 ?>
