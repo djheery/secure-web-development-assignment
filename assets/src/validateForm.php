@@ -97,7 +97,7 @@
       case 'old-password' :
         $lengthCheckNeeded = checkFormForLengthError($formName);
         return $lengthCheckNeeded == false ?
-                  $pswd : checkPasswordLength($value);;
+                  $value : checkPasswordLength($value);
         break;
       default :
         return $value;
@@ -148,7 +148,7 @@
   function checkNamesAreValid($name) {
     if(strpos($name, ' ') != 0) {
       return 'Error: whitespace-in-name';
-    } elseif(strlen($name) > 12) {
+    } elseif(strlen($name) > 24) {
       return 'Error: name-length';
     } else {
       return $name;

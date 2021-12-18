@@ -1,5 +1,7 @@
 <?php
+  require_once '../assets/src/buildPage.php';
   require_once '../assets/src/databaseActions.php';
+
   function createFilmListingsSection($sessionData) {
     $filmListingsContainer = <<<FILMLISTINGS
     <section id="film-listings" class="bg-off-black page-section">
@@ -26,15 +28,18 @@
         <div class="film-tiles-block flex mgb-large">
     FILMTILES;
     $visitedNode = [];
-    for($i = 0; $i < 4; $i++) {
+    $tilesToDisplay = 4;
+    for($i = 0; $i < $tilesToDisplay; $i++) {
       $randomInt = rand(0, count($movieArray) - 1);
       if(array_key_exists($movieArray[$randomInt]['movieID'], $visitedNode)) {
         $i--;
         continue;
       }
-      $movieID = htmlspecialchars($movieArray[$randomInt]['movieID']);
-      $movieImg = htmlspecialchars($movieArray[$randomInt]['img_path']);
-      $movieName = htmlspecialchars($movieArray[$randomInt]['movie_name']);
+
+      $cleanedMovieArray = makeOutputSafe($movieArray[$randomInt]);
+      $movieID = $cleanedMovieArray['movieID'];
+      $movieImg = $cleanedMovieArray['img_path'];
+      $movieName = $cleanedMovieArray['movie_name'];
 
       $filmTiles .= <<<FILMITEM
       <div class="film-tile__container">

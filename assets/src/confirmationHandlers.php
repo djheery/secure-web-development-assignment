@@ -3,7 +3,7 @@
   require_once 'sessionFunctions.php';
 
   function confirmationHandlers($sess, $refferer) {
-    $safeOutput = makeOutputSafe($sess);
+    $safeOutput = $sess ? makeOutputSafe($sess) : null;
     $pageContent = "<section id='confirmation-showcase' class='bg-light-grey showcase'><div class='inner-container flex'><div class='page-left'>";
     switch($refferer) {
       case 'booking-form' :
