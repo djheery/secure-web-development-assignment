@@ -3,8 +3,10 @@
   require_once 'sessionFunctions.php';
 
   function confirmationHandlers($sess, $refferer) {
+    // Find this function in buildPage.php - it is responsible for sanitizing the output
     $safeOutput = $sess ? makeOutputSafe($sess) : null;
     $pageContent = "<section id='confirmation-showcase' class='bg-light-grey showcase'><div class='inner-container flex'><div class='page-left'>";
+    // simple switch statement to define the output of a confirmation handler
     switch($refferer) {
       case 'booking-form' :
           $pageContent .= <<<CONTENT

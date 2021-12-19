@@ -1,4 +1,6 @@
 <?php
+
+//  Generates the account settings side box depending on the refferer
   function generateSideBox($refferer, $sessionData, $errors) {
     $boxContent = boxStart();
     switch ($refferer) {
@@ -18,6 +20,7 @@
     return $boxContent;
   }
 
+
   function boxStart() {
     $boxStart = <<<BOXSTART
     <div class="dynamic-box-container">
@@ -31,6 +34,7 @@
     return "</div>";     
   }
 
+  // display booking data
   function veiwBookings($sessionData) {
     if($sessionData['bookings']) {
       $content = <<<BOXTITLE
@@ -42,8 +46,8 @@
           <ul class="flex bookings-list">
         BOXTITLE;
       foreach($sessionData['bookings'] as $b) {
+        // Reformat mysql booking time
         $dateTimeReformat = date("d/m/Y H:i", strtotime($b['screening_date_time']));
-        $movieID = strval($b['movie_name']);
         $content .= <<<LISTITEM
         <li>
           <a href='individualFilmListing.php?id={$b['movieID']}'>
@@ -66,6 +70,7 @@
     return $content;
   }
 
+  // Display change password bbox
   function changePassword($errors) {
     $content = <<<PSWDFORM
     <div class="mgb-mid">
@@ -73,6 +78,7 @@
     </div>
     <div class='error-block'>
     PSWDFORM;
+    // Deal with error handling (buildPage.php)
     if($errors) $content .= showFormErrors($errors);
     $content .= <<<PSWDFORM
     </div>
@@ -112,6 +118,7 @@
     return $content;
   }
 
+  // Display delete account box
   function deleteAccount($errors) {
     $content = <<<DELETEACCFORM
     <div class="mgb-mid">
@@ -119,6 +126,7 @@
       <p>Delete your account?</p>
     </div>
     DELETEACCFORM;
+    // Deal with error handling (buildPage.php)
     if($errors) $content .= showFormErrors($errors);
     $content .= <<<DELETEACCFORM
     <form action="../assets/src/validateForm.php" method="post">

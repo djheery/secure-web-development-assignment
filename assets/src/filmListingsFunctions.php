@@ -2,19 +2,7 @@
   require_once '../assets/src/buildPage.php';
   require_once '../assets/src/databaseActions.php';
 
-  function createFilmListingsSection($sessionData) {
-    $filmListingsContainer = <<<FILMLISTINGS
-    <section id="film-listings" class="bg-off-black page-section">
-      <div class="inner-container flex">
-        <div class="mgb-large">
-          <h2 class="text-upper heading-secondary">Film <span class="pastel-accent-clr">Listings</span></h2>
-        </div>
-    FILMLISTINGS;
-    $filmItems = getMovieData('movies');
-    $filmListingsContainer = createFilmItems($filmListingsContainer, $filmItems, $sessionData);
-    $filmListingsContainer .= "</div></section>";
-    return $filmListingsContainer;
-  }
+
 
   function buildFilmTiles($title) {
     $movieArray = getMovieData('movies');
@@ -65,6 +53,22 @@
     return $filmTiles;
   }
 
+    // Responsible for creating the film listings page on filmListings.php
+    function createFilmListingsSection($sessionData) {
+      $filmListingsContainer = <<<FILMLISTINGS
+      <section id="film-listings" class="bg-off-black page-section">
+        <div class="inner-container flex">
+          <div class="mgb-large">
+            <h2 class="text-upper heading-secondary">Film <span class="pastel-accent-clr">Listings</span></h2>
+          </div>
+      FILMLISTINGS;
+      $filmItems = getMovieData('movies');
+      $filmListingsContainer = createFilmItems($filmListingsContainer, $filmItems, $sessionData);
+      $filmListingsContainer .= "</div></section>";
+      return $filmListingsContainer;
+    }
+  
+    // Responsible for creating the film items within filmListings.php
   function createFilmItems($container, $items, $sessionData) {
     for($i = 0; $i < count($items); $i++) {
       $itemImg = htmlspecialchars($items[$i]['img_path']);
@@ -99,7 +103,7 @@
               </div>
             </div>
       FILMITEM;
-
+      // Different buttons depending on the session data
       if($sessionData) {
         $container .= <<<BUTTONS
         <div class="buttons-container flex">
@@ -129,7 +133,7 @@
 
     return $container;
   }
-
+  // For the individualFilmListing.php - display the information about an individual film
   function createIndividualFilmListing($movie) {
     $targetFilmListing = <<<TARGET
     <section id="individual-film-listing" class="bg-light-grey page-section">
@@ -177,7 +181,10 @@
     return $targetFilmListing;
   };
 
+
+  // Create the booking form for bookingForm.php
   function filmBookingForm($film) {
+    // get todays date and max booking date for the html source code 
     $todaysDate = date('Y-m-d');
     $maxBookingDate = date('Y-m-d', strtotime($todaysDate . ' +14 days'));
     $formItem = <<<FORMITEM

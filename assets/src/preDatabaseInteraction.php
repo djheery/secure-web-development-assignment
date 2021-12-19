@@ -71,6 +71,7 @@
     $data['email'] = $sessionData['username'];
     $screeningDateTime = "{$data['booking-date']} {$data['booking-time']}";
     if($userCheck) {
+      if(checkMovieExists($data['movieID'])) {
       $insertBooking = insertNewBooking($data, $userCheck['customerID'], $screeningDateTime);
       // Booking Inserted to customer ? Add the Booking to the session data : Do nothing 
       $insertBooking == 1 ? addBookingToSession(array(
@@ -82,6 +83,9 @@
       preventSessionFixation();
       // Booking Inserted to customer ? return 1 : return booking-exists error (This function will only insert 1 row to the database or none)
       return $insertBooking == 1 ? $insertBooking : array('booking-exists');
+      } else {
+        return array('unknown');
+      }
     } else {
        // If the user is not found Destroy the session redirect to login page
       userCheckFailureWhilstLoggedIn();
@@ -128,6 +132,7 @@
     }
   }
 
+  // Reusable function to get any session data required to valiate a users
   function getSessionDataForUserCheck($form) {
     generateSession();
     $sessionData = getSessionData();
@@ -135,11 +140,13 @@
     return $userCheck;
   }
 
+  // If there is a failure whilst a user is supposed to be logged in destroy the session and go back to the input form
   function userCheckFailureWhilstLoggedIn() {
     unsetDestroySession();
     inputError('loginForm.php', 'user-error');
   }
 
+  // Validate the page ID for pages that need to access the database
   function validatePageId($queryID) {
     $queryID = filter_var($queryID, FILTER_SANITIZE_STRING);
     $queryID = filter_var($queryID, FILTER_VALIDATE_INT);

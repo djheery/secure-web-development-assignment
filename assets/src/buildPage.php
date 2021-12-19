@@ -1,4 +1,5 @@
 <?php 
+  // get the file path
   function filePaths() {
     return array(
       'content'=>'/content',
@@ -7,6 +8,7 @@
       );
   };
 
+  // return the page name so that it can be used for the page title
   function getPageName($url) {
     $pageName = '';
     $splitUrl = explode('/', $url);
@@ -16,7 +18,8 @@
       }
     }
   };
-
+  
+  // Depending on the page display a different page title. titles up in the below array to find the designated output
   function getPageTitle($page) {
     $knownPages = array(
       'index.php'=>'The Home of Cinema',
@@ -28,12 +31,14 @@
       'individualFilmListing.php'=>'Find Out More',
       'loginForm.php'=>'Login to your account',
       'signUpForm.php'=>'Sign Up Today!',
+      'securityReport.php'=>'Security Report'
     );
 
     $title = $knownPages[$page] ? $knownPages[$page] : $knownPages['index.php'];
     return $title;
   }
 
+  // Start the page
   function buildPageStart($tagline) {
     $pageStartContent = <<<PAGESTART
     <!DOCTYPE html>
@@ -52,6 +57,8 @@
     PAGESTART;
     return $pageStartContent;  
   }
+
+  // Build the header
   function buildHeader($navigationLinks) {
     $headerContent = <<<HEADER
       <header id="site-header" class="bg-off-black">
@@ -66,12 +73,13 @@
             <div class="nav-inner">
             <ul class="flex nav-bar">
     HEADER;
-    // 
+    // get the navigation links and display them
     $headerContent = addNavigationLinks($headerContent, $navigationLinks, 'header');
     $headerContent .= "</ul></div></nav></div></header>";
     return $headerContent;
   }
 
+  // Add navigation lionks to the header or footer
   function addNavigationLinks($navigationContainer, $links, $callingFunction) {
     foreach($links as $l) {
       if($l['active'] == 'true') {
@@ -101,6 +109,7 @@
     return "</main>";
   }
 
+  // Build the mobbile hamburger button
   function buildHamburgerBtn() {
     $hamburger = <<<HAMBURGER
       <aside id="mobile-hamburger-menu" class="bg-off-black" aria-label="mobile navigation link">
@@ -116,6 +125,7 @@
     return $hamburger;
   }
 
+  // Build the footer
   function buildFooter($links) {
     $footerContent = <<<FOOTER
       <footer id="site-footer" class="bg-off-black">
@@ -128,6 +138,7 @@
               <h3 class="footer-link-heading mgb-mid text-upper pastel-accent-clr footer-section-header">Site Navigation</h3>
               <ul class="footer-navigation-list flex mgb-mid">
     FOOTER;
+    // Add the navigation links depending on the login status
     $footerContent = addNavigationLinks($footerContent, $links, 'footer');
 
     $footerContent .= <<<FOOTER
@@ -155,7 +166,7 @@
   }
 
 
-
+  // Sign up/ view account settings call to action
   function buildMarketingBlock($sessionData) {
     $marketingBlock = <<<MARKETING
       <section id="marketing-section" class="page-section bg-light-grey" role="complementary">
@@ -168,7 +179,7 @@
               <p>An account with us offers you the most extraordinary film experience in the known universe. Book yourself a movie with us today, we promise you won't regret it!</p>
             </div>        
     MARKETING;
-
+    // If the user is logged in display view account settings else display signup
     if($sessionData) {
       $marketingBlock .= <<<DYNAMICBTNCONTENT
       <div class="buttons-container flex mgb-large">
@@ -203,6 +214,7 @@
     return "</body></html>";
   }  
 
+  // Loop that will sanitize a given output array
   function makeOutputSafe($outputArray) {
     $cleanOutputArray = [];
     foreach($outputArray as $key=>$value) {
@@ -210,12 +222,14 @@
       if($type == 'string') {
         $cleanOutputArray[$key] = htmlspecialchars($value);
       } elseif($type == 'array') {
+        // Recursive call if the array item is an array
         $cleanOutputArray[$key] = makeOutputSafe($value);
       } 
     }
     return $outputArray;
   }
 
+  // Deals with parseing the urlErrorQueries back to a variable so they can be displayed on the page
   function getErrorQueries($queryString) {
     $splitUrlQueries = explode('&',$queryString);
     $errorArray = [];
@@ -232,6 +246,7 @@
 
   }
 
+  // show form errors 
   function showFormErrors($errors) {
     $errorOutput = '';
     foreach($errors as $err) {
@@ -245,6 +260,8 @@
     return $errorOutput;
   }
 
+  // Look up the error in this array and display the correct one.
+
   function searchKnownErrors($error) {
     $knownErrors = array(
       "user-exists"=>"The email you entered already has an account",
@@ -252,7 +269,7 @@
       "password-match"=>"Your passwords do not match",
       "email-match"=>"Your emails do not match",
       "email-invalid"=>"The email format you entered is invalid",
-      "unknown"=>"Woops, something went wrong. Please try again later",
+      "unknown"=>"Your input entry was invalid",
       "password-length"=>"Your password is too short, please enter a password more than 8 characters",
       "input-empty"=>"You must fill out all of the Inputs below",
       "member-error"=>"You must be a member to book your film",

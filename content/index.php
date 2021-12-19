@@ -4,11 +4,12 @@
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
   require_once "{$filePaths['scripts']}/getNavigationLinks.php";
   require_once "{$filePaths['scripts']}/sessionFunctions.php";
-
+  // Session Data
   generateSession();
   $sessionData = getSessionData();
   $pageName = getPageName($_SERVER['PHP_SELF']);
   $links = checkPageType($sessionData, $pageName);
+  // Build Page (buildPage.php)
   echo buildPageStart(getPageTitle($pageName));
   echo buildHeader($links);
   echo startMainSection();

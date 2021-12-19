@@ -5,17 +5,22 @@
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
   require_once "{$filePaths['scripts']}/getNavigationLinks.php";
   require_once "{$filePaths['scripts']}/sessionFunctions.php";
-
+  // Session Data
   generateSession();
   $sessionData = getSessionData();
+  // redirect if session is not found
   if($sessionData == false) header('location: loginForm.php');
+  // get Page name for title
   $pageName = getPageName($_SERVER['PHP_SELF']);
-  $links = checkPageType($sessionData, $pageName);
+  $navigationLinks = checkPageType($sessionData, $pageName);
+  // Check film id in database act accordingly with the result
   $movie = findTargetDatabaseQuery('individual-listing-page', $_GET['id']);
   if($movie == null) header("location:filmListings.php");
+  // Check for errors to be displayed 
   $errors = getErrorQueries($_SERVER['QUERY_STRING']);
+  // Build the page
   echo buildPageStart(getPageTitle($pageName));
-  echo buildHeader($links);
+  echo buildHeader($navigationLinks);
   echo startMainSection();
 ?>
 <!-- Main Page Showcase -->
@@ -42,7 +47,7 @@
   echo buildFilmTiles("What's <span class=\"pastel-accent-clr\">On?</span>");
   echo buildMarketingBlock($sessionData);
   echo endMainSection();
-  echo buildFooter($links);
+  echo buildFooter($navigationLinks);
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();

@@ -1,17 +1,18 @@
-<?php 
+<?php
     require_once '../assets/src/buildPage.php';
-    require_once '../assets/src/getNavigationLinks.php';
-    require_once '../assets/src/accountSettingsFunctions.php';
-    require_once '../assets/src/sessionFunctions.php';
+    $filePaths = filePaths();
+    require_once "{$filePaths['scripts']}/accountSettingsFunctions.php";
+    require_once "{$filePaths['scripts']}/getNavigationLinks.php";
+    require_once "{$filePaths['scripts']}/sessionFunctions.php"; 
 
     generateSession();
     $sessionData = getSessionData();
-    // Add Check for login
     if($sessionData == false) header('location: loginForm.php');
     $ref = isset($_GET['ref']) ? $_GET['ref'] : '';
     $pageName = getPageName($_SERVER['PHP_SELF']);
     $links = checkPageType($sessionData, $pageName);
     $errors = getErrorQueries($_SERVER['QUERY_STRING']);
+    // Build Page (buildPage.php)
     echo buildPageStart(getPageTitle($pageName));
     echo buildHeader($links);
     echo startMainSection();

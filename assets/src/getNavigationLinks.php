@@ -1,4 +1,5 @@
 <?php 
+  // Function that returns the necessary links given the users login status 
   function getLinks($loginStatus) {
     $loggedOutLinks = array(
       array(
@@ -45,8 +46,7 @@
 
     return $linksToShow;
   }
-
-  
+  // function that checks login status and calls the getLinks() function above so that is can generate the navigation
   function checkPageType($sessionData, $page) {
     $linkArray = [];
     if(isset($sessionData['logged-in']) && $sessionData['logged-in']) {
@@ -59,9 +59,11 @@
     return $linkArray;
   }    
     
+  // Populate the array that will be returned to buildHeader() in the main page
     function populateLinksArray($page, $links, $name) {
       $replacementArray = array();
       foreach($links as $l) {
+        // if the links href is equal to the current page make it active
         if($page == $l["href"]) {
           $l["active"] = 'true';
         }
@@ -70,6 +72,7 @@
       return $replacementArray;
     }
 
+    // This is only for the Account settings page
     function createAccountSettingsLinks($ref) {
       $accSettingsLinks = array(
         'view-bookings'=>'View Your Bookings',
@@ -78,8 +81,9 @@
       );
   
       $output = '';
-  
+      // generate the navigation links for this page
       foreach($accSettingsLinks as $link=>$title) {
+        // if the link is === to the refferer make it active else display inactive link
         if($link == $ref) {
           $output .= <<<LINK
           <div class="settings-link-container mgb-small">

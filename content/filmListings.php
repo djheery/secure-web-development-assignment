@@ -1,16 +1,19 @@
 <?php 
   require_once '../assets/src/buildPage.php';
-  require_once '../assets/src/filmListingsFunctions.php';
-  require_once '../assets/src/getNavigationLinks.php';
-  require_once '../assets/src/databaseActions.php';
-  require_once '../assets/src/sessionFunctions.php';
-
+  $filePaths = filePaths();
+  require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
+  require_once "{$filePaths['scripts']}/getNavigationLinks.php";
+  require_once "{$filePaths['scripts']}/sessionFunctions.php";
+  // Generate Session Data
   generateSession();
   $sessionData = getSessionData();
+  // Get page name for Title 
   $pageName = getPageName($_SERVER['PHP_SELF']);
-  $links = checkPageType($sessionData, $pageName);
+  // Get Navigation Links
+  $navigationLinks = checkPageType($sessionData, $pageName);
+  // Build Page Content (buildPage.php)
   echo buildPageStart(getPageTitle($pageName));
-  echo buildHeader($links);
+  echo buildHeader($navigationLinks);
   echo startMainSection();
 ?>
 <!-- Main Page Showcase -->
@@ -31,7 +34,7 @@
   echo createFilmListingsSection($sessionData);
   echo buildMarketingBlock($sessionData);
   echo endMainSection();
-  echo buildFooter($links);
+  echo buildFooter($navigationLinks);
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();

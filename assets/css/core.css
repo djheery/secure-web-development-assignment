@@ -5,8 +5,8 @@
   font-family: 'Montserrat', sans-serif;
 }
 /*
-====================== 
-  Root 
+======================  
+  Core Styles
 ======================
 */
 :root {
@@ -17,13 +17,6 @@
   --white: #fff;
 }
 
-
-
-/*
-===============================
-  Reusable Styles 
-================================
-*/
 ul {
   list-style: none;
 }
@@ -56,13 +49,10 @@ section, .page-section, .showcase, .settings-link-container, .dynamic-box-contai
   position: relative
 }
 
+.security-section-li {
+  list-style: disc;
+}
 
-
-/*
-===============================
-  Reused Styles on Refactor
-================================
-*/
 
 .dynamic-box, .section-heading, .adv-link {
   z-index: 2
@@ -538,12 +528,6 @@ Flim listings Page
   }
   
 
-  /* 
-  ========================
-    Containers 
-  ========================
-  */
-
   .page-section {
     padding: 180px 100px
   }
@@ -566,7 +550,7 @@ Flim listings Page
   =========================
   */
 
-  p, .adv-link {
+  p, .adv-link, .security-section-li {
     font-size: 1.7rem
   }
   
@@ -736,7 +720,7 @@ Flim listings Page
 @media only screen and (min-width:1024px) {
   /* 
     =======================
-    Element Styling 
+    Text
     =======================
   */
 
@@ -808,7 +792,7 @@ Flim listings Page
 
   /* 
     =======================
-    Container 
+    Formating
     =======================
   */
 
@@ -846,14 +830,6 @@ Flim listings Page
   #adv-settings .inner-container .page-right {
     width: unset;
   }
-
-
-
-  /* 
-  ============================
-  Formatting
-  ============================
-  */
   
 
   #film-tiles .inner-container, .film-listings__item-content,   .film-listings__item-content .buttons-container, .film-times, #individual-film-listing .inner-container .film-listings__item-container {
@@ -976,7 +952,7 @@ Flim listings Page
 @media only screen and (min-width:1200px) {
   /* 
     =======================
-    Element Styling 
+    Core
     =======================
   */
 
@@ -1004,17 +980,18 @@ Flim listings Page
   .sub-heading {
     font-size: 2rem;
   }
-
-  .mgb-large {
-    margin-bottom: 80px
-  }
-
+  
   /* 
   =============================
   Formatting
   =============================
   */
-
+  
+  
+    .mgb-large {
+      margin-bottom: 80px
+    }
+    
   #booking-page .inner-container, .booking-form .form-field-container {
     flex-direction: row;
   }

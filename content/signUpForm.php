@@ -1,18 +1,24 @@
 <?php 
   require_once "../assets/src/buildPage.php";
+  // Promote easy file path change if needed
   $filePaths = filePaths();
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
   require_once "{$filePaths['scripts']}/getNavigationLinks.php";
   require_once "{$filePaths['scripts']}/sessionFunctions.php";
-
+  // Session information
   generateSession();
   $sessionData = getSessionData();
   if($sessionData) header('location: accountSettings.php');
+  // Get Page Name for Page Title
   $pageName = getPageName($_SERVER['PHP_SELF']);
+  // Error Handling
   $errors = getErrorQueries($_SERVER['QUERY_STRING']);
-  $links = checkPageType($sessionData, $pageName);
+  // Navigation
+  $navigationLinks = checkPageType($sessionData, $pageName);
+
+  // Start Page Build (buildPage.php)
   echo buildPageStart(getPageTitle($pageName));
-  echo buildHeader($links);
+  echo buildHeader($navigationLinks);
   echo startMainSection();
 ?>
     <section id="sign-up" class="page-section bg-light-grey">
@@ -93,7 +99,8 @@
     </section>
 <?php 
   echo endMainSection();
-  echo buildFooter($links);
+  echo buildFooter($navigationLinks);
+  // Mobile Hamburger Link for main Navigation
   echo buildHamburgerBtn();
   echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
