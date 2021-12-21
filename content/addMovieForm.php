@@ -97,7 +97,7 @@
           </form>
         </div>
         <div class="page-right">
-          <img src="../assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+          <img src="../assets/images/camera-opperator-illustration.png" alt="camera-operator illustration" class='camera-operator-illustration'>
         </div>
     </div>
   </section>
@@ -105,7 +105,6 @@
   echo endMainSection();
   echo buildFooter($links);
   echo buildHamburgerBtn();
-  echo "<script src='/swd-final-assignment/assets/src/js/error-handling-ui.js'></script>";
-  echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
+  echo "<script src='/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

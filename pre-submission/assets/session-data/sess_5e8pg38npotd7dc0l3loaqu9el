@@ -1,0 +1,1 @@
+logged-in|i:1;name|s:6:"Daniel";username|s:16:"heery@live.co.uk";bookings|a:2:{i:0;a:3:{s:7:"movieID";s:1:"1";s:19:"screening_date_time";s:16:"2021-12-18 14:00";s:10:"movie_name";s:22:"Avengers: Infinity War";}i:1;a:3:{s:7:"movieID";s:1:"9";s:19:"screening_date_time";s:16:"2021-12-18 14:00";s:10:"movie_name";s:14:"Space Tourists";}}

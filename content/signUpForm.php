@@ -93,7 +93,7 @@
           </form>
         </div>
         <div class="page-right">
-          <img aria-hidden="true" src="../assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+          <img aria-hidden="true" src="../assets/images/camera-opperator-illustration.png" alt="camera-operator illustration" class='camera-operator-illustration'>
         </div>
       </div>
     </section>
@@ -102,6 +102,6 @@
   echo buildFooter($navigationLinks);
   // Mobile Hamburger Link for main Navigation
   echo buildHamburgerBtn();
-  echo "<script src='/swd-final-assignment/assets/src/js/mobile-nav.js'></script>";
+  echo "<script src='/assets/src/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

@@ -1,0 +1,69 @@
+============================
+accountSettingsFunctions.php
+============================
+------------------
+generateSideBox()
+------------------
+This is a function that creates the side box for the account settings based on the page refferer
+
+-------------------
+boxStart()/ boxEnd()
+--------------------
+
+These functions are responsible for opening and closing the side box the side box
+
+---------------
+viewBookings()
+---------------
+
+This is responsible for displaying user bookings based on their session data.
+- Within the loop it also formats the time of the booking with the stringtotime() method
+
+---------------
+changePassword()
+---------------
+
+This is responsible for displaying the form to change a users password
+- It will also display errors as necessary
+
+---------------
+deleteAccount()
+---------------
+
+This is responsible for displaying the delete account form. 
+- It will also display errors as necessary
+
+==============
+==============
+buildPage.php
+==============
+==============
+
+-----------
+filePaths()
+-----------
+This is used to get the file paths for scripts as needed for easier port to the uni web server
+
+------------
+getPageName()
+------------
+Splits the url path and returns the page name for the page title
+
+------------
+getPageTitle()
+------------
+Gets the page title for the relevant designated page parameter
+
+--------------
+buildPageStart
+--------------
+Builds the start of the page
+
+-------------
+buildHeader()
+-------------
+
+builds The page header
+
+
+
