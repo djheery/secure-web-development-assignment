@@ -2,7 +2,7 @@
   //Generate session data and dictate save path 
   function generateSession() {
     // ini_set("session.save_path", "/home/unn_w21045778/sessionData");
-    ini_set("session.save_path", "/swd-final-assignment./assets/sessionData");
+    ini_set("session.save_path", "../assets/sessionData");
     session_start(); 
   }
 

@@ -1,5 +1,5 @@
 <?php 
-  require_once "../assets/src/buildPage.php";
+  require_once "../assets/scripts/buildPage.php";
   // Promote easy file path change if needed
   $filePaths = filePaths();
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
@@ -31,7 +31,7 @@
               if($errors) echo showFormErrors($errors); 
             ?>
           </div>
-          <form action="../assets/src/validateForm.php" method="post" class="form-block">
+          <form action="../assets/scripts/validateForm.php" method="post" class="form-block">
             <div class="two-input-row mgb-mid flex">
               <div class="form-field-container">
                 <div class="mgb-small">
@@ -102,6 +102,6 @@
   echo buildFooter($navigationLinks);
   // Mobile Hamburger Link for main Navigation
   echo buildHamburgerBtn();
-  echo "<script src='/assets/src/js/mobile-nav.js'></script>";
+  echo "<script src='../assets/scripts/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

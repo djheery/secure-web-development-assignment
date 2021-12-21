@@ -1,5 +1,5 @@
 <?php
-  require_once '../assets/src/buildPage.php';
+  require_once '../assets/scripts/buildPage.php';
   $filePaths = filePaths();
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
   require_once "{$filePaths['scripts']}/getNavigationLinks.php";
@@ -105,6 +105,6 @@
   echo endMainSection();
   echo buildFooter($links);
   echo buildHamburgerBtn();
-  echo "<script src='/assets/src/js/mobile-nav.js'></script>";
+  echo "<script src='../assets/scripts/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

@@ -1,5 +1,5 @@
 <?php 
-  require_once "../assets/src/buildPage.php";
+  require_once "../assets/scripts/buildPage.php";
   $filePaths = filePaths();
   require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
   require_once "{$filePaths['scripts']}/getNavigationLinks.php";
@@ -62,7 +62,7 @@
           </form>
         </div>
         <div class="page-right">
-          <img src="../assets/images/camera-opperator-illustration.png" alt="" class='camera-operator-illustration'>
+          <img src="../assets/images/camera-opperator-illustration.png" alt="Camera Operator Illustration" aria-hidden="true" class='camera-operator-illustration'>
         </div>
       </div>
     </section>
@@ -70,6 +70,6 @@
   echo endMainSection();
   echo buildFooter($navigationLinks);
   echo buildHamburgerBtn();
-  echo "<script src='/assets/src/js/mobile-nav.js'></script>";
+  echo "<script src='../assets/scripts/js/mobile-nav.js'></script>";
   echo buildPageEnd();
 ?>

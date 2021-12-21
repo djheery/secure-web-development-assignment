@@ -1,6 +1,6 @@
 <?php
-  require_once '../assets/src/buildPage.php';
-  require_once '../assets/src/databaseActions.php';
+  require_once '../assets/scripts/buildPage.php';
+  require_once '../assets/scripts/databaseActions.php';
 
 
 
