@@ -27,11 +27,11 @@
           <h1 class="heading-secondary text-upper mgb-large"><span class="pastel-accent-clr">Login</span> To Your<span class="pastel-accent-clr"> Account</span></h1>
           <div class="error-block">
             <?php 
-              if($errors) echo showFormErrors($errors); 
+              if($errors) echo makeOutputSafe(showFormErrors($errors)); 
             ?>
           </div>
           <!-- Form -->
-          <form action="../assets/src/validateForm.php" method="post">
+          <form action="../assets/scripts/validateForm.php" method="post">
             <fieldset>
               <legend class="mgb-mid">Login Details</legend>
               <div class="form-field-container mgb-mid">
