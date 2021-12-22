@@ -159,6 +159,7 @@
       $inputEqualityCheck = array($passwords, $emails);
       for($i = 0; $i < count($inputEqualityCheck); $i++) {
         foreach($inputEqualityCheck[$i] as $key=>$value) {
+          // If the value is not true push the error and the statement to the errors array 
           if($value != 1) {
             $errors[$errorIndex] = $value;
             $errorIndex++;

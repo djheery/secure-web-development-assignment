@@ -117,42 +117,42 @@ PSWDFORM;
   }
 
   // Display delete account box TAKEN OUT AT THE LAST MINUTE AS WHEN PUSHED TO UNI SERVER IT DELETES ALL CUSTOMER DATA 
-//   function deleteAccount($errors) {
-//     $content = <<<DELETEACCFORM
-//     <div class="mgb-mid">
-//       <p class="bold text-upper mgb-small">I can't live, if living is without<span class="pastel-accent-clr"> you...</span></p>
-//       <p>Delete your account?</p>
-//     </div>
-// DELETEACCFORM;
-//     // Deal with error handling (buildPage.php)
-//     if($errors) $content .= showFormErrors($errors);
-//     $content .= <<<DELETEACCFORM
-//     <form action="../assets/src/validateForm.php" method="post">
-//       <div class="form-field-container">
-//         <div class="mgb-small">
-//           <label for="password" class="input-label">Password</label>
-//         </div>
-//         <div class="input-container">
-//           <input type="password" id="password" name="password">
-//         </div>
-//       </div>
-//       <div class="form-field-container mgb-mid">
-//         <div class="mgb-small">
-//           <label for="confirm-password" class="input-label">Confirm New Password</label>
-//         </div>
-//         <div class="input-container">
-//           <input type="password" id="confirm-password" name="confirm-password">
-//         </div>
-//       </div>
-//       <div class="buttons-container flex">
-//           <button id="submit" type="submit" class="btn bold bg-warning-red">Delete Account</button>
-//       </div>
-//       <input type="hidden" name="form-path" value="accountSettings.php?ref=delete-account">
-//       <input type="hidden" name="form-name" value="delete-user">
-//     </form>
-// DELETEACCFORM;
+  function deleteAccount($errors) {
+    $content = <<<DELETEACCFORM
+    <div class="mgb-mid">
+      <p class="bold text-upper mgb-small">I can't live, if living is without<span class="pastel-accent-clr"> you...</span></p>
+      <p>Delete your account?</p>
+    </div>
+DELETEACCFORM;
+    // Deal with error handling (buildPage.php)
+    if($errors) $content .= showFormErrors($errors);
+    $content .= <<<DELETEACCFORM
+    <form action="../assets/src/validateForm.php" method="post">
+      <div class="form-field-container">
+        <div class="mgb-small">
+          <label for="password" class="input-label">Password</label>
+        </div>
+        <div class="input-container">
+          <input type="password" id="password" name="password">
+        </div>
+      </div>
+      <div class="form-field-container mgb-mid">
+        <div class="mgb-small">
+          <label for="confirm-password" class="input-label">Confirm New Password</label>
+        </div>
+        <div class="input-container">
+          <input type="password" id="confirm-password" name="confirm-password">
+        </div>
+      </div>
+      <div class="buttons-container flex">
+          <button id="submit" type="submit" class="btn bold bg-warning-red">Delete Account</button>
+      </div>
+      <input type="hidden" name="form-path" value="accountSettings.php?ref=delete-account">
+      <input type="hidden" name="form-name" value="delete-user">
+    </form>
+DELETEACCFORM;
 
-//     return $content;
-//   }
+    return $content;
+  }
 
 ?>
