@@ -1,5 +1,5 @@
 <?php
-    require_once '../scripts/src/buildPage.php';
+    require_once '../assets/scripts/buildPage.php';
     $filePaths = filePaths();
     require_once "{$filePaths['scripts']}/filmListingsFunctions.php";
     require_once "{$filePaths['scripts']}/getNavigationLinks.php";
@@ -12,6 +12,7 @@
     if($refferer == 'delete-user') unsetDestroySession();
     // Get the Session Data after the above function so that the user is not logged in
     $sessionData = getSessionData();
+    print_r($sessionData);
     // Get page name for title
     $pageName = getPageName($_SERVER['PHP_SELF']);
     $navigationLinks = checkPageType($sessionData, $pageName);

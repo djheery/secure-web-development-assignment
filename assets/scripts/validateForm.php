@@ -42,6 +42,7 @@
       // go to preDatabaseInteraction.php for this function
       $databaseAction = findTargetDatabaseQuery($formName, $inputs);
       // if the result is not true - log errors - if not confirm
+      // print_r($databaseAction);
       $databaseAction != 1 ?
         // redirectFilm.php
         inputError($formPath, $databaseAction) :

@@ -1,7 +1,7 @@
 <?php
   // Return the path for easy code reuse
   function getPath() {
-    $path = "/content";
+    $path = "/swd-final-assignment/content";
     return $path;
   }
   // Redirect to a confirmation page with the designated referer
