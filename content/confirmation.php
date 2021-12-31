@@ -12,7 +12,6 @@
     if($refferer == 'delete-user') unsetDestroySession();
     // Get the Session Data after the above function so that the user is not logged in
     $sessionData = getSessionData();
-    print_r($sessionData);
     // Get page name for title
     $pageName = getPageName($_SERVER['PHP_SELF']);
     $navigationLinks = checkPageType($sessionData, $pageName);

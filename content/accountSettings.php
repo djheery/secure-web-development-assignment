@@ -13,7 +13,6 @@
     $links = checkPageType($sessionData, $pageName);
     $errors = getErrorQueries($_SERVER['QUERY_STRING']);
     // Build Page (buildPage.php)
-    print_r($sessionData['bookings']);
     echo buildPageStart(getPageTitle($pageName));
     echo buildHeader($links);
     echo startMainSection();
