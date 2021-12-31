@@ -1,7 +1,7 @@
 <?php
   //Generate session data and dictate save path 
   function generateSession() {
-    ini_set("session.save_path", "C:/xampp/htdocs/swd-final-assignment/assets/session-data");
+    ini_set("session.save_path", "../assets/sessionData");
     session_start(); 
   }
 
