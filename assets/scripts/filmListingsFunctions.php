@@ -179,7 +179,7 @@ function filmBookingForm($film) {
     $todaysDate = date('Y-m-d');
     $maxBookingDate = date('Y-m-d', strtotime($todaysDate . ' +14 days'));
     $formItem = <<<FORMITEM
-    <form action="../assets/src/validateForm.php" method="post" class="booking-form">
+    <form action="../assets/scripts/validateForm.php" method="post" class="booking-form">
         <div class="form-field-container flex mgb-mid">
           <label class="input-label pastel-accent-clr">Film Chosen:</label>
           <p>{$film['movie_name']}</p>

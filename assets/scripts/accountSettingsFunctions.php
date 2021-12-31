@@ -7,9 +7,9 @@
       case 'change-password' :
         $boxContent .= changePassword($errors);
         break;
-      // case 'delete-account' :
-      //   $boxContent .= deleteAccount($errors);
-      //   break;
+      case 'delete-account' :
+        $boxContent .= deleteAccount($errors);
+        break;
       default :
         $boxContent .= veiwBookings($sessionData);
     }
@@ -43,7 +43,8 @@ BOXSTART;
           <p class="bold mgb-mid">Your are booked to see...</p>
           <ul class="flex bookings-list">
 BOXTITLE;
-      foreach($sessionData['bookings'] as $b) {
+      $arr = [];
+foreach($sessionData['bookings'] as $b) {
         // Reformat mysql booking time
         $dateTimeReformat = date("d/m/Y H:i", strtotime($b['screening_date_time']));
         $content .= <<<LISTITEM

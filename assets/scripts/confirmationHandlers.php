@@ -28,7 +28,8 @@ CONTENT;
           break;
       case 'logout-user' :
         unsetDestroySession();
-        header('location: /content/index.php');
+        header('location: /swd-final-assignment/content/index.php');
+        // header('location: /content/index.php');
         break;
       case 'change-password' :
         $pageContent .= <<<CONTENT
