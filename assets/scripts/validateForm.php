@@ -225,5 +225,34 @@
     return $validatedNumber ? $validatedNumber : 'Error: unknown';
   }
 
+  function checkBookingTime($time) {
+    $allowedTimes = array('14:00', '16:00', '18:00', '20:00', '22:00');
 
+    // Check array to see If its an allowed time.
+
+  }
+
+  function checkAttending() {
+    $attending = array('1', '2', '3', '4', '5', '6');
+
+    // Check to see if its an allowed amount of 
+  }
+
+  function passwordContainsNameCheck() {
+
+  }
+
+  function ratingCheck() {
+    $allowedMovieRatings = ('PG', '12', '15'. '18');
+
+    // Check to see allowed amount
+  }
+
+  function checkInputParameterIsAllowed($allowedParams, $input) {
+    $result = array_key_exists($input, $allowedParams) ? $input : 'Error: user-error';
+    return $result;
+  }
+
+  https://identity.northumbria.ac.uk/connect/authorize/callback?client_id=Sitecore&response_mode=form_post&response_type=code%20id_token%20token&scope=openid%20sitecore.profile&state=OpenIdConnect.AuthenticationProperties%3DBu7u_0YjNqtkaNn75lmDq4nKOawET66REHDl9_p5rx8Dp7_pqmr_CZ7OgzRfLaXWJHGZpsilG3aNlOSkHnVjeOxMUzBy1r6LsyeXf22T6ihikseJwmeo5UAWDEAgvM0LuAxdy5Ym9uEFS4l5mc3wOiQtMZGaFBn6XLLdvB1WHZMcF-bzN-946Kn6rUXSS-p_puOQ_EPOPYV6cCXvA6K5ZfHxkvbCi2hZIrkOOEQCPebBrB78w9LFWwbe0U2AJKn78RjZSJG1yzMKhPzSwFQTXA&nonce=637766609474897211.ZmMxNjAzNmQtNmEwOC00Yjc3LWFhYmUtYWFhZDI3YzJlMjJhZGJiNGE2ZmQtYzU0My00NjU3LWJiNzctY2E3Y2Q3M2I2MWE1&acr_values=idp%3AIdS4-WsFederation&redirect_uri=https%3A%2F%2Fmyportal.northumbria.ac.uk%2Fidentity%2Fsignin&sc_account_prefix=azure%5C&x-client-SKU=ID_NET451&x-client-ver=5.2.2.0
+  https://sts.northumbria.ac.uk/adfs/ls/?wtrealm=urn%3Asitecoreidentity&wa=wsignin1.0&wreply=https%3A%2F%2Fidentity.northumbria.ac.uk%2Fsignin-wsfed&wctx=CfDJ8HGSH1bc4cFAsVSrBVKkZUF5fmc2phxz4vT3Uyk_9_T_EvE2Lqyd7Gzre_5nuidNhvDeNu4Bahti701BWUkIy0JxaU70D8dgBsvGQPOY8653kjLH7gtLp9Hzemu6jwM99KoxZu0uov5PpU2hzj18IUhrUlUidVxCOoJKkRzgvAoFJcF-tnfT3DDkkktTeJIInWnmnm40zzsdctUyLu4c62uRQkON8MB1eRENxM-xYbJUIbbcX3CRtDlAjs8xACpQg3FQ5ha4yBBN3i5LBWVtJd_l-B14G3yWqNATMRUvw23aUUtomLC6TTj7Av_kU7U3c-dOg72KX3dEQzLiF8wpwsykRX789e3NDs9eaX1tVPYRuBNW1Gc_yy3ycKQ6evpO7WxIonO5QkdZRfsR1QkAezWmsJYFFqvdSzCwzqYBEEYOVYsu-YLGPTvpiquDm8vch4L_0OAPmFP9MmEipigD6XjZuWrU2JT_hDxa0HQNlnHlfl94CeqRE-PBzymJHf8w0gjOmWs8XpiuyRHa9m4vF9k_gcX1ahTqxlSq-iAPshNCNGqeEM_58nkH0LAr0eCBDztfKv5wWYzlBn8NNaDf70pUjPixm-SNrxrSq-EGnIfUWHNLVaagW89aQvVt4yTtVz-HMGgPT_f_FfIBE_mhD09xzKWZnEMv1Oi3UzALn0sdT3_TTH6zUVV8qDD4dKSX0spnG-V5ksX_slRKQR7ftkkCJVR2Ov6ZDgUOJ10yV3cbDmdVCJhpoxGJO4nfiH_N2c6cuughQDocy08NQk1vCBJRFb6T0rzfJdBOpU0E-pXzO2VhaHYD5MA-uDYMY1PbJvjtzCZnJlq_YbrdiAeUg0_XjXxAvsAjEheFQXJacGEAlIiT_nAfAJkUh5hG0Y9Ch_3oyf3eQHiRi1B7kgrzh-XIVqTmhqsL3ylUY6nQ-GinDHYSyYfJzuwpfKe9-lWiVhmRGg_SH4svGiyH9TnrHArzrmZmudkdf5DJKFe74sfv0yBWL1HVm0SDBLngiSXQMKPx1JQutZuVqLeq7dZyb3ZPsGPcec44DnPg2Kf1xIUg3JVvJJdfmFJEtWiusjZtQMKHPPbMU2BJIOs79LWKp-PBt9c0UMq9wC1Ben7XJLmciRivNMVsUoX98p4aAbbEeCWQO6pofebK1fWH0CM-mlaW6X1m1Oxy7XUmKSAYIOoODXE9WHbADtR1t2VWqtMBOL3-Gq77A42r8ixw_vntRvEhGm3XFu_FAauIUX-se7KMIlwoWezsLskSsLsXMVLuD8Pru4pGn3hu89VKZhlD-7dkhGqrn5UCLCUQuZZocklO
 ?>

@@ -77,7 +77,7 @@
       $accSettingsLinks = array(
         'view-bookings'=>'View Your Bookings',
         'change-password'=>'Change Your Password',
-        // 'delete-account'=>'Delete Your Account',
+        'delete-account'=>'Delete Your Account',
       );
   
       $output = '';
